@@ -9,7 +9,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:text="Username"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
@@ -35,8 +37,9 @@
     <TextView
         android:id="@+id/tvRegisterLink"
         android:layout_width="wrap_content"
-        android:text="Register Here"
+        android:text="Don't have an account? Register"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
 </LinearLayout>

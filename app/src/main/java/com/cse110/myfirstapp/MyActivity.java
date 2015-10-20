@@ -16,6 +16,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
     Button bLogout;
     EditText etName, etUsername;
+    UserLocal userLocal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,14 +29,42 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
         bLogout.setOnClickListener(this);
 
+        userLocal = new UserLocal(this);
+
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(authenticate() == true) {
+
+        }
+
+    }
+
+    private boolean authenticate(){
+        return userLocal.getUserLoggedIn()
+    }
+
+    private void displayUserDetails() {
+        User user = userLocal.getLoggedInUser();
+
+        etName.setText(user.name);
+        etUsername.setText(user.username);
+
+    }
+
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogout:
-                startActivity(new Intent(this, Register.class));
+                userLocal.clearUserData();
+                userLocal.setUserLoggedIn(false);
 
+                startActivity(new Intent(this, Register.class));
                 break;
         }
     }
