@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -16,6 +17,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     EditText etFirstName, etEmail, etUsername, etPassword;
     Spinner sMajor;
     Button bRegister;
+    TextView loginLink;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +32,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         bRegister = (Button) findViewById(R.id.bRegister);
+        loginLink = (TextView) findViewById(R.id.tvLoginLink);
 
         bRegister.setOnClickListener(this);
+        loginLink.setOnClickListener(this);
     }
 
     @Override
@@ -51,8 +57,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 }
                 break;
             case R.id.tvLoginLink:
-                Intent registerIntent = new Intent(Register.this, Login.class);
-                startActivity(registerIntent);
+                Intent loginIntent = new Intent(Register.this, Login.class);
+                startActivity(loginIntent);
                 break;
         }
     }

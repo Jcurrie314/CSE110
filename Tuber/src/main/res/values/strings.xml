@@ -16,7 +16,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="major_select">Choose your Major</string>
-
+    <string name="description">Whatever</string>
 
     <string-array name="major_array">
         <item>Bioengineering</item>

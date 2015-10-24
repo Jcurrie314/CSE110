@@ -28,7 +28,9 @@
         </activity>
         <activity android:name="com.parse.tuber.Register" >
         </activity>
-        <activity android:name="com.parse.tuber.Landing" >
+        <activity
+            android:name="com.parse.tuber.Landing"
+            android:screenOrientation="portrait" >
         </activity>
         <activity android:name="com.parse.tuber.ForgotPassword" >
         </activity>

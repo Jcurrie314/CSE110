@@ -1994,9 +1994,11 @@ containing a value of this type.
         public static final int abc_textfield_search_material=0x7f02003a;
         public static final int bg=0x7f02003b;
         public static final int fab_background=0x7f02003c;
-        public static final int logo=0x7f02003d;
-        public static final int notification_template_icon_bg=0x7f02003f;
-        public static final int snackbar_background=0x7f02003e;
+        public static final int gradient=0x7f02003d;
+        public static final int logo=0x7f02003e;
+        public static final int logoanimated=0x7f02003f;
+        public static final int notification_template_icon_bg=0x7f020041;
+        public static final int snackbar_background=0x7f020040;
     }
     public static final class id {
         public static final int action0=0x7f0d0075;
@@ -2218,10 +2220,11 @@ containing a value of this type.
         public static final int action_settings=0x7f060011;
         public static final int app_name=0x7f060012;
         public static final int appbar_scrolling_view_behavior=0x7f060013;
-        public static final int major_select=0x7f060014;
-        public static final int parse_app_id=0x7f060015;
-        public static final int parse_client_key=0x7f060016;
-        public static final int status_bar_notification_info_overflow=0x7f060017;
+        public static final int description=0x7f060014;
+        public static final int major_select=0x7f060015;
+        public static final int parse_app_id=0x7f060016;
+        public static final int parse_client_key=0x7f060017;
+        public static final int status_bar_notification_info_overflow=0x7f060018;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f080074;

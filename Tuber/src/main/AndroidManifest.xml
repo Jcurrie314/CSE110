@@ -26,7 +26,8 @@
         </activity>
 
         <activity
-            android:name=".Landing">
+            android:name=".Landing"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ForgotPassword">
