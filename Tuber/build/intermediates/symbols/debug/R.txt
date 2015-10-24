@@ -503,9 +503,8 @@ int drawable bg 0x7f02003b
 int drawable fab_background 0x7f02003c
 int drawable gradient 0x7f02003d
 int drawable logo 0x7f02003e
-int drawable logoanimated 0x7f02003f
-int drawable notification_template_icon_bg 0x7f020041
-int drawable snackbar_background 0x7f020040
+int drawable notification_template_icon_bg 0x7f020040
+int drawable snackbar_background 0x7f02003f
 int id action0 0x7f0d0075
 int id action_bar 0x7f0d0057
 int id action_bar_activity_content 0x7f0d0000

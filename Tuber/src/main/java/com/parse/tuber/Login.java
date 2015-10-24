@@ -87,7 +87,11 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
                         startActivity(forgotPasswordIntent);
                     }
                 })
-                .setPositiveButton("Yes", null);
+                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        etPassword.setText("");
+                    }
+                });
         AlertDialog alert = dialogBuilder.create();
         alert.show();
     }

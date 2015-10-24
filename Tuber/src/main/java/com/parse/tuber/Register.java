@@ -68,7 +68,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
         ParseUser user = new ParseUser();
 
-        user.setUsername(etUsername.getText().toString().trim());
+        user.setUsername(etUsername.getText().toString().trim().toLowerCase());
         user.setPassword(etPassword.getText().toString().trim());
         user.setEmail(etEmail.getText().toString().trim());
 

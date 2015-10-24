@@ -1996,9 +1996,8 @@ containing a value of this type.
         public static final int fab_background=0x7f02003c;
         public static final int gradient=0x7f02003d;
         public static final int logo=0x7f02003e;
-        public static final int logoanimated=0x7f02003f;
-        public static final int notification_template_icon_bg=0x7f020041;
-        public static final int snackbar_background=0x7f020040;
+        public static final int notification_template_icon_bg=0x7f020040;
+        public static final int snackbar_background=0x7f02003f;
     }
     public static final class id {
         public static final int action0=0x7f0d0075;
