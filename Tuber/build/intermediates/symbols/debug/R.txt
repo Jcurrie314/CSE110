@@ -525,7 +525,7 @@ int id activity_chooser_view_content 0x7f0d003d
 int id alertTitle 0x7f0d0047
 int id always 0x7f0d002b
 int id bLogin 0x7f0d0068
-int id bLogout 0x7f0d006f
+int id bLogout 0x7f0d006e
 int id bMain 0x7f0d0075
 int id bRegister 0x7f0d0069
 int id bSend 0x7f0d0067
@@ -556,7 +556,7 @@ int id end 0x7f0d0020
 int id end_padder 0x7f0d0084
 int id enterAlways 0x7f0d0014
 int id enterAlwaysCollapsed 0x7f0d0015
-int id etAge 0x7f0d006e
+int id etAge 0x7f0d006f
 int id etEmail 0x7f0d0066
 int id etFirstName 0x7f0d0070
 int id etName 0x7f0d006d

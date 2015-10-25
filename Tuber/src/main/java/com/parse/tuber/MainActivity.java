@@ -58,7 +58,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
   }
 
   private void displayUserDetails(ParseUser currentUser) {
-    etUsername.setText(currentUser.getUsername().toString());
-    etName.setText(currentUser.);
+    etUsername.setText(currentUser.getUsername());
+    etName.setText(currentUser.get("name").toString());
+    etEmail.setText(currentUser.getEmail());
+
   }
 }
