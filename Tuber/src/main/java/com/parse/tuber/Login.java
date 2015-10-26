@@ -69,7 +69,8 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
                     Intent registerIntent = new Intent(Login.this, MainActivity.class);
                     startActivity(registerIntent);
                 } else {
-                    showErrorMessage();
+                        showErrorMessage();
+
                 }
             }
         });
@@ -95,6 +96,13 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         AlertDialog alert = dialogBuilder.create();
         alert.show();
     }
+
+    private void showNetworkError(){
+        Toast.makeText(getApplicationContext(), "Network Error",
+                Toast.LENGTH_LONG).show();
+    }
+
+
 
     private void logUserIn(User returnedUser) {
         startActivity(new Intent(this, MainActivity.class));
