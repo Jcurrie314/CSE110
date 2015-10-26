@@ -12,7 +12,7 @@ import com.parse.ParseUser;
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
   EditText etName, etEmail, etUsername;
-  Button bLogout;
+  Button bLogout, bChangePassword;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     etName = (EditText) findViewById(R.id.etName);
     etEmail = (EditText) findViewById(R.id.etEmail);
     bLogout = (Button) findViewById(R.id.bLogout);
+    bChangePassword = (Button) findViewById(R.id.bChangePassword);
 
+
+    bChangePassword.setOnClickListener(this);
     bLogout.setOnClickListener(this);
+
 
   }
 
@@ -36,6 +40,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
         Intent loginIntent = new Intent(this, Login.class);
         startActivity(loginIntent);
+        break;
+      case R.id.bChangePassword:
+        Intent changePasswordIntent;
+        changePasswordIntent = new Intent(this, ChangePassword.class);
+        startActivity(changePasswordIntent);
         break;
     }
   }
@@ -59,7 +68,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
   private void displayUserDetails(ParseUser currentUser) {
     etUsername.setText(currentUser.getUsername());
-    etName.setText(currentUser.get("name").toString());
+    //etName.setText(currentUser.get("name").toString());
     etEmail.setText(currentUser.getEmail());
 
   }

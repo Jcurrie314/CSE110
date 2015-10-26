@@ -23,6 +23,11 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity
+            android:name=".ChangePassword"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".Register"
