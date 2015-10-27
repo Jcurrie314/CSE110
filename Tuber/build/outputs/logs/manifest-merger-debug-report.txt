@@ -36,7 +36,7 @@ MERGED from [com.android.support:support-v4:22.2.0] /Users/jonathancurrie/Androi
 	android:icon
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:11:9-43
 	android:theme
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:13:9-76
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:13:9-65
 	android:name
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:9:9-43
 meta-data#com.parse.APPLICATION_ID

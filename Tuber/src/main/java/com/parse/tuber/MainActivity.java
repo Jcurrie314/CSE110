@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     Button bLogout, bChangePassword;
     ListView lvTutors;
-    ArrayAdapter<String> listAdapter ;
+    ArrayAdapter<String> listAdapter;
 
 
     @Override
@@ -43,13 +43,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
 
 
-        // Find the ListView resource.
         lvTutors = (ListView) findViewById( R.id.lvTutors );
 
-        // Create and populate a List of planet names.
-        final String[] planets = new String[] { };
-        final ArrayList<String> planetList = new ArrayList<String>();
-        listAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, planetList);
+        final String[] users = new String[] { };
+        final ArrayList<String> userList = new ArrayList<String>();
+        listAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, userList);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.findInBackground(new FindCallback<ParseUser>() {
@@ -64,9 +62,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             }
         });
 
-        planetList.addAll(Arrays.asList(planets));
+        userList.addAll(Arrays.asList(users));
 
-        // Set the ArrayAdapter as the ListView's adapter.
         lvTutors.setAdapter( listAdapter );
     }
 
@@ -75,7 +72,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.bLogout:
                 ParseUser.logOut();
-                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                ParseUser currentUser = ParseUser.getCurrentUser();
                 Intent loginIntent = new Intent(this, Login.class);
                 startActivity(loginIntent);
                 break;
