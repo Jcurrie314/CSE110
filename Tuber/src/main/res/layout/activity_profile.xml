@@ -6,6 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tvNotVerified"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
         android:text="Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

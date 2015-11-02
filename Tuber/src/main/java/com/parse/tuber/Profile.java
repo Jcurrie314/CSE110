@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -21,9 +22,9 @@ import java.util.List;
  * Created by jonathancurrie on 10/22/15.
  */
 public class Profile extends ActionBarActivity implements View.OnClickListener {
-    String value;
+    String userId;
 
-    TextView tvName;
+    TextView tvName, tvNotVerified;
     Button bContact;
 
 
@@ -33,16 +34,15 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         setContentView(R.layout.activity_profile);
 
         tvName = (TextView) findViewById(R.id.tvName);
+        bContact = (Button) findViewById(R.id.bContact);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            value = extras.getString("id");
-            Toast.makeText(getBaseContext(), value, Toast.LENGTH_LONG).show();
-
+            userId = extras.getString("id");
         }
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("objectId", value);
+        query.whereEqualTo("objectId", userId);
         query.getFirstInBackground(new GetCallback<ParseUser>() {
             public void done(ParseUser user, com.parse.ParseException e) {
                 if (e == null) {
@@ -51,8 +51,8 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                     if (user == null) {
                         // no matching user!
                     } else {
-                        isVerified(user.get("name").toString());
-                        tvName.setText(user.get("name").toString());
+                        isVerified(userId);
+
                     }
                 } else {
                     // Something went wrong.
@@ -65,21 +65,55 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
     public void isVerified(String tutorId) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
-        query.whereEqualTo("tutor", tutorId);
-        query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId());
-        query.findInBackground(new FindCallback<ParseObject>() {
+        if (ParseUser.getCurrentUser().getObjectId().toString() != userId) {
+            query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId().toString());
+            query.whereEqualTo("tutor", userId);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
+                    if (e == null) {
+                        if (objects.size() > 0) {
+                            Boolean verified = (Boolean) objects.get(0).get("accepted");
+                            dispayUserDetails(verified);
+                        } else {
 
-            @Override
-            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                if (e == null) {
-                    Boolean verified = (Boolean) objects.get(0).get("accepted");
-                    Toast.makeText(getApplicationContext(), verified.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                    }
 
-                } else {
                 }
+            });
+        } else {
 
-            }
-        });
+        }
+    }
+
+    public void dispayUserDetails(Boolean verified) {
+        if (verified) {
+            bContact.setVisibility(View.GONE);
+
+            ParseQuery<ParseUser> query = ParseUser.getQuery();
+            query.whereEqualTo("objectId", userId);
+            query.getFirstInBackground(new GetCallback<ParseUser>() {
+                public void done(ParseUser user, com.parse.ParseException e) {
+                    if (e == null) {
+                        // The query was successful.
+                        // check if we got a match
+                        if (user == null) {
+                            // no matching user!
+                        } else {
+                            tvName.setText(user.get("name").toString());
+                        }
+                    } else {
+                        // Something went wrong.
+                    }
+                }
+            });
+        } else {
+            tvNotVerified.setVisibility(View.GONE);
+            bContact.setVisibility(View.VISIBLE);
+
+        }
     }
 
     @Override
