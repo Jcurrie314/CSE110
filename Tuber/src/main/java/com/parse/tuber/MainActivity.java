@@ -3,16 +3,12 @@ package com.parse.tuber;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -25,6 +21,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button bLogout, bChangePassword;
     ListView lvTutors;
     ArrayAdapter<String> listAdapter ;
+
 
 
     @Override
@@ -40,6 +37,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         bChangePassword.setOnClickListener(this);
         bLogout.setOnClickListener(this);
+
 
 
 
@@ -91,6 +89,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
         ParseUser currentUser = ParseUser.getCurrentUser();
+        startActivity(new Intent(getApplicationContext(), TabViewActivity.class));
         if (currentUser != null) {
             displayUserDetails(currentUser);
 
