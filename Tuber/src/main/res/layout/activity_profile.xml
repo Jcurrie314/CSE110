@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/tvNotVerified"
-        android:text="Request "
+        android:text="Request access to their contact info"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -15,12 +15,25 @@
         android:text="Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"/>
+        />
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:text="Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"/>
 
 
     <!-- Change password button-->

@@ -25,9 +25,8 @@ import java.util.List;
 public class Profile extends ActionBarActivity implements View.OnClickListener {
     String userId;
 
-    TextView tvName, tvNotVerified;
+    TextView tvName, tvEmail, tvNotVerified;
     Button bContact;
-    ProgressDialog progress;
 
 
     @Override
@@ -36,14 +35,14 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         setContentView(R.layout.activity_profile);
 
         tvName = (TextView) findViewById(R.id.tvName);
+        tvEmail = (TextView) findViewById(R.id.tvEmail);
+        tvNotVerified = (TextView) findViewById(R.id.tvNotVerified);
         bContact = (Button) findViewById(R.id.bContact);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userId = extras.getString("id");
         }
-        progress = ProgressDialog.show(this, "Loading User",
-                null, true);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("objectId", userId);
@@ -55,6 +54,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                     if (user == null) {
                         // no matching user!
                     } else {
+                        tvName.setText(user.get("name").toString());
                         isVerified(userId);
 
                     }
@@ -78,7 +78,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                     if (e == null) {
                         if (objects.size() > 0) {
                             Boolean verified = (Boolean) objects.get(0).get("accepted");
-                            dispayUserDetails(verified);
+                            displayUserDetails(verified);
                         } else {
 
                         }
@@ -92,9 +92,10 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         }
     }
 
-    public void dispayUserDetails(Boolean verified) {
+    public void displayUserDetails(Boolean verified) {
         if (verified) {
             bContact.setVisibility(View.GONE);
+            tvNotVerified.setVisibility(View.GONE);
 
             ParseQuery<ParseUser> query = ParseUser.getQuery();
             query.whereEqualTo("objectId", userId);
@@ -106,7 +107,9 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                         if (user == null) {
                             // no matching user!
                         } else {
-                            tvName.setText(user.get("name").toString());
+
+                            tvEmail.setText(user.getEmail().toString());
+
                         }
                     } else {
                         // Something went wrong.
@@ -116,9 +119,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         } else {
             tvNotVerified.setVisibility(View.GONE);
             bContact.setVisibility(View.VISIBLE);
-
         }
-        progress.dismiss();
     }
 
     @Override
