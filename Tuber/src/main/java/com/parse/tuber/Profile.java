@@ -111,6 +111,8 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
             bChangePassword.setVisibility(View.VISIBLE);
             bLogout.setVisibility(View.VISIBLE);
+            bContact.setVisibility(View.GONE);
+
             //case that user is looking at their own profile
             displayUserDetails(true);
 
