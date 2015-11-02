@@ -17,7 +17,7 @@ public class Landing extends ActionBarActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
-        startActivity(new Intent(getApplicationContext(), TabViewActivity.class));
+        //startActivity(new Intent(getApplicationContext(), TabViewActivity.class));
 
         bLogin = (Button) findViewById(R.id.bLogin);
         bRegister = (Button) findViewById(R.id.bRegister);

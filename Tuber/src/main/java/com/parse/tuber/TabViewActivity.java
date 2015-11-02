@@ -29,6 +29,6 @@ public class TabViewActivity extends Activity {
 
         actionBar.addTab(tab1);
         actionBar.addTab(tab2);
-    }git 
+    }
 }
 
