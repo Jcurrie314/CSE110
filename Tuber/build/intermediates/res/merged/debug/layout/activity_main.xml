@@ -6,43 +6,38 @@
     android:layout_height="fill_parent"
 
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:paddingTop="56dp">
+    android:orientation="vertical">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/logo" />
-
-    <ListView
-        android:id="@+id/lvTutors"
+    <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="12dp" />
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="5dp">
 
-    <!-- Change password button-->
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/bChangePassword"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="24dp"
-        android:padding="12dp"
-        android:text="Change Password" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@android:id/tabs"
+                />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/bLogout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="12dp"
-        android:padding="12dp"
-        android:text="Logout" />
-    
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center|bottom"/>
+
+
+        </RelativeLayout>
+    </TabHost>
 
 </LinearLayout>
+
+
 <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_main.xml -->

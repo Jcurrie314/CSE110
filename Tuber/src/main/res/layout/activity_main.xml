@@ -6,32 +6,35 @@
     android:layout_height="fill_parent"
 
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:paddingTop="56dp">
+    android:orientation="vertical">
 
 
     <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:padding="5dp">
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:padding="5dp" />
+                android:layout_above="@android:id/tabs"
+                />
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center|bottom"/>
 
 
-
-        </LinearLayout>
+        </RelativeLayout>
     </TabHost>
 
 </LinearLayout>
