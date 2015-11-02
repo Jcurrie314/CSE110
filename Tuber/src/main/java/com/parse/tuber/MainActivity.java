@@ -16,46 +16,45 @@ public class MainActivity extends TabActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            Resources resources = getResources();
+            TabHost tabHost = getTabHost();
 
-        Resources resources = getResources();
-        TabHost tabHost = getTabHost();
+            // Search tab
+            Intent intentSearch = new Intent().setClass(this, Search.class);
+            TabSpec tabSpecSearch = tabHost
+                    .newTabSpec("Search")
+                    .setIndicator("", resources.getDrawable(R.drawable.ic_search_black_36dp))
+                    .setContent(intentSearch);
 
-        // Search tab
-        Intent intentSearch = new Intent().setClass(this, Search.class);
-        TabSpec tabSpecSearch = tabHost
-                .newTabSpec("Search")
-                .setIndicator("", resources.getDrawable(R.drawable.icon_search_config))
-                .setContent(intentSearch);
+            // My profile tab
+            Intent intentProfile = new Intent().setClass(this, Profile.class);
+            intentProfile.putExtra("id", ParseUser.getCurrentUser().getObjectId().toString());
+            TabSpec tabSpecProfile = tabHost
+                    .newTabSpec("Profile")
+                    .setIndicator("", resources.getDrawable(R.drawable.ic_face_black_36dp))
+                    .setContent(intentProfile);
 
-        // My profile tab
-        Intent intentProfile = new Intent().setClass(this, Profile.class);
-        intentProfile.putExtra("id", ParseUser.getCurrentUser().getObjectId().toString());
-        TabSpec tabSpecProfile = tabHost
-                .newTabSpec("Profile")
-                .setIndicator("", resources.getDrawable(R.drawable.icon_profile_config))
-                .setContent(intentProfile);
+            //add all tabs
+            tabHost.addTab(tabSpecSearch);
+            tabHost.addTab(tabSpecProfile);
 
-        //add all tabs
-        tabHost.addTab(tabSpecSearch);
-        tabHost.addTab(tabSpecProfile);
+            //set Search to be default tab
+            tabHost.setCurrentTab(0);
 
-        //set Search to be default tab
-        tabHost.setCurrentTab(0);
+
+        } else {
+            ParseUser.logOut();
+            Intent landingIntent = new Intent(this, Landing.class);
+            startActivity(landingIntent);
+        }
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null) {
-            //Intent searchIntent = new Intent(this, Search.class);
-            //startActivity(searchIntent);
-        } else {
-            ParseUser.logOut();
-            Intent landingIntent = new Intent(this, Landing.class);
-            startActivity(landingIntent);
-        }
 
 
     }
