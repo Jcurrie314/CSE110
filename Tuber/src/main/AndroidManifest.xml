@@ -29,6 +29,9 @@
 
         </activity>
         <activity
+            android:name=".TabViewActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".ChangePassword"
             android:screenOrientation="portrait">
 
@@ -47,7 +50,8 @@
 
         <activity
             android:name=".Landing"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name=".ForgotPassword"
             android:screenOrientation="portrait">

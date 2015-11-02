@@ -18,6 +18,8 @@
     <string name="major_select">Choose your Major</string>
     <string name="cb_tutor"><b>Tutor</b> needing ca-ca-cash</string>
     <string name="cb_student"><b>Student</b> needing tutoring</string>
+    <string name="Two">My Profile</string>
+    <string name="One">Search</string>
 
 
     <string-array name="major_array">
