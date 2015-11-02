@@ -1,23 +1,16 @@
 package com.parse.tuber;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.Parse;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
-import java.util.List;
 
 /**
  * Created by jonathancurrie on 10/22/15.
@@ -69,7 +62,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
     public void isVerified(String tutorId) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
-        if (ParseUser.getCurrentUser().getObjectId().toString() != userId) {
+        if (!(ParseUser.getCurrentUser().getObjectId().toString()).equals(userId)) {
             query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId().toString());
             query.whereEqualTo("tutor", userId);
             query.findInBackground(new FindCallback<ParseObject>() {
@@ -88,7 +81,8 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                 }
             });
         } else {
-
+            //case that user is looking at their own profile
+            displayUserDetails(true);
         }
     }
 
