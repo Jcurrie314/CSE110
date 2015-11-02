@@ -1,5 +1,6 @@
 package com.parse.tuber;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -26,6 +27,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
     TextView tvName, tvNotVerified;
     Button bContact;
+    ProgressDialog progress;
 
 
     @Override
@@ -40,6 +42,8 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         if (extras != null) {
             userId = extras.getString("id");
         }
+        progress = ProgressDialog.show(this, "Loading User",
+                null, true);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("objectId", userId);
@@ -114,6 +118,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
             bContact.setVisibility(View.VISIBLE);
 
         }
+        progress.dismiss();
     }
 
     @Override

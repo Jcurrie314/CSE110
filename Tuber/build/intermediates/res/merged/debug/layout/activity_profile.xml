@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
     <!-- Change password button-->
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/bContact"
