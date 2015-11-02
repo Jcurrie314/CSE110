@@ -24,16 +24,13 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/parse_client_key" />
 
+        <activity android:name="com.parse.tuber.Search" />
         <activity
             android:name="com.parse.tuber.Login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.parse.tuber.Profile"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.parse.tuber.Search"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -50,7 +47,8 @@
         </activity>
         <activity
             android:name="com.parse.tuber.Landing"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.parse.tuber.ForgotPassword"
             android:screenOrientation="portrait" >

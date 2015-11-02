@@ -5,4 +5,4 @@
         android:state_selected="true" />
     <!-- When not selected, you should use bg with white -->
     <item android:drawable="@drawable/ic_search" />
-</selector><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/drawable-xxhdpi/icon_search_config.xml -->
+</selector><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/drawable-xxhdpi/icon_search_config.xml -->

@@ -49,8 +49,8 @@ public class MainActivity extends TabActivity {
         super.onStart();
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            Intent searchIntent = new Intent(this, Search.class);
-            startActivity(searchIntent);
+            //Intent searchIntent = new Intent(this, Search.class);
+            //startActivity(searchIntent);
         } else {
             ParseUser.logOut();
             Intent landingIntent = new Intent(this, Landing.class);
