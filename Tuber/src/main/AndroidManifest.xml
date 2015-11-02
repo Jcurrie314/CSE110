@@ -18,11 +18,15 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/parse_client_key" />
 
+        <activity android:name=".Search" />
+
+
         <activity
             android:name=".Login"
             android:screenOrientation="portrait">
 
         </activity>
+
         <activity
             android:name=".Profile"
             android:screenOrientation="portrait">
@@ -30,7 +34,9 @@
         </activity>
         <activity
             android:name=".TabViewActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name=".ChangePassword"
             android:screenOrientation="portrait">

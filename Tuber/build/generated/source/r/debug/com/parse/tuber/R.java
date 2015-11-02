@@ -3623,7 +3623,7 @@ containing a value of this type.
         public static final int activity_main=0x7f04001d;
         public static final int activity_profile=0x7f04001e;
         public static final int activity_register=0x7f04001f;
-        public static final int activity_tabs=0x7f040020;
+        public static final int AndroidManifest =0x7f040020;
         public static final int activity_verifyemail=0x7f040021;
         public static final int design_navigation_item=0x7f040022;
         public static final int design_navigation_item_header=0x7f040023;
@@ -3644,7 +3644,7 @@ containing a value of this type.
         public static final int select_dialog_multichoice_material=0x7f040032;
         public static final int select_dialog_singlechoice_material=0x7f040033;
         public static final int support_simple_spinner_dropdown_item=0x7f040034;
-        public static final int tab=0x7f040035;
+        public static final int AndroidLayout =0x7f040035;
     }
     public static final class menu {
         public static final int menu_main=0x7f0e0000;

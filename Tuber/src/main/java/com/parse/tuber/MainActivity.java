@@ -1,6 +1,7 @@
 package com.parse.tuber;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -8,7 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Resources resources = getResources();
+        TabHost tabHost = getTabHost();
 
         bLogout = (Button) findViewById(R.id.bLogout);
         bChangePassword = (Button) findViewById(R.id.bChangePassword);
@@ -104,7 +108,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
         ParseUser currentUser = ParseUser.getCurrentUser();
-       // startActivity(new Intent(getApplicationContext(), TabViewActivity.class));
+        //startActivity(new Intent(getApplicationContext(), TabViewActivity.class));
         if (currentUser != null) {
             displayUserDetails(currentUser);
 
