@@ -3460,6 +3460,7 @@ containing a value of this type.
         public static final int alertTitle=0x7f0d0047;
         public static final int always=0x7f0d002b;
         public static final int bChangePassword=0x7f0d0072;
+        public static final int bContact=0x7f0d0075;
         public static final int bLogin=0x7f0d006c;
         public static final int bLogout=0x7f0d0073;
         public static final int bMain=0x7f0d007b;
@@ -3493,11 +3494,9 @@ containing a value of this type.
         public static final int end_padder=0x7f0d008a;
         public static final int enterAlways=0x7f0d0014;
         public static final int enterAlwaysCollapsed=0x7f0d0015;
-        public static final int etAge=0x7f0d0075;
         public static final int etConfirmNewPassword=0x7f0d0068;
         public static final int etEmail=0x7f0d006a;
         public static final int etFirstName=0x7f0d0076;
-        public static final int etName=0x7f0d0074;
         public static final int etNewPassword=0x7f0d0067;
         public static final int etOldPassword=0x7f0d0066;
         public static final int etPassword=0x7f0d006f;
@@ -3574,6 +3573,7 @@ containing a value of this type.
         public static final int top=0x7f0d0027;
         public static final int topPanel=0x7f0d0045;
         public static final int tvLoginLink=0x7f0d007a;
+        public static final int tvName=0x7f0d0074;
         public static final int tvRegisterLink=0x7f0d0070;
         public static final int up=0x7f0d0008;
         public static final int useLogo=0x7f0d0013;

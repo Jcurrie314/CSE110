@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:2:1-65:12
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:2:1-70:12
 	xmlns:android
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -22,7 +22,7 @@ ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main
 	android:name
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:6:22-76
 application
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:8:5-63:19
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:8:5-68:19
 MERGED from [com.android.support:appcompat-v7:22.2.0] /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:22.2.0] /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:22.2.0] /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/AndroidManifest.xml:22:5-20
@@ -57,54 +57,60 @@ ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:23:13-49
 	android:name
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:22:13-34
-activity#com.parse.tuber.ChangePassword
+activity#com.parse.tuber.Profile
 ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:26:9-30:20
 	android:screenOrientation
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:28:13-49
 	android:name
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:27:13-43
-activity#com.parse.tuber.Register
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:32:9-36:20
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:27:13-36
+activity#com.parse.tuber.ChangePassword
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:31:9-35:20
 	android:screenOrientation
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:34:13-49
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:33:13-49
 	android:name
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:33:13-37
-activity#com.parse.tuber.VerifyEmail
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:32:13-43
+activity#com.parse.tuber.Register
 ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:37:9-41:20
 	android:screenOrientation
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:39:13-49
 	android:name
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:38:13-40
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:38:13-37
+activity#com.parse.tuber.VerifyEmail
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:42:9-46:20
+	android:screenOrientation
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:44:13-49
+	android:name
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:43:13-40
 activity#com.parse.tuber.Landing
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:43:9-45:61
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:48:9-50:61
 	android:screenOrientation
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:45:13-49
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:50:13-49
 	android:name
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:44:13-36
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:49:13-36
 activity#com.parse.tuber.ForgotPassword
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:46:9-50:20
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:51:9-55:20
 	android:screenOrientation
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:48:13-49
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:53:13-49
 	android:name
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:47:13-43
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:52:13-43
 activity#com.parse.tuber.MainActivity
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:52:9-62:20
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:57:9-67:20
 	android:screenOrientation
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:55:13-49
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:60:13-49
 	android:label
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:54:13-45
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:59:13-45
 	android:name
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:53:13-41
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:58:13-41
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:57:13-61:29
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:62:13-66:29
 action#android.intent.action.MAIN
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:58:17-69
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:63:17-69
 	android:name
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:58:25-66
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:63:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:60:17-77
+ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:65:17-77
 	android:name
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:60:27-74
+		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:65:27-74
 uses-sdk
 INJECTED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:22.2.0] /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/AndroidManifest.xml:20:5-43

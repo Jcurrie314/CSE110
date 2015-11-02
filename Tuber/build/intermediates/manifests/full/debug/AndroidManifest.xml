@@ -29,6 +29,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.parse.tuber.Profile"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.parse.tuber.ChangePassword"
             android:screenOrientation="portrait" >
         </activity>

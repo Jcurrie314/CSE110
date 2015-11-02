@@ -1965,6 +1965,7 @@ int id activity_chooser_view_content 0x7f0d003d
 int id alertTitle 0x7f0d0047
 int id always 0x7f0d002b
 int id bChangePassword 0x7f0d0072
+int id bContact 0x7f0d0075
 int id bLogin 0x7f0d006c
 int id bLogout 0x7f0d0073
 int id bMain 0x7f0d007b
@@ -1998,11 +1999,9 @@ int id end 0x7f0d0020
 int id end_padder 0x7f0d008a
 int id enterAlways 0x7f0d0014
 int id enterAlwaysCollapsed 0x7f0d0015
-int id etAge 0x7f0d0075
 int id etConfirmNewPassword 0x7f0d0068
 int id etEmail 0x7f0d006a
 int id etFirstName 0x7f0d0076
-int id etName 0x7f0d0074
 int id etNewPassword 0x7f0d0067
 int id etOldPassword 0x7f0d0066
 int id etPassword 0x7f0d006f
@@ -2079,6 +2078,7 @@ int id title_template 0x7f0d0046
 int id top 0x7f0d0027
 int id topPanel 0x7f0d0045
 int id tvLoginLink 0x7f0d007a
+int id tvName 0x7f0d0074
 int id tvRegisterLink 0x7f0d0070
 int id up 0x7f0d0008
 int id useLogo 0x7f0d0013

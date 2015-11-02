@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -41,30 +43,47 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         bChangePassword.setOnClickListener(this);
         bLogout.setOnClickListener(this);
 
+        lvTutors = (ListView) findViewById(R.id.lvTutors);
 
 
-        lvTutors = (ListView) findViewById( R.id.lvTutors );
+        lvTutors.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = ((TextView)view).getText().toString();
 
-        final String[] users = new String[] { };
+                Intent intent = new Intent(MainActivity.this, Profile.class);
+                intent.putExtra("id", item);
+                startActivity(intent);
+            }
+
+
+
+        });
+
+
+        final String[] users = new String[]{};
         final ArrayList<String> userList = new ArrayList<String>();
-        listAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, userList);
-
+        final ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1);
+        lvTutors.setAdapter(listAdapter);
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> objects, com.parse.ParseException e) {
                 if (e == null) {
                     for (int i = 0; i < objects.size(); i++) {
-                        listAdapter.add(objects.get(i).getUsername().toString());
+                        ParseUser u = (ParseUser) objects.get(i);
+                        String name = u.getString("username").toString();
+                        String id = u.getObjectId().toString();
+                        listAdapter.add(id);
                     }
                 } else {
-                    // Something went wrong.
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
         userList.addAll(Arrays.asList(users));
 
-        lvTutors.setAdapter( listAdapter );
     }
 
     @Override
@@ -83,6 +102,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 break;
         }
     }
+
 
     @Override
     protected void onStart() {
