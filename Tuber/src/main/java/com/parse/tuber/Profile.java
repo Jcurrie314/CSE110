@@ -137,7 +137,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                     }
 
 
-                    rbRating.setStepSize(0.01f);
+                    rbRating.setStepSize(0.5f);
                     rbRating.setRating(Float.parseFloat(String.valueOf(averageRating)));
                     rbRating.invalidate();
                 } else {
@@ -154,15 +154,14 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         rbRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
-                ParseObject point = ParseObject.createWithoutData("Relationship", relationshipId);
+                ParseObject point = ParseObject.createWithoutData("Relationships", relationshipId);
 
                 point.put("rating", rating);
 
                 point.saveInBackground(new SaveCallback() {
                     public void done(com.parse.ParseException e) {
                         if (e == null) {
-                            Toast.makeText(getApplicationContext(), "Rating updated",
-                                    Toast.LENGTH_SHORT).show();
+
                         } else {
                             // The save failed.
                         }

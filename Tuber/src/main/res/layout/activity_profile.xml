@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:textSize="40dp"
         android:layout_marginBottom="20dp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-light" />
 
 
 
@@ -21,13 +22,15 @@
         android:id="@+id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:fontFamily="sans-serif-light" />
     <TextView
         android:id="@+id/tvEmailLabel"
         android:text="Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"
+        android:fontFamily="sans-serif-light"
         android:layout_marginBottom="20dp"
         />
 
@@ -44,13 +47,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"
+        android:fontFamily="sans-serif-light"
         />
     <TextView
         android:id="@+id/tvNotVerified"
         android:text="Request access to their contact info"
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light" />
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/bContact"
         android:layout_width="fill_parent"
