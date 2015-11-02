@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="40dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:textAlignment="center"/>
 
 
@@ -28,9 +28,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"
+        android:layout_marginBottom="20dp"
         />
 
 
+    <RatingBar
+        android:id="@+id/rbRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        />
+    <TextView
+        android:id="@+id/tvRatingLabel"
+        android:text="Average Rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        />
     <TextView
         android:id="@+id/tvNotVerified"
         android:text="Request access to their contact info"

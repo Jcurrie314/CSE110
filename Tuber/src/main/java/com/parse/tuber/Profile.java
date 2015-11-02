@@ -5,21 +5,26 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 /**
  * Created by jonathancurrie on 10/22/15.
  */
 public class Profile extends ActionBarActivity implements View.OnClickListener {
-    String userId;
+    String userId, relationshipId;
+    double averageRating;
 
-    TextView tvName, tvEmail, tvEmailLabel, tvNotVerified;
+    TextView tvName, tvEmail, tvEmailLabel, tvNotVerified, tvRatingLabel;
+    RatingBar rbRating;
     Button bContact, bLogout, bChangePassword;
 
 
@@ -31,10 +36,11 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         bChangePassword = (Button) findViewById(R.id.bChangePassword);
 
 
-
         tvName = (TextView) findViewById(R.id.tvName);
         tvEmail = (TextView) findViewById(R.id.tvEmail);
         tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
+        rbRating = (RatingBar) findViewById(R.id.rbRating);
+        tvRatingLabel = (TextView) findViewById(R.id.tvRatingLabel);
 
         tvNotVerified = (TextView) findViewById(R.id.tvNotVerified);
         bContact = (Button) findViewById(R.id.bContact);
@@ -75,6 +81,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
     }
 
+
     public void isVerified(String tutorId) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
         if (!(ParseUser.getCurrentUser().getObjectId().toString()).equals(userId)) {
@@ -86,6 +93,8 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                     if (e == null) {
                         if (objects.size() > 0) {
                             Boolean verified = (Boolean) objects.get(0).get("accepted");
+                            relationshipId = objects.get(0).getObjectId();
+                            addListenerOnRatingBar();
                             displayUserDetails(verified);
 
                         } else {
@@ -106,15 +115,69 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
             displayUserDetails(true);
 
 
-
         }
     }
 
+    public void getRating(String userId) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
+        query.whereEqualTo("tutor", userId);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
+                if (e == null) {
+                    if (objects.size() > 0) {
+                        int sum = 0;
+                        for (int i = 0; i < objects.size(); i++) {
+                            sum += objects.get(i).getInt("rating");
+                        }
+
+                        averageRating = (double) sum / objects.size();
+                    } else {
+                        displayUserDetails(false);
+                    }
+
+
+                    rbRating.setStepSize(0.01f);
+                    rbRating.setRating(Float.parseFloat(String.valueOf(averageRating)));
+                    rbRating.invalidate();
+                } else {
+                }
+
+            }
+        });
+
+    }
+    public void addListenerOnRatingBar() {
+        Toast.makeText(getApplicationContext(), relationshipId,
+                Toast.LENGTH_SHORT).show();
+        rbRating = (RatingBar) findViewById(R.id.rbRating);
+        rbRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+                ParseObject point = ParseObject.createWithoutData("Relationship", relationshipId);
+
+                point.put("rating", rating);
+
+                point.saveInBackground(new SaveCallback() {
+                    public void done(com.parse.ParseException e) {
+                        if (e == null) {
+                            Toast.makeText(getApplicationContext(), "Rating updated",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            // The save failed.
+                        }
+                    }
+                });
+
+            }
+        });
+    }
+
     public void displayUserDetails(Boolean verified) {
+        getRating(userId);
         if (verified) {
             bContact.setVisibility(View.GONE);
             tvNotVerified.setVisibility(View.GONE);
-
             ParseQuery<ParseUser> query = ParseUser.getQuery();
             query.whereEqualTo("objectId", userId);
             query.getFirstInBackground(new GetCallback<ParseUser>() {
@@ -139,8 +202,10 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
             bContact.setVisibility(View.VISIBLE);
             tvEmail.setVisibility(View.GONE);
             tvEmailLabel.setVisibility(View.GONE);
+            rbRating.setEnabled(false);
 
         }
+
     }
 
     @Override
