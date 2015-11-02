@@ -88,7 +88,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                 }
             });
         } else {
-
+            displayUserDetails(true); //shows own shit
         }
     }
 
