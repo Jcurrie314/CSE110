@@ -11,6 +11,7 @@ package com.parse.tuber;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 
 public class StarterApplication extends Application {
@@ -25,6 +26,7 @@ public class StarterApplication extends Application {
 
     // Add your initialization code here
     Parse.initialize(this, "WkQIirCEXGI9k26ZGjXYZdLKiDiCpFpQpX19bWlo", "VAsXc5A8i9tK5VORdmHfoy8mr3cg2RBQLl7UHWEZ");
+    ParseInstallation.getCurrentInstallation().saveInBackground();
 
 
   }

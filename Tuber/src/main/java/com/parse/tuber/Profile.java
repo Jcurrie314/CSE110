@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,14 +18,19 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
+
 /**
  * Created by jonathancurrie on 10/22/15.
  */
 public class Profile extends ActionBarActivity implements View.OnClickListener {
     String userId, relationshipId;
+
+
     double averageRating;
 
-    TextView tvName, tvEmail, tvEmailLabel, tvNotVerified, tvRatingLabel;
+    TextView tvName, tvEmail, tvEmailLabel, tvNotVerified, tvRatingLabel, lvCoursesLabel;
+    ListView lvCourses;
     RatingBar rbRating;
     Button bContact, bLogout, bChangePassword;
 
@@ -41,6 +48,9 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
         rbRating = (RatingBar) findViewById(R.id.rbRating);
         tvRatingLabel = (TextView) findViewById(R.id.tvRatingLabel);
+        lvCourses = (ListView) findViewById(R.id.lvCourses);
+        lvCoursesLabel = (TextView) findViewById(R.id.lvCoursesLabel);
+
 
         tvNotVerified = (TextView) findViewById(R.id.tvNotVerified);
         bContact = (Button) findViewById(R.id.bContact);
@@ -84,6 +94,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
     public void isVerified(String tutorId) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
+        findTutorCourses();
         if (!(ParseUser.getCurrentUser().getObjectId().toString()).equals(userId)) {
             query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId().toString());
             query.whereEqualTo("tutor", userId);
@@ -149,9 +160,54 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         });
 
     }
+
+    public void findTutorCourses() {
+        final ArrayAdapter<CourseBundle> listAdapter = new ArrayAdapter<CourseBundle>(this,
+                android.R.layout.simple_list_item_1);
+        lvCourses.setAdapter(listAdapter);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
+        query.whereEqualTo("tutor", userId);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
+                if (e == null) {
+                    if (objects.size() > 0) {
+                        for (int i = 0; i < objects.size(); i++) {
+                            final String grade = objects.get(i).get("grade").toString();
+                            final String id = objects.get(i).getObjectId();
+
+                            ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
+                            nameQuery.whereEqualTo("objectId", objects.get(i).get("course").toString());
+                            nameQuery.findInBackground(new FindCallback<ParseObject>() {
+
+                                @Override
+                                public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
+                                    if (e == null) {
+                                        if (objects.size() > 0) {
+                                            final CourseBundle c = new CourseBundle();
+                                            c.name = objects.get(0).get("department") + " " + objects.get(0).get("number");
+                                            c.id = id;
+                                            c.grade = grade;
+                                            listAdapter.add(c);
+                                        }
+                                    } else {
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+                } else {
+                    //Something failed
+                }
+            }
+        });
+
+    }
+
+
     public void addListenerOnRatingBar() {
-        Toast.makeText(getApplicationContext(), relationshipId,
-                Toast.LENGTH_SHORT).show();
+
         rbRating = (RatingBar) findViewById(R.id.rbRating);
         rbRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             public void onRatingChanged(RatingBar ratingBar, float rating,
@@ -208,6 +264,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         }
 
     }
+
 
     @Override
     public void onClick(View v) {

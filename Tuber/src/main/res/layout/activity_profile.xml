@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:padding="10dp"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
 
 
@@ -47,8 +48,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-light"
         />
+
+    <ListView
+        android:id="@+id/lvCourses"
+        android:layout_width="fill_parent"
+        android:layout_height="168dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-light"
+        android:layout_weight="0.28" />
+    <TextView
+        android:id="@+id/lvCoursesLabel"
+        android:text="Course Offered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-light"
+        />
+
     <TextView
         android:id="@+id/tvNotVerified"
         android:text="Request access to their contact info"

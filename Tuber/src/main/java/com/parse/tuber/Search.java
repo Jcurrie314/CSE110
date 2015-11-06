@@ -31,10 +31,6 @@ public class Search extends ActionBarActivity {
 
 
 
-        lvTutors = (ListView) findViewById(R.id.lvTutors);
-
-
-
 
         lvTutors = (ListView) findViewById(R.id.lvTutors);
 
@@ -68,7 +64,6 @@ public class Search extends ActionBarActivity {
                     android.R.layout.simple_list_item_1);
             lvTutors.setAdapter(listAdapter);
 
-            List<SearchBundle> output = new ArrayList<SearchBundle>();
             ParseQuery<ParseUser> query = ParseUser.getQuery();
             query.findInBackground(new FindCallback<ParseUser>() {
                 public void done(List<ParseUser> objects, ParseException e) {
@@ -80,7 +75,6 @@ public class Search extends ActionBarActivity {
                             String id = u.getObjectId().toString();
                             s.name = name;
                             s.id = id;
-                            //output.add(s);
                             listAdapter.add(s);
                         }
                     } else {
