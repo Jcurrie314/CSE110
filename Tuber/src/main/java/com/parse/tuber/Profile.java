@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -17,8 +16,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
-import java.util.ArrayList;
 
 /**
  * Created by jonathancurrie on 10/22/15.
@@ -145,6 +142,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                         }
 
                         averageRating = (double) sum / objects.size();
+                        //ParseUser.getCurrentUser().setObjectId("rating") = averageRating;
                     } else {
                         displayUserDetails(false);
                     }

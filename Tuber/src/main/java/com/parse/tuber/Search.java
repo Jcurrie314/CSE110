@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,7 +14,6 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Search extends ActionBarActivity {
@@ -73,8 +71,14 @@ public class Search extends ActionBarActivity {
                             SearchBundle s = new SearchBundle();
                             String name = u.get("name").toString();
                             String id = u.getObjectId().toString();
+                            //int rating = (int)u.get("rating");
                             s.name = name;
                             s.id = id;
+                            //s.rating = rating;
+                            Boolean isTutor = (Boolean)u.get("tutor");
+                            if(isTutor) {
+                                s.findTutorCourses();
+                            }
                             listAdapter.add(s);
                         }
                     } else {
