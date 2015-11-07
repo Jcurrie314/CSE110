@@ -1,8 +1,6 @@
 package com.parse.tuber;
 
-import com.parse.FindCallback;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
@@ -12,52 +10,24 @@ import java.util.ArrayList;
 public class SearchBundle {
     String name;
     String id;
-    String rating;
+    double rating;
     ArrayList<String> courses = new ArrayList<String>();
+    TuberUser user;
 
     @Override
     public String toString(){
-        return name;
-    }
-
-    public void findTutorCourses() {
-        //final ArrayAdapter<CourseBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-           //     android.R.layout.simple_list_item_1);
-        //lvCourses.setAdapter(listAdapter);
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
-        query.whereEqualTo("tutor", id);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                if (e == null) {
-                    if (objects.size() > 0) {
-                        for (int i = 0; i < objects.size(); i++) {
-                            //final String grade = objects.get(i).get("grade").toString();
-                            //final String id = objects.get(i).getObjectId();
-
-                            ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                            nameQuery.whereEqualTo("objectId", objects.get(i).get("course").toString());
-                            nameQuery.findInBackground(new FindCallback<ParseObject>() {
-
-                                @Override
-                                public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                    if (e == null) {
-                                        if (objects.size() > 0) {
-                                            courses.add(objects.get(0).get("department") + " " + objects.get(0).get("number"));
-
-                                        }
-                                    } else {
-                                    }
-                                }
-                            });
-
-                        }
-                    }
-                } else {
-                    //Something failed
-                }
-            }
-        });
+        return user.name;
 
     }
+
+    public SearchBundle(ParseUser u){
+        user = new TuberUser(u);
+        id = user.id;
+        courses = user.getCourses();
+        rating = user.rating;
+        name = user.name;
+
+    }
+
+
 }
