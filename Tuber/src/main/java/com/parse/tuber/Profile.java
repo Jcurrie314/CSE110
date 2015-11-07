@@ -1,6 +1,5 @@
 package com.parse.tuber;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -23,41 +22,32 @@ import com.parse.SaveCallback;
 public class Profile extends ActionBarActivity implements View.OnClickListener {
     String userId, relationshipId;
 
-
     double averageRating;
 
-    TextView tvName, tvEmail, tvEmailLabel, tvNotVerified, tvRatingLabel, lvCoursesLabel;
+    TextView tvName, tvEmail, tvEmailLabel, tvNotVerified, tvCoursesLabel, tvAboutMe;
     ListView lvCourses;
     RatingBar rbRating;
-    Button bContact, bLogout, bChangePassword;
+
+    Button bContact;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        bLogout = (Button) findViewById(R.id.bLogout);
-        bChangePassword = (Button) findViewById(R.id.bChangePassword);
 
 
+        tvAboutMe = (TextView) findViewById(R.id.tvAboutMe);
         tvName = (TextView) findViewById(R.id.tvName);
         tvEmail = (TextView) findViewById(R.id.tvEmail);
-        tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
         rbRating = (RatingBar) findViewById(R.id.rbRating);
-        tvRatingLabel = (TextView) findViewById(R.id.tvRatingLabel);
-        lvCourses = (ListView) findViewById(R.id.lvCourses);
-        lvCoursesLabel = (TextView) findViewById(R.id.lvCoursesLabel);
+        tvCoursesLabel = (TextView) findViewById(R.id.coursesTaken);
 
 
-        tvNotVerified = (TextView) findViewById(R.id.tvNotVerified);
+
         bContact = (Button) findViewById(R.id.bContact);
 
         bContact.setOnClickListener(this);
-        bChangePassword.setOnClickListener(this);
-        bLogout.setOnClickListener(this);
-
-        bChangePassword.setVisibility(View.GONE);
-        bLogout.setVisibility(View.GONE);
 
 
         Bundle extras = getIntent().getExtras();
@@ -116,9 +106,6 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
 
         } else {
-
-            bChangePassword.setVisibility(View.VISIBLE);
-            bLogout.setVisibility(View.VISIBLE);
             bContact.setVisibility(View.GONE);
 
             //case that user is looking at their own profile
@@ -266,6 +253,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        /*
         switch (v.getId()) {
             case R.id.bLogout:
                 ParseUser.logOut();
@@ -278,6 +266,6 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                 changePasswordIntent = new Intent(this, ChangePassword.class);
                 startActivity(changePasswordIntent);
                 break;
-        }
+        } */
     }
 }
