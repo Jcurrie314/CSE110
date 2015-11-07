@@ -68,21 +68,15 @@ public class Search extends ActionBarActivity {
                     if (e == null) {
                         for (int i = 0; i < objects.size(); i++) {
                             ParseUser u = (ParseUser) objects.get(i);
-                            SearchBundle s = new SearchBundle();
-                            String name = u.get("name").toString();
-                            String id = u.getObjectId().toString();
-                            //int rating = (int)u.get("rating");
-                            s.name = name;
-                            s.id = id;
-                            //s.rating = rating;
-                            Boolean isTutor = (Boolean)u.get("tutor");
-                            if(isTutor) {
-                                s.findTutorCourses();
-                            }
+                            SearchBundle s = new SearchBundle(u);
+
                             listAdapter.add(s);
                         }
                     } else {
-                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                        String error = e.toString();
+                        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
+
                     }
                 }
             });
