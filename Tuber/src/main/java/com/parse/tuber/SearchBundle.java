@@ -23,7 +23,7 @@ public class SearchBundle {
     public SearchBundle(ParseUser u){
         user = new TuberUser(u);
         id = user.id;
-        courses = user.getCourses();
+        courses = user.courses;
         rating = user.rating;
         name = user.name;
 

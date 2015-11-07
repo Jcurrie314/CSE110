@@ -11,7 +11,7 @@ public class TuberUser {
 
     String email, username, password, id, name;
     ArrayList<String> courses = new ArrayList<String>();
-    ParseUser user;
+    //ParseUser user;
     Boolean isTutor;
     double rating, avgRating;
 
@@ -41,10 +41,6 @@ public class TuberUser {
         return id;
     }
 
-    public ArrayList<String> getCourses (){
-
-        return courses;
-    }
 
 
     public void getRating() {
@@ -73,7 +69,7 @@ public class TuberUser {
 
     }
 
-    public void findTutorCourses() {
+    public void getCourses() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
         query.whereEqualTo("tutor", this.id);
         query.findInBackground(new FindCallback<ParseObject>() {

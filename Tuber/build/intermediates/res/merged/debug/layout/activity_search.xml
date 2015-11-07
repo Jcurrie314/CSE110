@@ -10,12 +10,28 @@
     android:paddingTop="56dp">
 
 
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"
         android:src="@drawable/logo" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/sClassesFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:entries="@array/major_array"
+            android:prompt="@string/major_select" />
+    </android.support.design.widget.TextInputLayout>
 
     <ListView
         android:id="@+id/lvTutors"
