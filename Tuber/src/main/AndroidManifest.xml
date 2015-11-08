@@ -26,6 +26,11 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity
+            android:name=".Contacts"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".Profile"

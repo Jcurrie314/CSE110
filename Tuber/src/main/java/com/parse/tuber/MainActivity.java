@@ -21,6 +21,14 @@ public class MainActivity extends TabActivity {
             Resources resources = getResources();
             TabHost tabHost = getTabHost();
 
+            // My contacts tab
+            Intent intentContacts = new Intent().setClass(this, Contacts.class);
+            intentContacts.putExtra("id", ParseUser.getCurrentUser().getObjectId().toString());
+            TabSpec tabSpecContacts = tabHost
+                    .newTabSpec("Contacts")
+                    .setIndicator("", resources.getDrawable(R.drawable.ic_face_black_36dp))
+                    .setContent(intentContacts);
+
             // Search tab
             Intent intentSearch = new Intent().setClass(this, Search.class);
             TabSpec tabSpecSearch = tabHost
@@ -37,11 +45,12 @@ public class MainActivity extends TabActivity {
                     .setContent(intentProfile);
 
             //add all tabs
+            tabHost.addTab(tabSpecContacts);
             tabHost.addTab(tabSpecSearch);
             tabHost.addTab(tabSpecProfile);
 
             //set Search to be default tab
-            tabHost.setCurrentTab(0);
+            tabHost.setCurrentTab(1);
 
 
         } else {

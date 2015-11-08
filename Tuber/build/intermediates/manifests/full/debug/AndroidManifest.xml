@@ -30,6 +30,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.parse.tuber.Contacts"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.parse.tuber.Profile"
             android:screenOrientation="portrait" >
         </activity>

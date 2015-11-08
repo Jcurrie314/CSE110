@@ -55,10 +55,9 @@
     <ListView
         android:id="@+id/lvCourses"
         android:layout_width="fill_parent"
-        android:layout_height="168dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif-light"
-        android:layout_weight="0.28" />
+        android:fontFamily="sans-serif-light"/>
     <TextView
         android:id="@+id/lvCoursesLabel"
         android:text="Course Offered"
@@ -69,13 +68,6 @@
         android:fontFamily="sans-serif-light"
         />
 
-    <TextView
-        android:id="@+id/tvNotVerified"
-        android:text="Request access to their contact info"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light" />
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/bContact"
         android:layout_width="fill_parent"

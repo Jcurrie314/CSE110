@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -29,7 +30,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
     double averageRating;
 
-    TextView tvName, tvEmail, tvEmailLabel, tvNotVerified, tvRatingLabel, lvCoursesLabel;
+    TextView tvName, tvEmail, tvEmailLabel, tvRatingLabel, lvCoursesLabel;
     ListView lvCourses;
     RatingBar rbRating;
     Button bContact, bLogout, bChangePassword;
@@ -52,7 +53,6 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         lvCoursesLabel = (TextView) findViewById(R.id.lvCoursesLabel);
 
 
-        tvNotVerified = (TextView) findViewById(R.id.tvNotVerified);
         bContact = (Button) findViewById(R.id.bContact);
 
         bContact.setOnClickListener(this);
@@ -216,6 +216,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
                 point.put("rating", rating);
 
+
                 point.saveInBackground(new SaveCallback() {
                     public void done(com.parse.ParseException e) {
                         if (e == null) {
@@ -234,7 +235,6 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         getRating(userId);
         if (verified) {
             bContact.setVisibility(View.GONE);
-            tvNotVerified.setVisibility(View.GONE);
             ParseQuery<ParseUser> query = ParseUser.getQuery();
             query.whereEqualTo("objectId", userId);
             query.getFirstInBackground(new GetCallback<ParseUser>() {
@@ -255,7 +255,6 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                 }
             });
         } else {
-            tvNotVerified.setVisibility(View.VISIBLE);
             bContact.setVisibility(View.VISIBLE);
             tvEmail.setVisibility(View.GONE);
             tvEmailLabel.setVisibility(View.GONE);
@@ -280,6 +279,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                 changePasswordIntent = new Intent(this, ChangePassword.class);
                 startActivity(changePasswordIntent);
                 break;
+
         }
     }
 }
