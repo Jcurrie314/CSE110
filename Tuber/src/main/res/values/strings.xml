@@ -35,4 +35,10 @@
         <item>Structural Engineering</item>
     </string-array>
 
+    <string-array name="class_array">
+        <item>CSE 30</item>
+        <item>CSE 100</item>
+        <item>CSE 110</item>
+    </string-array>
+
 </resources>

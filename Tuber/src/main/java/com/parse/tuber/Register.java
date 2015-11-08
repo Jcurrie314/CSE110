@@ -86,6 +86,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(com.parse.ParseException e) {
+
                 if (e == null) {
                     Intent registerIntent = new Intent(Register.this, VerifyEmail.class);
                     startActivity(registerIntent);

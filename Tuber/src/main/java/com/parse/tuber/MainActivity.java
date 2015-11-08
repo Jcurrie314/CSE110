@@ -64,8 +64,6 @@ public class MainActivity extends TabActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
     }
 
 }

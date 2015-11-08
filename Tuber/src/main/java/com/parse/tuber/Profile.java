@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -19,20 +18,18 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.util.ArrayList;
-
 /**
  * Created by jonathancurrie on 10/22/15.
  */
 public class Profile extends ActionBarActivity implements View.OnClickListener {
     String userId, relationshipId;
 
-
     double averageRating;
 
-    TextView tvName, tvEmail, tvEmailLabel, tvRatingLabel, lvCoursesLabel;
+    TextView tvName, tvEmail, tvEmailLabel, tvCoursesLabel, tvAboutMe;
     ListView lvCourses;
     RatingBar rbRating;
+
     Button bContact, bLogout, bChangePassword;
 
 
@@ -40,27 +37,26 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
+        tvAboutMe = (TextView) findViewById(R.id.tvAboutMe);
+        tvName = (TextView) findViewById(R.id.tvName);
+        tvEmail = (TextView) findViewById(R.id.tvEmail);
+        tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
+
+        rbRating = (RatingBar) findViewById(R.id.rbRating);
+        tvCoursesLabel = (TextView) findViewById(R.id.tvCoursesLabel);
+        lvCourses = (ListView) findViewById(R.id.lvCourses);
+
+
+        bContact = (Button) findViewById(R.id.bContact);
         bLogout = (Button) findViewById(R.id.bLogout);
         bChangePassword = (Button) findViewById(R.id.bChangePassword);
 
 
-        tvName = (TextView) findViewById(R.id.tvName);
-        tvEmail = (TextView) findViewById(R.id.tvEmail);
-        tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
-        rbRating = (RatingBar) findViewById(R.id.rbRating);
-        tvRatingLabel = (TextView) findViewById(R.id.tvRatingLabel);
-        lvCourses = (ListView) findViewById(R.id.lvCourses);
-        lvCoursesLabel = (TextView) findViewById(R.id.lvCoursesLabel);
-
-
-        bContact = (Button) findViewById(R.id.bContact);
-
         bContact.setOnClickListener(this);
-        bChangePassword.setOnClickListener(this);
         bLogout.setOnClickListener(this);
-
-        bChangePassword.setVisibility(View.GONE);
-        bLogout.setVisibility(View.GONE);
+        bChangePassword.setOnClickListener(this);
 
 
         Bundle extras = getIntent().getExtras();
@@ -119,9 +115,6 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
 
         } else {
-
-            bChangePassword.setVisibility(View.VISIBLE);
-            bLogout.setVisibility(View.VISIBLE);
             bContact.setVisibility(View.GONE);
 
             //case that user is looking at their own profile
@@ -145,6 +138,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                         }
 
                         averageRating = (double) sum / objects.size();
+                        //ParseUser.getCurrentUser().setObjectId("rating") = averageRating;
                     } else {
                         displayUserDetails(false);
                     }
@@ -281,5 +275,6 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                 break;
 
         }
+
     }
 }

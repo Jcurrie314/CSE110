@@ -2,6 +2,11 @@
 <resources>
     <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string-array name="class_array">
+        <item>CSE 30</item>
+        <item>CSE 100</item>
+        <item>CSE 110</item>
+    </string-array>
     <string-array name="major_array">
         <item>Bioengineering</item>
         <item>Computer Science</item>

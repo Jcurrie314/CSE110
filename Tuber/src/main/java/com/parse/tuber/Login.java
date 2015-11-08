@@ -45,7 +45,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
-                User user = new User(username, password);
+                //User user = new User(username, password);
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 authenticate(username,password);
