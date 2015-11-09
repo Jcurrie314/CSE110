@@ -26,14 +26,14 @@ public class MainActivity extends TabActivity {
             intentContacts.putExtra("id", ParseUser.getCurrentUser().getObjectId().toString());
             TabSpec tabSpecContacts = tabHost
                     .newTabSpec("Contacts")
-                    .setIndicator("", resources.getDrawable(R.drawable.ic_face_black_36dp))
+                    .setIndicator("", resources.getDrawable(R.drawable.ic_people_black_24dp))
                     .setContent(intentContacts);
 
             // Search tab
             Intent intentSearch = new Intent().setClass(this, Search.class);
             TabSpec tabSpecSearch = tabHost
                     .newTabSpec("Search")
-                    .setIndicator("", resources.getDrawable(R.drawable.ic_search_black_36dp))
+                    .setIndicator("", resources.getDrawable(R.drawable.ic_search_black_24dp))
                     .setContent(intentSearch);
 
             // My profile tab
@@ -41,7 +41,7 @@ public class MainActivity extends TabActivity {
             intentProfile.putExtra("id", ParseUser.getCurrentUser().getObjectId().toString());
             TabSpec tabSpecProfile = tabHost
                     .newTabSpec("Profile")
-                    .setIndicator("", resources.getDrawable(R.drawable.ic_face_black_36dp))
+                    .setIndicator("", resources.getDrawable(R.drawable.ic_face_black_24dp))
                     .setContent(intentProfile);
 
             //add all tabs

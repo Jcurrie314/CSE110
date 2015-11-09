@@ -7,10 +7,12 @@
 
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:paddingTop="56dp">
 
 
-    <ImageView
+<ImageView
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_gravity="center_horizontal"
@@ -18,10 +20,9 @@
         android:src="@drawable/logo" />
     <TextView
         android:id="@+id/lvPendingLabel"
-        android:layout_width="fill_parent"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:fontFamily="sans-serif-light"
         android:text="Pending"/>
     <ListView
         android:id="@+id/lvPending"
@@ -31,10 +32,9 @@
         android:layout_marginTop="12dp" />
     <TextView
         android:id="@+id/lvConnectionsLabel"
-        android:layout_width="fill_parent"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:fontFamily="sans-serif-light"
         android:text="Connections"/>
 
     <ListView

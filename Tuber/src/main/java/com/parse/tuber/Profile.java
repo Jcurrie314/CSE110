@@ -151,7 +151,7 @@ public class Profile extends Activity implements View.OnClickListener {
             ivMenu.setVisibility(View.GONE);
 
         } else {
-            bContact.setVisibility(View.GONE);
+            bContact.setImageResource(R.drawable.ic_add_black_48dp);
 
             //case that user is looking at their own profile
             displayUserDetails(true);
@@ -285,7 +285,6 @@ public class Profile extends Activity implements View.OnClickListener {
     public void displayUserDetails(Boolean verified) {
         getRating(userId);
         if (verified) {
-            bContact.setVisibility(View.GONE);
             ParseQuery<ParseUser> query = ParseUser.getQuery();
             query.whereEqualTo("objectId", userId);
             query.getFirstInBackground(new GetCallback<ParseUser>() {
@@ -339,6 +338,8 @@ public class Profile extends Activity implements View.OnClickListener {
                 request.put("tutor", userId);
                 request.put("student", ParseUser.getCurrentUser().getObjectId());
                 request.put("requested", true);
+                request.put("accepted", false);
+
                 request.saveInBackground();
                 break;
 

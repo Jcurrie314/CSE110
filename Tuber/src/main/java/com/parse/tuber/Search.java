@@ -173,9 +173,7 @@ public class Search extends Activity implements OnItemSelectedListener {
                             listAdapter.add(s);
                         }
                     } else {
-                        //Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
                         String error = e.toString();
-                        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
 
                     }
                 }
