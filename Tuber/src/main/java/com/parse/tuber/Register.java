@@ -3,6 +3,7 @@ package com.parse.tuber;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,7 +17,7 @@ import com.parse.SignUpCallback;
 
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
-    EditText etFirstName, etEmail, etUsername, etPassword;
+    EditText etFirstName, etEmail, etUsername, etPassword, etPhone;
     Spinner sMajor;
     Button bRegister;
     TextView loginLink;
@@ -30,6 +31,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etEmail = (EditText) findViewById(R.id.etEmail);
+        etPhone = (EditText) findViewById(R.id.etPhone);
+
         sMajor = (Spinner) findViewById(R.id.sMajor);
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -41,6 +44,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         bRegister.setOnClickListener(this);
         loginLink.setOnClickListener(this);
+        etPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
 
     @Override
@@ -75,10 +79,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.setUsername(etUsername.getText().toString().trim().toLowerCase());
         user.setPassword(etPassword.getText().toString().trim());
         user.setEmail(etEmail.getText().toString().trim());
-
+        user.put("phone", etPhone.getText().toString().trim());
         user.put("major", sMajor.getSelectedItem().toString());
         user.put("name", etFirstName.getText().toString().trim());
-
         user.put("student", cbStudent.isChecked());
         user.put("tutor", cbTutor.isChecked());
 
