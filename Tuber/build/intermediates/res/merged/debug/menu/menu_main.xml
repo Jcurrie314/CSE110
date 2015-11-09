@@ -7,12 +7,14 @@
   ~ of patent rights can be found in the PATENTS file in the same directory.
   -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:context=".MainActivity">
-    <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
-          android:orderInCategory="100"
-          app:showAsAction="never"/>
-</menu>
-<!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/menu/menu_main.xml -->
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Profile">
+    <item android:id="@+id/miChangePassword"
+        android:icon="@drawable/ic_done_all_black_48dp"
+        android:title="Change Password"
+        android:showAsAction="ifRoom"/>
+    <item android:id="@+id/miLogout"
+        android:icon="@drawable/ic_done_all_black_48dp"
+        android:title="Logout"
+        />
+</menu><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/menu/menu_main.xml -->

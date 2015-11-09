@@ -1,17 +1,32 @@
 package com.parse.tuber;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.PopupMenu;
+import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
@@ -21,16 +36,18 @@ import com.parse.SaveCallback;
 /**
  * Created by jonathancurrie on 10/22/15.
  */
-public class Profile extends ActionBarActivity implements View.OnClickListener {
+public class Profile extends Activity implements View.OnClickListener {
     String userId, relationshipId;
 
     double averageRating;
 
-    TextView tvName, tvEmail, tvEmailLabel, tvCoursesLabel, tvAboutMe;
+    TextView tvName, tvEmail, tvEmailLabel, tvCoursesLabel;
     ListView lvCourses;
     RatingBar rbRating;
+    ImageView ivProfilePicture, ivMenu;
+    FloatingActionButton bContact;
 
-    Button bContact, bLogout, bChangePassword;
+    MenuItem miChangePassword, miLogout;
 
 
     @Override
@@ -38,8 +55,6 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
-        tvAboutMe = (TextView) findViewById(R.id.tvAboutMe);
         tvName = (TextView) findViewById(R.id.tvName);
         tvEmail = (TextView) findViewById(R.id.tvEmail);
         tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
@@ -48,15 +63,15 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         tvCoursesLabel = (TextView) findViewById(R.id.tvCoursesLabel);
         lvCourses = (ListView) findViewById(R.id.lvCourses);
 
+        ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
+        bContact = (FloatingActionButton) findViewById(R.id.bContact);
+        ivMenu = (ImageView) findViewById(R.id.ivMenu);
 
-        bContact = (Button) findViewById(R.id.bContact);
-        bLogout = (Button) findViewById(R.id.bLogout);
-        bChangePassword = (Button) findViewById(R.id.bChangePassword);
+        miChangePassword = (MenuItem) findViewById(R.id.miChangePassword);
+        miLogout = (MenuItem) findViewById(R.id.miLogout);
 
 
         bContact.setOnClickListener(this);
-        bLogout.setOnClickListener(this);
-        bChangePassword.setOnClickListener(this);
 
 
         Bundle extras = getIntent().getExtras();
@@ -68,6 +83,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         query.whereEqualTo("objectId", userId);
         query.getFirstInBackground(new GetCallback<ParseUser>() {
             public void done(ParseUser user, com.parse.ParseException e) {
+
                 if (e == null) {
                     // The query was successful.
                     // check if we got a match
@@ -75,6 +91,25 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
                         // no matching user!
                     } else {
                         tvName.setText(user.get("name").toString());
+
+                        ParseFile imageFile = (ParseFile) user.get("profilePic");
+                        if (imageFile != null) {
+
+                            imageFile.getDataInBackground(new GetDataCallback() {
+                                public void done(byte[] data, com.parse.ParseException e) {
+                                    if (e == null) {
+
+                                        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                        ivProfilePicture.setImageBitmap(bitmap);
+
+                                    } else {
+                                        // something went wrong
+                                    }
+                                }
+                            });
+                        }
+
+
                         isVerified(userId);
 
                     }
@@ -92,6 +127,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
         findTutorCourses();
         if (!(ParseUser.getCurrentUser().getObjectId().toString()).equals(userId)) {
+
             query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId().toString());
             query.whereEqualTo("tutor", userId);
             query.findInBackground(new FindCallback<ParseObject>() {
@@ -112,7 +148,7 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
                 }
             });
-
+            ivMenu.setVisibility(View.GONE);
 
         } else {
             bContact.setVisibility(View.GONE);
@@ -225,6 +261,27 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
         });
     }
 
+    public void showMenu(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.miChangePassword:
+                        changePassword();
+                        return true;
+                    case R.id.miLogout:
+                        logout();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+        popup.inflate(R.menu.menu_main);
+        popup.show();
+    }
+
+
     public void displayUserDetails(Boolean verified) {
         getRating(userId);
         if (verified) {
@@ -258,21 +315,33 @@ public class Profile extends ActionBarActivity implements View.OnClickListener {
 
     }
 
+    public void logout() {
+        ParseUser.logOut();
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        Intent loginIntent = new Intent(this, Login.class);
+        startActivity(loginIntent);
+    }
+
+    public void changePassword() {
+        Intent changePasswordIntent;
+        changePasswordIntent = new Intent(this, ChangePassword.class);
+        startActivity(changePasswordIntent);
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bLogout:
-                ParseUser.logOut();
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                Intent loginIntent = new Intent(this, Login.class);
-                startActivity(loginIntent);
+            case R.id.bContact:
+                Toast.makeText(getApplicationContext(), "Requested their contact information",
+                        Toast.LENGTH_LONG).show();
+                bContact.setVisibility(View.GONE);
+                ParseObject request = new ParseObject("Relationships");
+                request.put("tutor", userId);
+                request.put("student", ParseUser.getCurrentUser().getObjectId());
+                request.put("requested", true);
+                request.saveInBackground();
                 break;
-            case R.id.bChangePassword:
-                Intent changePasswordIntent;
-                changePasswordIntent = new Intent(this, ChangePassword.class);
-                startActivity(changePasswordIntent);
-                break;
+
 
         }
 

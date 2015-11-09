@@ -1,103 +1,119 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:padding="10dp"
-    android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/tvProfilePicture"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/viewA"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/ic_account_circle_black_48dp"
-            android:minHeight="200dp"
-            android:maxHeight="200dp"
-             />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivProfilePicture"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:maxHeight="200dp"
+                android:minHeight="200dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ivProfilePicture"
+                android:layout_alignLeft="@+id/tvProfilePicture"
+                android:layout_margin="15dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="40dp" />
 
 
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textSize="36dp"
-        />
+            <ImageView
+                android:id="@+id/ivMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
+                android:onClick="showMenu"
+                android:layout_margin="10dp"
+                android:layout_alignTop="@+id/ivProfilePicture"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
 
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvEmail"
-        android:text="email@example.com"
-        />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvEmailLabel"
-        android:text="email@example.com"
-        />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/viewB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
 
 
-    <RatingBar
-        android:id="@+id/rbRating"
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:fontFamily="sans-serif-light" />
+
+            <TextView
+                android:id="@+id/tvEmailLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="Email"
+                android:layout_marginBottom="10dp"/>
+
+
+            <RatingBar
+                android:id="@+id/rbRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rating="5.0" />
+
+            <TextView
+                android:id="@+id/tvRatingLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="Rating"
+                android:layout_marginBottom="10dp"/>
+
+
+            <ListView
+                android:id="@+id/lvCourses"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-light" />
+
+            <TextView
+                android:id="@+id/tvCoursesLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="sans-serif-light"
+                android:text="Courses offered" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/bContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rating="5.0" />
-
-
-
-    <ListView
-        android:id="@+id/lvCourses"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif-light"/>
-
-    <TextView
-        android:id="@+id/tvCoursesLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:text="Courses offered"
-        android:layout_weight="3" />
-
-    <TextView
-        android:id="@+id/tvAboutMe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:text="Tell us about yourself!"
-        android:layout_weight="3" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/bContact"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="24dp"
-        android:padding="12dp"
-        android:text="Contact" />
-    <!-- Change password button-->
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/bChangePassword"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="24dp"
-        android:padding="12dp"
-        android:text="Change Password" />
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/bLogout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="24dp"
-        android:padding="12dp"
-        android:text="Logout" />
-
-
-
-</LinearLayout><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_profile.xml -->
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:tint="@color/white"
+        android:src="@drawable/ic_message_black_48dp"
+        app:layout_anchor="@id/viewA"
+        app:layout_anchorGravity="bottom|right|end"
+        app:backgroundTint="#00BCD4" />
+</android.support.design.widget.CoordinatorLayout><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_profile.xml -->

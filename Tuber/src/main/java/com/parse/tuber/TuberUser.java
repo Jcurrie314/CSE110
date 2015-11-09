@@ -1,6 +1,11 @@
 package com.parse.tuber;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.parse.FindCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -12,18 +17,20 @@ public class TuberUser {
     String email, username, password, id, name;
     ArrayList<String> courses = new ArrayList<String>();
     //ParseUser user;
+    Bitmap profilePicture;
     Boolean isTutor;
     double rating, avgRating;
 
 
-
     public TuberUser(ParseUser user) {
 
-        if(user != null) {
+        if (user != null) {
             this.id = user.getObjectId().toString();
             this.name = (String) user.get("name");
             this.email = (String) user.get("email");
             this.username = (String) user.get("username");
+
+
             this.isTutor = (Boolean) user.get("tutor");
             if (this.isTutor) {
                 getCourses();
@@ -33,14 +40,13 @@ public class TuberUser {
         }
     }
 
-    public void setUserId(String userId){
+    public void setUserId(String userId) {
         this.id = userId;
     }
 
-    public String getUserId(){
+    public String getUserId() {
         return id;
     }
-
 
 
     public void getRating() {
