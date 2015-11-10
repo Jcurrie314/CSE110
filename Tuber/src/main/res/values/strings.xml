@@ -16,6 +16,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="major_select">Choose your Major</string>
+    <string name="department_select">Choose a Department to filter</string>
+    <string name="classNumber_select">Choose a Class Number to filter</string>
     <string name="cb_tutor"><b>Tutor</b> needing ca-ca-cash</string>
     <string name="cb_student"><b>Student</b> needing tutoring</string>
     <string name="Two">My Profile</string>
@@ -35,10 +37,14 @@
         <item>Structural Engineering</item>
     </string-array>
 
-    <string-array name="class_array">
-        <item>CSE 30</item>
-        <item>CSE 100</item>
-        <item>CSE 110</item>
+    <string-array name="department_array">
+        <item>Choose a Department to filter</item>
+        <item>CSE</item>
+        <item>ECE</item>
+        <item>PHYS</item>
     </string-array>
+
+
+
 
 </resources>

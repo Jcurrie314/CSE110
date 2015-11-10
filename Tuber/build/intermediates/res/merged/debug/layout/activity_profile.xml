@@ -121,4 +121,4 @@
         app:layout_anchor="@id/viewA"
         app:layout_anchorGravity="bottom|right|end"
         app:backgroundTint="#FF5252" />
-</android.support.design.widget.CoordinatorLayout><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_profile.xml -->
+</android.support.design.widget.CoordinatorLayout><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_profile.xml -->
