@@ -20,6 +20,10 @@
         <item>NanoEngineering</item>
         <item>Structural Engineering</item>
     </string-array>
+    <string-array name="sort_array">
+        <item>Sort by: Rating</item>
+        <item>Sort by: Fee</item>
+    </string-array>
     <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
