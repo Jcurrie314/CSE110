@@ -59,14 +59,14 @@ public class Contacts extends ActionBarActivity {
                         + item.name + " access to your contact information");
                 adb.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        changeAccess(item.relationshipId, true);
+                        changeAccess(item.relationshipId);
                         dialog.cancel();
 
                     }
                 });
                 adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        changeAccess(item.relationshipId, false);
+                        changeAccess(item.relationshipId);
 
                         dialog.cancel();
                     }
@@ -100,7 +100,7 @@ public class Contacts extends ActionBarActivity {
         findPending();
         findConnections();
     }
-    public void changeAccess(final String relationshipId, final Boolean accepted) {
+    public void changeAccess(final String relationshipId) {
         ParseQuery query = new ParseQuery("Relationships");
         query.whereEqualTo("objectId", relationshipId);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -133,6 +133,9 @@ public class Contacts extends ActionBarActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
+                    if(objects.size() == 0) {
+                        lvPendingLabel.setVisibility(View.GONE);
+                    }
                     for (int i = 0; i < objects.size(); i++) {
                         final String relationshipId = objects.get(i).getObjectId();
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -140,11 +143,11 @@ public class Contacts extends ActionBarActivity {
                         query.findInBackground(new FindCallback<ParseUser>() {
                             public void done(List<ParseUser> objects, ParseException e) {
                                 if (e == null) {
-                                    for (int i = 0; i < objects.size(); i++) {
-                                        ParseUser u = (ParseUser) objects.get(i);
+                                    for (int i = 0; objects.size() > i; i++) {
+                                        ParseUser u = objects.get(i);
                                         ConnectionBundle s = new ConnectionBundle();
                                         String name = u.get("name").toString();
-                                        String id = u.getObjectId().toString();
+                                        String id = u.getObjectId();
                                         s.name = name;
                                         s.relationshipId = relationshipId;
                                         s.id = id;
@@ -165,7 +168,7 @@ public class Contacts extends ActionBarActivity {
     }
 
     public void findConnections() {
-        final ArrayAdapter<ConnectionBundle> listAdapter2 = new ArrayAdapter<ConnectionBundle>(this,
+        final ArrayAdapter<ConnectionBundle> listAdapter2 = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1);
         lvConnections.setAdapter(listAdapter2);
 
@@ -175,6 +178,9 @@ public class Contacts extends ActionBarActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
+                    if(objects.size() == 0) {
+                        lvConnectionsLabel.setVisibility(View.GONE);
+                    }
                     for (int i = 0; i < objects.size(); i++) {
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
                         query.whereEqualTo("objectId", objects.get(i).get("student"));
@@ -182,10 +188,10 @@ public class Contacts extends ActionBarActivity {
                             public void done(List<ParseUser> objects, ParseException e) {
                                 if (e == null) {
                                     for (int i = 0; i < objects.size(); i++) {
-                                        ParseUser u = (ParseUser) objects.get(i);
+                                        ParseUser u = objects.get(i);
                                         ConnectionBundle s = new ConnectionBundle();
                                         String name = u.get("name").toString();
-                                        String id = u.getObjectId().toString();
+                                        String id = u.getObjectId();
                                         s.name = name;
                                         s.id = id;
                                         listAdapter2.add(s);

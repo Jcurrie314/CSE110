@@ -27,6 +27,7 @@ public class Landing extends ActionBarActivity implements View.OnClickListener {
         bRegister.setOnClickListener(this);
 
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

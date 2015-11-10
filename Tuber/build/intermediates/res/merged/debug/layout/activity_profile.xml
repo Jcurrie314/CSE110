@@ -93,7 +93,6 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="sans-serif-light"
                 android:autoLink="phone"
-
                 android:textSize="24dp"
 
                 />
@@ -104,7 +103,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-
                 android:text="Rating" />
 
             <RatingBar
