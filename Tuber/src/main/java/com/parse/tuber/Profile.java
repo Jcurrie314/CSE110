@@ -81,7 +81,7 @@ public class Profile extends Activity implements View.OnClickListener {
         if (extras != null) {
             userId = extras.getString("id");
         }
-
+        updateTutorStats();
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("objectId", userId);
         query.getFirstInBackground(new GetCallback<ParseUser>() {
@@ -90,9 +90,7 @@ public class Profile extends Activity implements View.OnClickListener {
                 if (e == null) {
                     // The query was successful.
                     // check if we got a match
-                    if (user == null) {
-                        // no matching user!
-                    } else {
+                    if (user != null) {
                         tvName.setText(user.get("name").toString());
 
                         ParseFile imageFile = (ParseFile) user.get("profilePic");
@@ -105,33 +103,25 @@ public class Profile extends Activity implements View.OnClickListener {
                                         Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                                         ivProfilePicture.setImageBitmap(bitmap);
 
-                                    } else {
-                                        // something went wrong
+
                                     }
                                 }
                             });
                         }
-
-
-                        isVerified(userId);
-
+                        isVerified();
                     }
-                } else {
-                    // Something went wrong.
                 }
             }
         });
-
-
     }
 
 
-    public void isVerified(String tutorId) {
+    public void isVerified() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
         findTutorCourses();
-        if (!(ParseUser.getCurrentUser().getObjectId().toString()).equals(userId)) {
+        if (!(ParseUser.getCurrentUser().getObjectId()).equals(userId)) {
 
-            query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId().toString());
+            query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId());
             query.whereEqualTo("tutor", userId);
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
@@ -146,7 +136,6 @@ public class Profile extends Activity implements View.OnClickListener {
                         } else {
                             displayUserDetails(false);
                         }
-                    } else {
                     }
 
                 }
@@ -186,7 +175,6 @@ public class Profile extends Activity implements View.OnClickListener {
                     rbRating.setStepSize(0.5f);
                     rbRating.setRating(Float.parseFloat(String.valueOf(averageRating)));
                     rbRating.invalidate();
-                } else {
                 }
 
             }
@@ -195,7 +183,7 @@ public class Profile extends Activity implements View.OnClickListener {
     }
 
     public void findTutorCourses() {
-        final ArrayAdapter<CourseBundle> listAdapter = new ArrayAdapter<CourseBundle>(this,
+        final ArrayAdapter<CourseBundle> listAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1);
         lvCourses.setAdapter(listAdapter);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
@@ -223,15 +211,12 @@ public class Profile extends Activity implements View.OnClickListener {
                                             c.grade = grade;
                                             listAdapter.add(c);
                                         }
-                                    } else {
                                     }
                                 }
                             });
 
                         }
                     }
-                } else {
-                    //Something failed
                 }
             }
         });
@@ -246,22 +231,61 @@ public class Profile extends Activity implements View.OnClickListener {
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
                 ParseObject point = ParseObject.createWithoutData("Relationships", relationshipId);
-
                 point.put("rating", rating);
-
 
                 point.saveInBackground(new SaveCallback() {
                     public void done(com.parse.ParseException e) {
                         if (e == null) {
-
-                        } else {
-                            // The save failed.
+                            updateTutorStats();
                         }
                     }
                 });
 
             }
         });
+    }
+
+    public void updateTutorStats() {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
+        query.whereEqualTo("tutor", ParseUser.getCurrentUser().getObjectId());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
+                if (e == null) {
+
+                    final double ratingCount = objects.size();
+                    double ratingSum = 0;
+                    for (int i = 0; i < objects.size(); i++) {
+                        ratingSum += objects.get(i).getDouble("rating");
+                    }
+                    final double ratingTotal = ratingSum;
+                    final double averageRating = ratingSum / ratingCount;
+
+
+                    ParseQuery<ParseUser> query = ParseUser.getQuery();
+                    query.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
+                    query.getFirstInBackground(new GetCallback<ParseUser>() {
+                        public void done(ParseUser user, com.parse.ParseException e) {
+
+                            if (e == null) {
+
+                                user.put("ratingcount", ratingCount);
+                                user.put("ratingsum", ratingTotal);
+                                user.put("rating", averageRating);
+                                user.saveInBackground();
+
+                            }
+                        }
+                    });
+
+                    rbRating.setStepSize(0.5f);
+                    rbRating.setRating(Float.parseFloat(String.valueOf(averageRating)));
+                    rbRating.invalidate();
+                }
+
+            }
+        });
+
     }
 
     public void showMenu(View v) {
@@ -295,15 +319,10 @@ public class Profile extends Activity implements View.OnClickListener {
                     if (e == null) {
                         // The query was successful.
                         // check if we got a match
-                        if (user == null) {
-                            // no matching user!
-                        } else {
-
-                            tvEmail.setText(user.getEmail().toString());
+                        if (user != null) {
+                            tvEmail.setText(user.getEmail());
                             tvPhone.setText(user.get("phone").toString());
                         }
-                    } else {
-
                     }
                 }
             });
@@ -321,7 +340,6 @@ public class Profile extends Activity implements View.OnClickListener {
 
     public void logout() {
         ParseUser.logOut();
-        ParseUser currentUser = ParseUser.getCurrentUser();
         Intent loginIntent = new Intent(this, Login.class);
         startActivity(loginIntent);
     }
@@ -332,23 +350,23 @@ public class Profile extends Activity implements View.OnClickListener {
         startActivity(changePasswordIntent);
     }
 
+    public void requestAccess() {
+        ParseObject request = new ParseObject("Relationships");
+        request.put("tutor", userId);
+        request.put("student", ParseUser.getCurrentUser().getObjectId());
+        request.put("requested", true);
+        request.put("accepted", false);
+        request.saveInBackground();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bContact:
                 Toast.makeText(getApplicationContext(), "Requested their contact information",
                         Toast.LENGTH_LONG).show();
-                bContact.setVisibility(View.GONE);
-                ParseObject request = new ParseObject("Relationships");
-                request.put("tutor", userId);
-                request.put("student", ParseUser.getCurrentUser().getObjectId());
-                request.put("requested", true);
-                request.put("accepted", false);
-
-                request.saveInBackground();
+                requestAccess();
                 break;
-
-
         }
 
     }
