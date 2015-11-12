@@ -18,6 +18,12 @@
         <item name="colorControlHighlight">@color/accent</item>
     </style>
 
+    <style name="searchRatingBar" parent="@android:style/Widget.RatingBar">
+        <!--<item name="android:progressDrawable">@drawable/food_ratingbar_full</item> -->
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+
     <color name="primary">#F44336</color>
     <color name="primary_dark">#D32F2F</color>
     <color name="primary_light">#FFCDD2</color>

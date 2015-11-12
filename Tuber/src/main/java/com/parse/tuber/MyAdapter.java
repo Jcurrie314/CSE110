@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -51,6 +52,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         // - replace the contents of the view with that element
         SearchBundle sb = mDataset.get(position);
         holder.vName.setText(sb.name);
+        holder.rbRating.setStepSize(0.5f);
+        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
+        holder.searchBundle = sb;
 
     }
 
@@ -62,11 +66,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
 
     public static class SearchBundleViewHolder extends RecyclerView.ViewHolder {
         protected TextView vName;
+        protected RatingBar rbRating;
+        public SearchBundle searchBundle;
+        public View view;
 
 
         public SearchBundleViewHolder(View v) {
             super(v);
+            view = v;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    /* NEED TO START PROFILE INTENT HERE
+                    Intent intent = new Intent(this, Profile.class);
+                    intent.putExtra("id", searchBundle.id);
+                    startActivity(intent);*/
+                }
+            });
             vName =  (TextView) v.findViewById(R.id.txtName);
+            rbRating = (RatingBar) v.findViewById(R.id.rbRating);
+
 
         }
     }

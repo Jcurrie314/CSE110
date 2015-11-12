@@ -17,7 +17,31 @@
         <TextView
             android:id="@+id/txtName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="100dp"
+            android:fontFamily="@string/abc_searchview_description_search"
+            android:text="YOOOO"
+            android:layout_gravity="top|left|end"
+            android:height="70dp"
+            android:textSize="35dp" />
+
+        <RatingBar
+            android:id="@+id/rbRating"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="top|right|end"
+            android:rating="5.0"
+            style="style/searchRatingBar" />
+
+        <TextView
+            android:id="@+id/txtNumberRatings"
+            android:layout_width="match_parent"
+            android:layout_height="dp"
+            android:fontFamily="@string/abc_searchview_description_search"
+            android:text="YOOOO"
+            android:layout_gravity="top|left|end"
+            android:height="70dp"
+            android:textSize="35dp" />
     </android.support.v7.widget.CardView>
 
 </LinearLayout><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_card.xml -->

@@ -41,12 +41,12 @@ public class Search extends Activity implements OnItemSelectedListener {
     String dep = "";
     String classNumber = "";
     String sortBy = "";
-    int thisView, departmentView, classesNumberView, sortByView;
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-
+        //int thisView, departmentView, classesNumberView, sortByView;
         listAdapter.clear();
         mAdapter.notifyDataSetChanged();
         //listAdapter.notifyDataSetChanged();
@@ -54,10 +54,11 @@ public class Search extends Activity implements OnItemSelectedListener {
         ParseUser currentUser = ParseUser.getCurrentUser();
 
         Spinner spinner = (Spinner) adapterView;
-        thisView = spinner.getId();
-        departmentView = R.id.sDepartmentFilter;
-        classesNumberView = R.id.sClassNumberFilter;
-        sortByView = R.id.sSortBy;
+        int thisView = spinner.getId();
+        int departmentView = R.id.sDepartmentFilter;
+        int classesNumberView = R.id.sClassNumberFilter;
+        int sortByView = R.id.sSortBy;
+        int x = 0;
 
         if (thisView == classesNumberView){
             if (currentUser != null) {
@@ -261,6 +262,7 @@ public class Search extends Activity implements OnItemSelectedListener {
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+        /*
         Spinner spinner = (Spinner) adapterView;
         thisView = spinner.getId();
         departmentView = R.id.sDepartmentFilter;
@@ -273,7 +275,7 @@ public class Search extends Activity implements OnItemSelectedListener {
             classNumber = spinner.getSelectedItem().toString();
         } else if( thisView == sortByView ){
             sortBy = spinner.getSelectedItem().toString();
-        }
+        }*/
     }
 
 
@@ -311,12 +313,12 @@ public class Search extends Activity implements OnItemSelectedListener {
         classNumber_dropdown.setAdapter(dataAdapter);
 
         //lvTutors = (ListView) findViewById(R.id.lvTutors);
+
+        //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
+             //   android.R.layout.simple_list_item_1);
+
         /*
-        final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                android.R.layout.simple_list_item_1);
-
-
-        lvTutors.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //String item = ((TextView) view).getText().toString();
