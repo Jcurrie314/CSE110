@@ -3,6 +3,8 @@ package com.parse.tuber;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -17,12 +19,18 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Search extends Activity implements OnItemSelectedListener {
 
     ListView lvTutors;
-    ArrayAdapter<SearchBundle> listAdapter;
+    ArrayList<SearchBundle> listAdapter;
+    //ArrayAdapter<SearchBundle> listAdapter;
+    RecyclerView mRecyclerView;
+    RecyclerView.Adapter mAdapter;
+    RecyclerView.LayoutManager mLayoutManager;
+
     String[] cse_numbers = {"Choose a Class to filter", "30", "100", "110"};
     String[] ece_numbers = {"Choose a Class to filter"};
     String[] phys_numbers = {};
@@ -40,7 +48,8 @@ public class Search extends Activity implements OnItemSelectedListener {
 
 
         listAdapter.clear();
-        listAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
+        //listAdapter.notifyDataSetChanged();
 
         ParseUser currentUser = ParseUser.getCurrentUser();
 
@@ -53,9 +62,9 @@ public class Search extends Activity implements OnItemSelectedListener {
         if (thisView == classesNumberView){
             if (currentUser != null) {
 
-                final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                        android.R.layout.simple_list_item_1);
-                lvTutors.setAdapter(listAdapter);
+                //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
+                  //      android.R.layout.simple_list_item_1);
+                //lvTutors.setAdapter(listAdapter);
 
 
                 classNumber = adapterView.getItemAtPosition(i).toString();
@@ -80,6 +89,8 @@ public class Search extends Activity implements OnItemSelectedListener {
                                 final SearchBundle s = new SearchBundle(u);
                                 if (finalClassNumber.equals("Choose a Class to filter") || finalDep.equals("Choose a Department to filter")) {
                                     listAdapter.add(s);
+                                    mAdapter.notifyItemInserted(listAdapter.size()-1);
+
                                 }
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
                                 query.whereEqualTo("tutor", objects.get(i).getObjectId().toString());
@@ -101,6 +112,8 @@ public class Search extends Activity implements OnItemSelectedListener {
                                                                     String className = objects.get(0).get("department") + " " + objects.get(0).get("number");
                                                                     if (className.equals(item)) {
                                                                         listAdapter.add(s);
+                                                                        mAdapter.notifyItemInserted(listAdapter.size()-1);
+
                                                                     }
                                                                 }
                                                             } else {
@@ -140,7 +153,7 @@ public class Search extends Activity implements OnItemSelectedListener {
             if (dep.equals("Choose a Department to filter")) {
                 return;
             }
-            classNumber_dropdown.setClickable(true);
+            classNumber_dropdown.setEnabled(true);
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cse_numbers);
 
             if(dep.equals("CSE")){
@@ -159,9 +172,9 @@ public class Search extends Activity implements OnItemSelectedListener {
 
             if (currentUser != null) {
 
-                final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                        android.R.layout.simple_list_item_1);
-                lvTutors.setAdapter(listAdapter);
+                //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
+                  //      android.R.layout.simple_list_item_1);
+                //lvTutors.setAdapter(listAdapter);
 
                 final String finalClassNumber = classNumber;
                 final String finalDep = dep;
@@ -184,6 +197,8 @@ public class Search extends Activity implements OnItemSelectedListener {
                                 final SearchBundle s = new SearchBundle(u);
                                 if (finalClassNumber.equals("Choose a Class to filter") || finalDep.equals("Choose a Department to filter")) {
                                     listAdapter.add(s);
+                                    mAdapter.notifyItemInserted(listAdapter.size()-1);
+
                                 }
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
                                 query.whereEqualTo("tutor", objects.get(i).getObjectId().toString());
@@ -204,7 +219,9 @@ public class Search extends Activity implements OnItemSelectedListener {
                                                                 if (objects.size() > 0) {
                                                                     String className = objects.get(0).get("department") + " " + objects.get(0).get("number");
                                                                     if (className.equals(item)) {
+
                                                                         listAdapter.add(s);
+                                                                        mAdapter.notifyItemInserted(listAdapter.size()-1);
                                                                     }
                                                                 }
                                                             } else {
@@ -265,6 +282,22 @@ public class Search extends Activity implements OnItemSelectedListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        listAdapter = new ArrayList<SearchBundle>();
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new MyAdapter(listAdapter);
+        mRecyclerView.setAdapter(mAdapter);
+
         department_dropdown = (Spinner) findViewById(R.id.sDepartmentFilter);
         classNumber_dropdown = (Spinner) findViewById(R.id.sClassNumberFilter);
         sortBy_dropdown = (Spinner) findViewById(R.id.sSortBy);
@@ -277,8 +310,8 @@ public class Search extends Activity implements OnItemSelectedListener {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classNumber_dropdown.setAdapter(dataAdapter);
 
-        lvTutors = (ListView) findViewById(R.id.lvTutors);
-
+        //lvTutors = (ListView) findViewById(R.id.lvTutors);
+        /*
         final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
                 android.R.layout.simple_list_item_1);
 
@@ -293,7 +326,7 @@ public class Search extends Activity implements OnItemSelectedListener {
                 startActivity(intent);
             }
 
-        });
+        });*/
 
     }
 
@@ -306,10 +339,10 @@ public class Search extends Activity implements OnItemSelectedListener {
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
             //final String[] users = new String[]{};
-            listAdapter = new ArrayAdapter<SearchBundle>(this,
-                    android.R.layout.simple_list_item_1);
-            lvTutors.setAdapter(listAdapter);
+            //listAdapter = new ArrayAdapter<SearchBundle>(this,android.R.layout.simple_list_item_1);
+            //lvTutors.setAdapter(listAdapter);
 
+            /*
             ParseQuery<ParseUser> query = ParseUser.getQuery();
             query.findInBackground(new FindCallback<ParseUser>() {
                 public void done(List<ParseUser> objects, ParseException e) {
@@ -324,7 +357,7 @@ public class Search extends Activity implements OnItemSelectedListener {
 
                     }
                 }
-            });
+            });*/
             //ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
             // android.R.layout.simple_list_item_1, android.R.id.text1, output);
 
