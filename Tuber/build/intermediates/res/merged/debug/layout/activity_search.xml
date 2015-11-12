@@ -26,12 +26,44 @@
         android:layout_marginTop="2dp">
 
         <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/sClassesFilter"
+            android:id="@+id/sDepartmentFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
-            android:entries="@array/major_array"
-            android:prompt="@string/major_select" />
+            android:entries="@array/department_array"
+            android:prompt="@string/department_select" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/sClassNumberFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:clickable="false"
+            android:prompt="@string/classNumber_select" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/sSortBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:entries="@array/sort_array" />
+
     </android.support.design.widget.TextInputLayout>
 
     <ListView
