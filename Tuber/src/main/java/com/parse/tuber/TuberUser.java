@@ -16,7 +16,7 @@ public class TuberUser {
     //ParseUser user;
     Bitmap profilePicture;
     Boolean isTutor;
-    Integer avgRating, numberOfRatings;
+    Integer avgRating, numberOfRatings, fee;
 
 
     public TuberUser(ParseUser user) {
@@ -28,6 +28,7 @@ public class TuberUser {
             this.username = (String) user.get("username");
             this.avgRating = user.getInt("rating");
             this.numberOfRatings = user.getInt("ratingcount");
+            this.fee = user.getInt("fee");
 
 
             this.isTutor = (Boolean) user.get("tutor");

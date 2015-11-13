@@ -56,6 +56,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         holder.rbRating.setStepSize(0.5f);
         holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
         holder.searchBundle = sb;
+        String num = String.format("(%f)", sb.numberOfRatings);
+        holder.vNumberOfRatings.setText(num);
+        holder.vFee.setText(String.format("Fee: $%.02f", sb.fee));
 
     }
 
@@ -68,8 +71,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
     public static class SearchBundleViewHolder extends RecyclerView.ViewHolder {
         protected TextView vName;
         protected RatingBar rbRating;
+        protected TextView vNumberOfRatings;
+        protected TextView vFee;
         public SearchBundle searchBundle;
         public View view;
+
 
 
         public SearchBundleViewHolder(View v) {
@@ -84,6 +90,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
             });
             vName =  (TextView) v.findViewById(R.id.txtName);
             rbRating = (RatingBar) v.findViewById(R.id.rbRating);
+            vNumberOfRatings = (TextView) v.findViewById(R.id.txtNumberRatings);
+            vFee = (TextView) v.findViewById(R.id.txtFee);
 
 
         }

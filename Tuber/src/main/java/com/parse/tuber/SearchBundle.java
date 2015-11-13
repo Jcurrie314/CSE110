@@ -12,10 +12,11 @@ import java.util.ArrayList;
 public class SearchBundle {
     String name;
     String id;
-    double avgRating, numberOfRatings;
+    double avgRating, numberOfRatings, fee;
     Bitmap profilePicture;
     ArrayList<String> courses = new ArrayList<String>();
     TuberUser user;
+
 
     @Override
     public String toString(){
@@ -31,6 +32,7 @@ public class SearchBundle {
         numberOfRatings = user.numberOfRatings;
         name = user.name;
         profilePicture = user.profilePicture;
+        fee = user.fee;
     }
 
 
