@@ -56,8 +56,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         holder.rbRating.setStepSize(0.5f);
         holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
         holder.searchBundle = sb;
-        String num = String.format("(%f)", sb.numberOfRatings);
-        holder.vNumberOfRatings.setText(num);
+
+        //Thought this should be next to the ratings in parenthesis
+        holder.vNumberOfRatings.setText(String.format("(%.0f)", sb.numberOfRatings));
+
+        //This can go wherever
         holder.vFee.setText(String.format("Fee: $%.02f", sb.fee));
 
     }
