@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         holder.rbRating.setStepSize(0.5f);
         holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
         holder.searchBundle = sb;
+        holder.vPic = sb.profilePicture;
 
         //Thought this should be next to the ratings in parenthesis
         holder.vNumberOfRatings.setText(String.format("(%.0f)", sb.numberOfRatings));
@@ -76,6 +78,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         protected RatingBar rbRating;
         protected TextView vNumberOfRatings;
         protected TextView vFee;
+        protected ImageView vPic;
         public SearchBundle searchBundle;
         public View view;
 
@@ -95,6 +98,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
             rbRating = (RatingBar) v.findViewById(R.id.rbRating);
             vNumberOfRatings = (TextView) v.findViewById(R.id.txtNumberRatings);
             vFee = (TextView) v.findViewById(R.id.txtFee);
+            vPic = (ImageView) v.findViewById(R.id.ivProfilePicture);
 
 
         }
