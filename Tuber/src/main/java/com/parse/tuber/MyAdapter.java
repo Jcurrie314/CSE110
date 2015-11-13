@@ -1,5 +1,6 @@
 package com.parse.tuber;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,10 +77,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
             view = v;
             view.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    /* NEED TO START PROFILE INTENT HERE
-                    Intent intent = new Intent(this, Profile.class);
+                    Intent intent = new Intent(v.getContext(), Profile.class);
                     intent.putExtra("id", searchBundle.id);
-                    startActivity(intent);*/
+                    v.getContext().startActivity(intent);
                 }
             });
             vName =  (TextView) v.findViewById(R.id.txtName);
