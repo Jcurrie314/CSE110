@@ -16,6 +16,15 @@
         android:layout_height="100dp"
         card_view:cardCornerRadius="4dp">
 
+        <ImageView
+            android:id="@+id/ivProfilePicture"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:maxHeight="200dp"
+            android:minHeight="200dp"
+            android:scaleType="centerCrop" />
+
         <TextView
             android:id="@+id/txtName"
             android:layout_width="match_parent"
