@@ -1,7 +1,6 @@
 package com.parse.tuber;
 
-import android.graphics.Bitmap;
-
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ public class SearchBundle {
     String name;
     String id;
     double avgRating, numberOfRatings, fee;
-    Bitmap profilePicture;
+    ParseFile profilePicture;
     ArrayList<String> courses = new ArrayList<String>();
     TuberUser user;
 

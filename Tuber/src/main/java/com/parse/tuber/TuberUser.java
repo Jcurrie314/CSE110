@@ -1,8 +1,7 @@
 package com.parse.tuber;
 
-import android.graphics.Bitmap;
-
 import com.parse.FindCallback;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -14,7 +13,7 @@ public class TuberUser {
     String email, username, password, id, name;
     ArrayList<String> courses = new ArrayList<String>();
     //ParseUser user;
-    Bitmap profilePicture;
+    ParseFile profilePicture;
     Boolean isTutor;
     Integer avgRating, numberOfRatings, fee;
 
@@ -29,7 +28,7 @@ public class TuberUser {
             this.avgRating = user.getInt("rating");
             this.numberOfRatings = user.getInt("ratingcount");
             this.fee = user.getInt("fee");
-            this.profilePicture = (Bitmap) user.get("profilePic");
+            this.profilePicture = (ParseFile) user.get("profilePic");
 
 
             this.isTutor = (Boolean) user.get("tutor");
