@@ -10,11 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.GetDataCallback;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -23,6 +20,7 @@ import java.util.ArrayList;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHolder> {
     private ArrayList<SearchBundle> mDataset;
+    private Bitmap bmap;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -30,7 +28,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
-
         public ViewHolder(TextView v) {
             super(v);
             mTextView = v;
@@ -61,20 +58,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         SearchBundle sb = mDataset.get(position);
-
-//        holder.rbRating.setStepSize(0.5f);
-//        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
-
-
         holder.vName.setText(sb.name);
         holder.tvRating.setText(String.valueOf(sb.avgRating));
+//        holder.rbRating.setStepSize(0.5f);
+//        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
+        holder.searchBundle = sb;
+
+
 
         holder.ivProfilePicture.setImageBitmap(sb.profilePicture);
         //Thought this should be next to the ratings in parenthesis
 //        holder.vNumberOfRatings.setText(String.format("(%.0f)", sb.numberOfRatings));
 
         //This can go wherever
-        holder.vFee.setText(String.format("$%.02f /hr", sb.fee));
+        holder.vFee.setText(String.format("Fee: $%.2f", sb.fee));
 
     }
 
@@ -88,28 +85,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         protected TextView vName;
         protected RatingBar rbRating;
         protected TextView vNumberOfRatings;
-        protected TextView vFee, tvRating;
+        protected TextView vFee;
+        protected TextView tvRating;
+
         protected ImageView ivProfilePicture;
         public SearchBundle searchBundle;
         public View view;
+
 
 
         public SearchBundleViewHolder(View v) {
             super(v);
             view = v;
             view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                @Override public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), Profile.class);
                     intent.putExtra("id", searchBundle.id);
                     v.getContext().startActivity(intent);
                 }
             });
-            vName = (TextView) v.findViewById(R.id.txtName);
+            vName =  (TextView) v.findViewById(R.id.tvName);
+            tvRating =  (TextView) v.findViewById(R.id.tvRating);
 //            rbRating = (RatingBar) v.findViewById(R.id.rbRating);
 //            vNumberOfRatings = (TextView) v.findViewById(R.id.txtNumberRatings);
-            vFee = (TextView) v.findViewById(R.id.txtFee);
-            tvRating = (TextView) v.findViewById(R.id.tvRating);
+            vFee = (TextView) v.findViewById(R.id.tvFee);
             ivProfilePicture = (ImageView) v.findViewById(R.id.ivProfilePicture);
 
 
