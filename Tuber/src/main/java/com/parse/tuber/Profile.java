@@ -35,13 +35,12 @@ public class Profile extends Activity implements View.OnClickListener {
 
     double averageRating;
 
-    EditText tvEmail, tvPhone, tvPrice;
-    TextView tvName, tvEmailLabel, tvCoursesLabel, tvPhoneLabel, tvPriceLabel;
+    TextView tvName,tvEmail, tvPhone, tvPrice, tvEmailLabel, tvCoursesLabel, tvPhoneLabel, tvPriceLabel;
 
     ListView lvCourses;
     RatingBar rbRating;
     ImageView ivProfilePicture, ivMenu;
-    FloatingActionButton bContact, bSave;
+    FloatingActionButton fab;
 
     MenuItem miChangePassword, miLogout;
 
@@ -52,11 +51,11 @@ public class Profile extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_profile);
 
         tvName = (TextView) findViewById(R.id.tvName);
-        tvEmail = (EditText) findViewById(R.id.tvEmail);
+        tvEmail = (TextView) findViewById(R.id.tvEmail);
         tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
-        tvPhone = (EditText) findViewById(R.id.tvPhone);
+        tvPhone = (TextView) findViewById(R.id.tvPhone);
         tvPhoneLabel = (TextView) findViewById(R.id.tvPhoneLabel);
-        tvPrice = (EditText)findViewById(R.id.tvPrice);
+        tvPrice = (TextView) findViewById(R.id.tvPrice);
         tvPriceLabel = (TextView) findViewById(R.id.tvPriceLabel);
 
 
@@ -65,16 +64,14 @@ public class Profile extends Activity implements View.OnClickListener {
         lvCourses = (ListView) findViewById(R.id.lvCourses);
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
-        bContact = (FloatingActionButton) findViewById(R.id.bContact);
-        bSave = (FloatingActionButton) findViewById(R.id.bSave);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         ivMenu = (ImageView) findViewById(R.id.ivMenu);
 
         miChangePassword = (MenuItem) findViewById(R.id.miChangePassword);
         miLogout = (MenuItem) findViewById(R.id.miLogout);
 
 
-        bContact.setOnClickListener(this);
-        bSave.setOnClickListener(this);
+        fab.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -142,7 +139,7 @@ public class Profile extends Activity implements View.OnClickListener {
             ivMenu.setVisibility(View.GONE);
 
         } else {
-            bContact.setImageResource(R.drawable.ic_add_black_48dp);
+            fab.setImageResource(R.drawable.ic_mode_edit_black_48dp);
 
             //case that user is looking at their own profile
             displayUserDetails(true);
@@ -327,7 +324,6 @@ public class Profile extends Activity implements View.OnClickListener {
                 }
             });
         } else {
-            bContact.setVisibility(View.VISIBLE);
             tvEmail.setVisibility(View.GONE);
             tvEmailLabel.setVisibility(View.GONE);
             tvPhone.setVisibility(View.GONE);
@@ -362,26 +358,21 @@ public class Profile extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bContact:
-                Toast.makeText(getApplicationContext(), "Requested their contact information",
-                        Toast.LENGTH_LONG).show();
-                requestAccess();
-                Log.d("contact", "contact was pressed");
+            case R.id.fab:
+                if ((ParseUser.getCurrentUser().getObjectId()).equals(userId)){
+                    Intent editProfileIntent;
+                    editProfileIntent = new Intent(this, EditProfile.class);
+                    editProfileIntent.putExtra("id", ParseUser.getCurrentUser().getObjectId());
+                    startActivity(editProfileIntent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Requested their contact information",
+                            Toast.LENGTH_LONG).show();
+                    requestAccess();
+                    Log.d("contact", "contact was pressed");
+                }
                 break;
-            case R.id.bSave:
-                ParseUser user = ParseUser.getCurrentUser();
-                String email = tvEmail.getText().toString();
-                user.put("email",email);
-                String phone = tvPhone.getText().toString();
-                user.put("phone",phone);
 
-                user.saveInBackground();
-
-                Toast.makeText(getApplicationContext(), "Information Saved",
-                        Toast.LENGTH_LONG).show();
-
-
-                break;
         }
 
     }

@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.parse.GetDataCallback;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -65,6 +67,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
 
 
         holder.vName.setText(sb.name);
+        holder.tvRating.setText(String.valueOf(sb.avgRating));
 
         holder.ivProfilePicture.setImageBitmap(sb.profilePicture);
         //Thought this should be next to the ratings in parenthesis
@@ -85,7 +88,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         protected TextView vName;
         protected RatingBar rbRating;
         protected TextView vNumberOfRatings;
-        protected TextView vFee;
+        protected TextView vFee, tvRating;
         protected ImageView ivProfilePicture;
         public SearchBundle searchBundle;
         public View view;
@@ -106,6 +109,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
 //            rbRating = (RatingBar) v.findViewById(R.id.rbRating);
 //            vNumberOfRatings = (TextView) v.findViewById(R.id.txtNumberRatings);
             vFee = (TextView) v.findViewById(R.id.txtFee);
+            tvRating = (TextView) v.findViewById(R.id.tvRating);
             ivProfilePicture = (ImageView) v.findViewById(R.id.ivProfilePicture);
 
 
