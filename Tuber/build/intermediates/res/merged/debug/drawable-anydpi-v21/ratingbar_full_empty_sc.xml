@@ -5,4 +5,4 @@
     <item android:drawable="@drawable/ic_stars_white_24dp" android:state_selected="true" android:state_window_focused="true"/>
     <item android:drawable="@drawable/ic_stars_white_24dp"/>
 
-</selector><!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE%20110/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ratingbar_full_empty_sc.xml -->
+</selector><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/drawable-anydpi-v21/ratingbar_full_empty_sc.xml -->

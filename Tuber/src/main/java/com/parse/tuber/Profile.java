@@ -1,17 +1,22 @@
 package com.parse.tuber;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
+import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -23,6 +28,7 @@ import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -35,12 +41,11 @@ public class Profile extends Activity implements View.OnClickListener {
 
     double averageRating;
 
-    EditText tvEmail, tvPhone;
-    TextView tvName, tvEmailLabel, tvCoursesLabel, tvPhoneLabel;
+    TextView tvName, tvEmail, tvEmailLabel, tvCoursesLabel, tvPhone, tvPhoneLabel, tvPrice, tvPriceLabel;
     ListView lvCourses;
     RatingBar rbRating;
     ImageView ivProfilePicture, ivMenu;
-    FloatingActionButton bContact, bSave;
+    FloatingActionButton bContact;
 
     MenuItem miChangePassword, miLogout;
 
@@ -51,10 +56,12 @@ public class Profile extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_profile);
 
         tvName = (TextView) findViewById(R.id.tvName);
-        tvEmail = (EditText) findViewById(R.id.tvEmail);
+        tvEmail = (TextView) findViewById(R.id.tvEmail);
         tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
-        tvPhone = (EditText) findViewById(R.id.tvPhone);
+        tvPhone = (TextView) findViewById(R.id.tvPhone);
         tvPhoneLabel = (TextView) findViewById(R.id.tvPhoneLabel);
+        tvPrice = (TextView) findViewById(R.id.tvPrice);
+        tvPriceLabel = (TextView) findViewById(R.id.tvPriceLabel);
 
 
         rbRating = (RatingBar) findViewById(R.id.rbRating);
@@ -63,7 +70,6 @@ public class Profile extends Activity implements View.OnClickListener {
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         bContact = (FloatingActionButton) findViewById(R.id.bContact);
-        bSave = (FloatingActionButton) findViewById(R.id.bSave);
         ivMenu = (ImageView) findViewById(R.id.ivMenu);
 
         miChangePassword = (MenuItem) findViewById(R.id.miChangePassword);
@@ -71,7 +77,7 @@ public class Profile extends Activity implements View.OnClickListener {
 
 
         bContact.setOnClickListener(this);
-        bSave.setOnClickListener(this);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -316,8 +322,9 @@ public class Profile extends Activity implements View.OnClickListener {
                         // The query was successful.
                         // check if we got a match
                         if (user != null) {
-                            tvEmail.setText(user.getEmail(),TextView.BufferType.EDITABLE);
-                            tvPhone.setText(user.get("phone").toString(),TextView.BufferType.EDITABLE);
+                            tvEmail.setText(user.getEmail());
+                            tvPhone.setText(user.get("phone").toString());
+                            tvPrice.setText(String.format("$%d/hr", user.get("fee")));
                         }
                     }
                 }
@@ -362,16 +369,6 @@ public class Profile extends Activity implements View.OnClickListener {
                 Toast.makeText(getApplicationContext(), "Requested their contact information",
                         Toast.LENGTH_LONG).show();
                 requestAccess();
-                Log.d("contact", "contact was pressed");
-                break;
-            case R.id.bSave:
-                ParseUser user = ParseUser.getCurrentUser();
-                String email = tvEmail.getText().toString();
-                user.put("email",email);
-                String phone = tvPhone.getText().toString();
-                user.saveInBackground();
-                Toast.makeText(getApplicationContext(), "Information Saved",
-                        Toast.LENGTH_LONG).show();
                 break;
         }
 

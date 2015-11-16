@@ -1,12 +1,18 @@
 package com.parse.tuber;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.GetDataCallback;
 
 import java.util.ArrayList;
 
@@ -22,6 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
+
         public ViewHolder(TextView v) {
             super(v);
             mTextView = v;
@@ -36,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
     // Create new views (invoked by the layout manager)
     @Override
     public MyAdapter.SearchBundleViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+                                                               int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_card, parent, false);
@@ -52,16 +59,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         SearchBundle sb = mDataset.get(position);
-        holder.vName.setText(sb.name);
-        holder.rbRating.setStepSize(0.5f);
-        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
-        holder.searchBundle = sb;
 
+//        holder.rbRating.setStepSize(0.5f);
+//        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
+
+
+        holder.vName.setText(sb.name);
+
+        holder.ivProfilePicture.setImageBitmap(sb.profilePicture);
         //Thought this should be next to the ratings in parenthesis
-        holder.vNumberOfRatings.setText(String.format("(%.0f)", sb.numberOfRatings));
+//        holder.vNumberOfRatings.setText(String.format("(%.0f)", sb.numberOfRatings));
 
         //This can go wherever
-        holder.vFee.setText(String.format("Fee: $%.02f", sb.fee));
+        holder.vFee.setText(String.format("$%.02f /hr", sb.fee));
 
     }
 
@@ -76,25 +86,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         protected RatingBar rbRating;
         protected TextView vNumberOfRatings;
         protected TextView vFee;
+        protected ImageView ivProfilePicture;
         public SearchBundle searchBundle;
         public View view;
-
 
 
         public SearchBundleViewHolder(View v) {
             super(v);
             view = v;
             view.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), Profile.class);
                     intent.putExtra("id", searchBundle.id);
                     v.getContext().startActivity(intent);
                 }
             });
-            vName =  (TextView) v.findViewById(R.id.txtName);
-            rbRating = (RatingBar) v.findViewById(R.id.rbRating);
-            vNumberOfRatings = (TextView) v.findViewById(R.id.txtNumberRatings);
+            vName = (TextView) v.findViewById(R.id.txtName);
+//            rbRating = (RatingBar) v.findViewById(R.id.rbRating);
+//            vNumberOfRatings = (TextView) v.findViewById(R.id.txtNumberRatings);
             vFee = (TextView) v.findViewById(R.id.txtFee);
+            ivProfilePicture = (ImageView) v.findViewById(R.id.ivProfilePicture);
 
 
         }
