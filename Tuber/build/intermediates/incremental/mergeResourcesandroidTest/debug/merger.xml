@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <merger version="3"><dataSet config="main"><source path="/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/androidTest/res"/><source path="/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/generated/res/rs/androidTest/debug"/><source path="/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/generated/res/resValues/androidTest/debug"/></dataSet><mergedItems/></merger>
-=======
-<merger version="3"><dataSet config="main"><source path="/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/androidTest/res"/><source path="/Users/nsaiyer/Documents/Projects/CSE110/Tuber/build/generated/res/rs/androidTest/debug"/><source path="/Users/nsaiyer/Documents/Projects/CSE110/Tuber/build/generated/res/resValues/androidTest/debug"/></dataSet><mergedItems/></merger>
->>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a

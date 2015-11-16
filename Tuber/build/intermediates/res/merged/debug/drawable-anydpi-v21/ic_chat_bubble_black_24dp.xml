@@ -7,8 +7,4 @@
         android:fillColor="#FF000000"
         android:pathData="M20,2H4c-1.1,0 -2,0.9 -2,2v18l4,-4h14c1.1,0 2,-0.9 2,-2V4c0,-1.1 -0.9,-2 -2,-2z"/>
 </vector>
-<<<<<<< HEAD
 <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/drawable-anydpi-v21/ic_chat_bubble_black_24dp.xml -->
-=======
-<!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ic_chat_bubble_black_24dp.xml -->
->>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a

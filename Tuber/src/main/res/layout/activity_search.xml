@@ -76,7 +76,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:entries="@array/sort_array"
-
             android:textColor="#fff" />
 
     </android.support.design.widget.TextInputLayout>

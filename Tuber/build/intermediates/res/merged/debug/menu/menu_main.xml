@@ -17,8 +17,4 @@
         android:icon="@drawable/ic_done_all_black_48dp"
         android:title="Logout"
         />
-<<<<<<< HEAD
 </menu><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/menu/menu_main.xml -->
-=======
-</menu><!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/main/res/menu/menu_main.xml -->
->>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a

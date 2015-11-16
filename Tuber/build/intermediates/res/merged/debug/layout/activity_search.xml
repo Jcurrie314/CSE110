@@ -76,7 +76,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:entries="@array/sort_array"
-
             android:textColor="#fff" />
 
     </android.support.design.widget.TextInputLayout>
@@ -108,8 +107,4 @@
 </LinearLayout>
 
 
-<<<<<<< HEAD
 <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_search.xml -->
-=======
-<!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/main/res/layout/activity_search.xml -->
->>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a

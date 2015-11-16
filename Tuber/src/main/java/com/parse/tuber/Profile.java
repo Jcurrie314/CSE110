@@ -324,7 +324,7 @@ public class Profile extends Activity implements View.OnClickListener {
                         if (user != null) {
                             tvEmail.setText(user.getEmail());
                             tvPhone.setText(user.get("phone").toString());
-                            tvPrice.setText(user.get("price").toString());
+                            tvPrice.setText(String.format("$%d/hr", user.get("fee")));
                         }
                     }
                 }

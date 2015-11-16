@@ -81,8 +81,4 @@
             android:textSize="16dip" />
 
     </LinearLayout>
-<<<<<<< HEAD
 </ScrollView><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_login.xml -->
-=======
-</ScrollView><!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/main/res/layout/activity_login.xml -->
->>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a

@@ -89,7 +89,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 NumberFormat.getCurrencyInstance(Locale.US);
         String currency = format.format(etPrice.getText().toString().trim());
 
-        user.put("price", currency);
+        user.put("fee", currency);
         user.put("major", sMajor.getSelectedItem().toString());
         user.put("name", etFirstName.getText().toString().trim());
         user.put("student", cbStudent.isChecked());
