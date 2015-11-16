@@ -65,7 +65,7 @@
 
                 android:text="Email" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tvEmail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                 android:layout_marginTop="12dp"
                 android:text="Phone" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tvPhone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -142,4 +142,18 @@
         app:backgroundTint="#FF5252"
         app:layout_anchor="@id/viewA"
         app:layout_anchorGravity="bottom|right|end" />
-</android.support.design.widget.CoordinatorLayout><!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE%20110/CSE110/Tuber/src/main/res/layout/activity_profile.xml -->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/bSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_save_white_48dp"
+        android:tint="@color/white"
+        app:backgroundTint="#FF5252"
+        app:layout_anchor="@id/viewA"
+        app:layout_anchorGravity="top|right|end" />
+</android.support.design.widget.CoordinatorLayout>
+
+<!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE%20110/CSE110/Tuber/src/main/res/layout/activity_profile.xml -->
