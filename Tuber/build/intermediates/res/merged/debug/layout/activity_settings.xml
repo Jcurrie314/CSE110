@@ -17,16 +17,22 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notifications" />
+        android:text="Notifications"
+        android:background="#26A69A"
+        android:textColor="@color/white"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Visibility"/>
+        android:text="Visibility"
+        android:background="#26A69A"
+        android:textColor="@color/white"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"/>
+        android:text="Logout"
+        android:background="#26A69A"
+        android:textColor="@color/white"/>
 
-</LinearLayout><!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE%20110/CSE110/Tuber/src/main/res/layout/activity_settings.xml -->
+</LinearLayout><!-- From: file:/Users/lieseyu/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_settings.xml -->

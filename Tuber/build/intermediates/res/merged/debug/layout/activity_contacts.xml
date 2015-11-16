@@ -9,7 +9,8 @@
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="56dp">
+    android:paddingTop="56dp"
+    android:background="#26A69A">
 
 
 <ImageView
@@ -23,13 +24,15 @@
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pending"/>
+        android:text="Pending"
+        android:textColor="@color/white" />
     <ListView
         android:id="@+id/lvPending"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="12dp"
+        android:background="@color/white" />
     <TextView
         android:id="@+id/lvConnectionsLabel"
         style="?android:attr/listSeparatorTextViewStyle"
@@ -46,4 +49,4 @@
 
 
 
-</LinearLayout><!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE%20110/CSE110/Tuber/src/main/res/layout/activity_contacts.xml -->
+</LinearLayout><!-- From: file:/Users/lieseyu/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_contacts.xml -->

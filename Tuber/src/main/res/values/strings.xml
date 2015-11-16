@@ -42,6 +42,12 @@
         <item>CSE</item>
         <item>ECE</item>
         <item>PHYS</item>
+        <item>SE</item>
+        <item>NANO</item>
+        <item>STRUCT</item>
+        <item>MATH</item>
+        <item>CHEM</item>
+        <item>MAE</item>
     </string-array>
 
     <string-array name="sort_array">

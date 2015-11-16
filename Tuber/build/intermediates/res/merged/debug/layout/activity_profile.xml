@@ -142,4 +142,4 @@
         app:backgroundTint="#FF5252"
         app:layout_anchor="@id/viewA"
         app:layout_anchorGravity="bottom|right|end" />
-</android.support.design.widget.CoordinatorLayout><!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE%20110/CSE110/Tuber/src/main/res/layout/activity_profile.xml -->
+</android.support.design.widget.CoordinatorLayout><!-- From: file:/Users/lieseyu/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_profile.xml -->
