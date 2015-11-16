@@ -99,7 +99,7 @@
                 android:prompt="@string/major_select" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Email Label -->
+        <!-- Phone Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,6 +113,22 @@
                 android:hint="Phone"
                 android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
+
+        <!-- Price Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/etPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Price"
+                android:inputType="numberDecimal" />
+        </android.support.design.widget.TextInputLayout>
+
         <!-- Role Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

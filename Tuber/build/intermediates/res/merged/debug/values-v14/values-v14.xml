@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-v14/values-v14.xml -->
+=======
+    <!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-v14/values-v14.xml -->
+>>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a
     <eat-comment/>
     <style name="Base.TextAppearance.AppCompat.Button">
         <item name="android:textSize">@dimen/abc_text_size_button_material</item>

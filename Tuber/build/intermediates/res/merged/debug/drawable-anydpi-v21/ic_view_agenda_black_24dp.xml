@@ -7,4 +7,8 @@
         android:fillColor="#FF000000"
         android:pathData="M20,13H3c-0.55,0 -1,0.45 -1,1v6c0,0.55 0.45,1 1,1h17c0.55,0 1,-0.45 1,-1v-6c0,-0.55 -0.45,-1 -1,-1zm0,-10H3c-0.55,0 -1,0.45 -1,1v6c0,0.55 0.45,1 1,1h17c0.55,0 1,-0.45 1,-1V4c0,-0.55 -0.45,-1 -1,-1z"/>
 </vector>
+<<<<<<< HEAD
 <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/drawable-anydpi-v21/ic_view_agenda_black_24dp.xml -->
+=======
+<!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ic_view_agenda_black_24dp.xml -->
+>>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a

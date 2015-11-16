@@ -11,4 +11,8 @@
         android:pathData="M0,20h24v4H0z"
         android:fillAlpha=".36"/>
 </vector>
+<<<<<<< HEAD
 <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/drawable-anydpi-v21/ic_border_color_black_24dp.xml -->
+=======
+<!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ic_border_color_black_24dp.xml -->
+>>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a

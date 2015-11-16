@@ -7,4 +7,8 @@
         android:fillColor="#FF000000"
         android:pathData="M7,19h10V4H7v15zm-5,-2h4V6H2v11zM18,6v11h4V6h-4z"/>
 </vector>
+<<<<<<< HEAD
 <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/drawable-anydpi-v21/ic_view_carousel_black_24dp.xml -->
+=======
+<!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ic_view_carousel_black_24dp.xml -->
+>>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a

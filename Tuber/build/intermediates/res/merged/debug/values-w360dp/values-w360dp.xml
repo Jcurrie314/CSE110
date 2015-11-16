@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-w360dp/values-w360dp.xml -->
+=======
+    <!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-w360dp/values-w360dp.xml -->
+>>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a
     <eat-comment/>
     <integer name="abc_max_action_buttons">3</integer>
 </resources>

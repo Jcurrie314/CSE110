@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-v17/values-v17.xml -->
+=======
+    <!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-v17/values-v17.xml -->
+>>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a
     <eat-comment/>
     <style name="RtlOverlay.DialogWindowTitle.AppCompat" parent="Base.DialogWindowTitle.AppCompat">
         <item name="android:textAlignment">viewStart</item>

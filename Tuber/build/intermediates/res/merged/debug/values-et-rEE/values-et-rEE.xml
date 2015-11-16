@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-et-rEE/values-et-rEE.xml -->
+=======
+    <!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-et-rEE/values-et-rEE.xml -->
+>>>>>>> b8b8c6cb6c794c37030c6e62f22874c2ac5a0d5a
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Navigeerimine avaekraanile"</string>
     <string msgid="1594238315039666878" name="abc_action_bar_up_description">"Navigeerimine üles"</string>

@@ -41,7 +41,7 @@ public class Profile extends Activity implements View.OnClickListener {
 
     double averageRating;
 
-    TextView tvName, tvEmail, tvEmailLabel, tvCoursesLabel, tvPhone, tvPhoneLabel;
+    TextView tvName, tvEmail, tvEmailLabel, tvCoursesLabel, tvPhone, tvPhoneLabel, tvPrice, tvPriceLabel;
     ListView lvCourses;
     RatingBar rbRating;
     ImageView ivProfilePicture, ivMenu;
@@ -60,6 +60,8 @@ public class Profile extends Activity implements View.OnClickListener {
         tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
         tvPhone = (TextView) findViewById(R.id.tvPhone);
         tvPhoneLabel = (TextView) findViewById(R.id.tvPhoneLabel);
+        tvPrice = (TextView) findViewById(R.id.tvPrice);
+        tvPriceLabel = (TextView) findViewById(R.id.tvPriceLabel);
 
 
         rbRating = (RatingBar) findViewById(R.id.rbRating);
@@ -322,6 +324,7 @@ public class Profile extends Activity implements View.OnClickListener {
                         if (user != null) {
                             tvEmail.setText(user.getEmail());
                             tvPhone.setText(user.get("phone").toString());
+                            tvPrice.setText(user.get("price").toString());
                         }
                     }
                 }
