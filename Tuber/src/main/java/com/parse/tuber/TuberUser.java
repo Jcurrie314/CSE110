@@ -1,8 +1,13 @@
 package com.parse.tuber;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.parse.FindCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -16,6 +21,7 @@ public class TuberUser {
     //ParseUser user;
     Bitmap profilePicture;
     Boolean isTutor;
+
     Integer avgRating, numberOfRatings, fee;
 
 
@@ -30,8 +36,17 @@ public class TuberUser {
             this.numberOfRatings = user.getInt("ratingcount");
             this.fee = user.getInt("fee");
 
+            ParseFile imageFile = (ParseFile) user.get("profilePic");
 
+            Bitmap bitmap = null;
+            try {
+                bitmap = BitmapFactory.decodeByteArray(imageFile.getData(), 0, imageFile.getData().length);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            this.profilePicture = bitmap;
             this.isTutor = (Boolean) user.get("tutor");
+
             /*
             if (this.isTutor) {
                 getCourses();
@@ -40,7 +55,8 @@ public class TuberUser {
 
         }
     }
-
+    public void setProfilePic(Bitmap bmap, TuberUser user){
+    }
     public void setUserId(String userId) {
         this.id = userId;
     }
@@ -72,7 +88,7 @@ public class TuberUser {
             }
         });
 
-       // this.rating = avgRating;
+        // this.rating = avgRating;
 
     }
 

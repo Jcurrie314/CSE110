@@ -1450,6 +1450,8 @@
         <item>MATH</item>
         <item>CHEM</item>
         <item>MAE</item>
+        <item>CE</item>
+
     </string-array><string name="classNumber_select">Choose a Class Number to filter</string><string-array name="major_array">
         <item>Bioengineering</item>
         <item>Computer Science</item>

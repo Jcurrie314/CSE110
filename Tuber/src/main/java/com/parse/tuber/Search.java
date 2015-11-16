@@ -117,7 +117,7 @@ public class Search extends Activity implements OnItemSelectedListener {
                                 ParseUser u = (ParseUser) objects.get(i);
                                 final SearchBundle s = new SearchBundle(u);
                                 if (finalClassNumber.equals("Choose a Class to filter") || finalDep.equals("Choose a Department to filter")) {
-                                    listAdapter.add(s);
+                                    //listAdapter.add(s);
                                     mAdapter.notifyItemInserted(listAdapter.size()-1);
 
                                 }

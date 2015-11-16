@@ -48,6 +48,8 @@
         <item>MATH</item>
         <item>CHEM</item>
         <item>MAE</item>
+        <item>CE</item>
+
     </string-array>
 
     <string-array name="sort_array">

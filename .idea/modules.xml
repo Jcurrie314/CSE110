@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CSE110.iml" filepath="$PROJECT_DIR$/CSE110.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyFirstApp.iml" filepath="$PROJECT_DIR$/MyFirstApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/Tuber/Tuber.iml" filepath="$PROJECT_DIR$/Tuber/Tuber.iml" />
     </modules>
   </component>

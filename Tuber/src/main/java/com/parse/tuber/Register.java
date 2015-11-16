@@ -12,12 +12,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
-    EditText etFirstName, etEmail, etUsername, etPassword, etPhone;
+    EditText etFirstName, etEmail, etUsername, etPassword, etPhone, etPrice;
     Spinner sMajor;
     Button bRegister;
     TextView loginLink;
@@ -32,6 +35,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPhone = (EditText) findViewById(R.id.etPhone);
+        etPrice = (EditText) findViewById(R.id.etPrice);
 
         sMajor = (Spinner) findViewById(R.id.sMajor);
         etUsername = (EditText) findViewById(R.id.etUsername);
@@ -80,6 +84,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.setPassword(etPassword.getText().toString().trim());
         user.setEmail(etEmail.getText().toString().trim());
         user.put("phone", etPhone.getText().toString().trim());
+
+        NumberFormat format =
+                NumberFormat.getCurrencyInstance(Locale.US);
+        String currency = format.format(etPrice.getText().toString().trim());
+
+        user.put("fee", currency);
         user.put("major", sMajor.getSelectedItem().toString());
         user.put("name", etFirstName.getText().toString().trim());
         user.put("student", cbStudent.isChecked());
