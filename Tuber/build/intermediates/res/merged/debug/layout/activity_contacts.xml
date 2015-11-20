@@ -9,16 +9,16 @@
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="56dp"
-    android:background="#26A69A">
+    android:paddingTop="56dp">
 
 
-<ImageView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"
         android:src="@drawable/logo" />
+
     <TextView
         android:id="@+id/lvPendingLabel"
         style="?android:attr/listSeparatorTextViewStyle"
@@ -26,27 +26,31 @@
         android:layout_height="wrap_content"
         android:text="Pending"
         android:textColor="@color/white" />
+
     <ListView
         android:id="@+id/lvPending"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="12dp"
-        android:background="@color/white" />
+        android:textColor="@color/white" />
+
     <TextView
         android:id="@+id/lvConnectionsLabel"
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Connections"/>
+        android:text="Connections"
+        android:textColor="@color/white" />
+
 
     <ListView
         android:id="@+id/lvConnections"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:layout_marginTop="12dp" />
-
+        android:layout_marginTop="12dp"
+        android:textColor="@color/white" />
 
 
 </LinearLayout><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_contacts.xml -->

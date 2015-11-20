@@ -52,6 +52,7 @@
 
     </string-array>
 
+
     <string-array name="sort_array">
         <item>Sort by: Rating</item>
         <item>Sort by: Fee</item>

@@ -59,9 +59,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         // - replace the contents of the view with that element
         SearchBundle sb = mDataset.get(position);
         holder.vName.setText(sb.name);
-        holder.tvRating.setText(String.valueOf(sb.avgRating));
-//        holder.rbRating.setStepSize(0.5f);
-//        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
+        holder.rbRating.setStepSize(0.5f);
+        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
         holder.searchBundle = sb;
 
 
@@ -87,7 +86,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         protected TextView vNumberOfRatings;
         protected TextView vFee;
         protected TextView tvRating;
-
         protected ImageView ivProfilePicture;
         public SearchBundle searchBundle;
         public View view;
@@ -105,8 +103,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
                 }
             });
             vName =  (TextView) v.findViewById(R.id.tvName);
-            tvRating =  (TextView) v.findViewById(R.id.tvRating);
-//            rbRating = (RatingBar) v.findViewById(R.id.rbRating);
+            rbRating = (RatingBar) v.findViewById(R.id.rbRating);
 //            vNumberOfRatings = (TextView) v.findViewById(R.id.txtNumberRatings);
             vFee = (TextView) v.findViewById(R.id.tvFee);
             ivProfilePicture = (ImageView) v.findViewById(R.id.ivProfilePicture);

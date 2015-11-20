@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.MenuItem;
@@ -18,6 +20,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -35,15 +39,24 @@ public class Profile extends Activity implements View.OnClickListener {
 
     double averageRating;
 
-    TextView tvName,tvEmail, tvPhone, tvPrice, tvEmailLabel, tvCoursesLabel, tvPhoneLabel, tvPriceLabel;
+    TextView tvName, tvPrice, tvEmailLabel, tvCoursesLabel, tvPhoneLabel, tvPriceLabel;
 
     ListView lvCourses;
     RatingBar rbRating;
     ImageView ivProfilePicture, ivMenu;
-    FloatingActionButton fab;
 
     MenuItem miChangePassword, miLogout;
 
+    String phone;
+    String email;
+
+    @Override
+    public void onResume() {  // After a pause OR at startup
+        super.onResume();
+        isVerified();
+        updateTutorStats();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +64,6 @@ public class Profile extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_profile);
 
         tvName = (TextView) findViewById(R.id.tvName);
-        tvEmail = (TextView) findViewById(R.id.tvEmail);
-        tvEmailLabel = (TextView) findViewById(R.id.tvEmailLabel);
-        tvPhone = (TextView) findViewById(R.id.tvPhone);
-        tvPhoneLabel = (TextView) findViewById(R.id.tvPhoneLabel);
         tvPrice = (TextView) findViewById(R.id.tvPrice);
         tvPriceLabel = (TextView) findViewById(R.id.tvPriceLabel);
 
@@ -64,14 +73,30 @@ public class Profile extends Activity implements View.OnClickListener {
         lvCourses = (ListView) findViewById(R.id.lvCourses);
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        //fab = (FloatingActionButton) findViewById(R.id.fab);
         ivMenu = (ImageView) findViewById(R.id.ivMenu);
 
         miChangePassword = (MenuItem) findViewById(R.id.miChangePassword);
         miLogout = (MenuItem) findViewById(R.id.miLogout);
 
 
-        fab.setOnClickListener(this);
+
+        FloatingActionButton fabPhone = (FloatingActionButton) findViewById(R.id.fabPhone);
+        fabPhone.setSize(FloatingActionButton.SIZE_MINI);
+        fabPhone.setIcon(R.drawable.ic_phone_black_48dp);
+        fabPhone.setStrokeVisible(false);
+        fabPhone.setOnClickListener(this);
+
+
+        FloatingActionButton fabEmail = (FloatingActionButton) findViewById(R.id.fabEmail);
+        fabEmail.setSize(FloatingActionButton.SIZE_MINI);
+        fabEmail.setIcon(R.drawable.ic_email_black_48dp);
+        fabEmail.setStrokeVisible(false);
+        fabEmail.setOnClickListener(this);
+
+
+        // Test that FAMs containing FABs with visibility GONE do not cause crashes
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -139,7 +164,7 @@ public class Profile extends Activity implements View.OnClickListener {
             ivMenu.setVisibility(View.GONE);
 
         } else {
-            fab.setImageResource(R.drawable.ic_mode_edit_black_48dp);
+            //fab.setImageResource(R.drawable.ic_mode_edit_black_48dp);
 
             //case that user is looking at their own profile
             displayUserDetails(true);
@@ -316,17 +341,16 @@ public class Profile extends Activity implements View.OnClickListener {
                         // The query was successful.
                         // check if we got a match
                         if (user != null) {
-                            tvEmail.setText(user.getEmail(),TextView.BufferType.EDITABLE);
-                            tvPhone.setText(user.get("phone").toString(),TextView.BufferType.EDITABLE);
-                            tvPrice.setText(String.format("$%d/hr", user.get("fee")),TextView.BufferType.EDITABLE);
+                            tvPrice.setText(String.format("$%d/hr", user.get("fee")), TextView.BufferType.EDITABLE);
+                            phone = user.get("phone").toString();
+                            email = user.getEmail();
+                            Log.d("Email", email);
                         }
                     }
                 }
             });
         } else {
-            tvEmail.setVisibility(View.GONE);
             tvEmailLabel.setVisibility(View.GONE);
-            tvPhone.setVisibility(View.GONE);
             tvPhoneLabel.setVisibility(View.GONE);
             rbRating.setEnabled(false);
 
@@ -359,20 +383,28 @@ public class Profile extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                if ((ParseUser.getCurrentUser().getObjectId()).equals(userId)){
+                if ((ParseUser.getCurrentUser().getObjectId()).equals(userId)) {
                     Intent editProfileIntent;
                     editProfileIntent = new Intent(this, EditProfile.class);
                     editProfileIntent.putExtra("id", ParseUser.getCurrentUser().getObjectId());
                     startActivity(editProfileIntent);
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Requested their contact information",
                             Toast.LENGTH_LONG).show();
                     requestAccess();
                     Log.d("contact", "contact was pressed");
                 }
                 break;
-
+            case R.id.fabPhone:
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + phone));
+                startActivity(callIntent);
+                break;
+            case R.id.fabEmail:
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{email});
+                emailIntent.setType("text/plain");
+                startActivity(emailIntent);
         }
 
     }
