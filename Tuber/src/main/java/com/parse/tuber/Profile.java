@@ -12,9 +12,12 @@ import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -39,13 +42,15 @@ public class Profile extends Activity implements View.OnClickListener {
 
     double averageRating;
 
-    TextView tvName, tvPrice, tvEmailLabel, tvCoursesLabel, tvPhoneLabel, tvPriceLabel;
+    TextView tvName, tvPrice, tvCoursesLabel, tvPriceLabel;
 
     ListView lvCourses;
     RatingBar rbRating;
     ImageView ivProfilePicture, ivMenu;
-
+    FloatingActionsMenu fab;
+    FloatingActionButton fabRequest;
     MenuItem miChangePassword, miLogout;
+    Button bAddCourse;
 
     String phone;
     String email;
@@ -71,9 +76,13 @@ public class Profile extends Activity implements View.OnClickListener {
         rbRating = (RatingBar) findViewById(R.id.rbRating);
         tvCoursesLabel = (TextView) findViewById(R.id.tvCoursesLabel);
         lvCourses = (ListView) findViewById(R.id.lvCourses);
+        bAddCourse = (Button) findViewById(R.id.bAddCourse);
+        bAddCourse.setOnClickListener(this);
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
-        //fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionsMenu) findViewById(R.id.fab);
+        fabRequest = (FloatingActionButton) findViewById(R.id.fabRequest);
+
         ivMenu = (ImageView) findViewById(R.id.ivMenu);
 
         miChangePassword = (MenuItem) findViewById(R.id.miChangePassword);
@@ -94,6 +103,12 @@ public class Profile extends Activity implements View.OnClickListener {
         fabEmail.setStrokeVisible(false);
         fabEmail.setOnClickListener(this);
 
+        fabRequest.setSize(FloatingActionButton.SIZE_NORMAL);
+        fabRequest.setIcon(R.drawable.ic_message_black_24dp);
+        fabRequest.setStrokeVisible(false);
+        fabRequest.setOnClickListener(this);
+
+
 
         // Test that FAMs containing FABs with visibility GONE do not cause crashes
 
@@ -113,7 +128,7 @@ public class Profile extends Activity implements View.OnClickListener {
                     // check if we got a match
                     if (user != null) {
                         tvName.setText(user.get("name").toString());
-
+                        tvPrice.setText(String.format("$%d/hr", user.get("fee")));
                         ParseFile imageFile = (ParseFile) user.get("profilePic");
                         if (imageFile != null) {
 
@@ -136,12 +151,42 @@ public class Profile extends Activity implements View.OnClickListener {
         });
     }
 
+    public static boolean setListViewHeightBasedOnItems(ListView listView) {
 
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter != null) {
+
+            int numberOfItems = listAdapter.getCount();
+
+            // Get total height of all items.
+            int totalItemsHeight = 0;
+            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+                View item = listAdapter.getView(itemPos, null, listView);
+                item.measure(0, 0);
+                totalItemsHeight += item.getMeasuredHeight();
+            }
+
+            // Get total height of all item dividers.
+            int totalDividersHeight = listView.getDividerHeight() *
+                    (numberOfItems - 1);
+
+            // Set list height.
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            params.height = totalItemsHeight + totalDividersHeight;
+            listView.setLayoutParams(params);
+            listView.requestLayout();
+
+            return true;
+
+        } else {
+            return false;
+        }
+
+    }
     public void isVerified() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
         findTutorCourses();
         if (!(ParseUser.getCurrentUser().getObjectId()).equals(userId)) {
-
             query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId());
             query.whereEqualTo("tutor", userId);
             query.findInBackground(new FindCallback<ParseObject>() {
@@ -153,9 +198,13 @@ public class Profile extends Activity implements View.OnClickListener {
                             relationshipId = objects.get(0).getObjectId();
                             addListenerOnRatingBar();
                             displayUserDetails(verified);
+                            fabRequest.setVisibility(View.GONE);
+                            fab.setVisibility(View.VISIBLE);
 
                         } else {
                             displayUserDetails(false);
+                            fabRequest.setVisibility(View.VISIBLE);
+                            fab.setVisibility(View.GONE);
                         }
                     }
 
@@ -164,8 +213,10 @@ public class Profile extends Activity implements View.OnClickListener {
             ivMenu.setVisibility(View.GONE);
 
         } else {
-            //fab.setImageResource(R.drawable.ic_mode_edit_black_48dp);
+            fabRequest.setIcon(R.drawable.ic_mode_edit_black_48dp);
 
+            fabRequest.setVisibility(View.VISIBLE);
+            fab.setVisibility(View.GONE);
             //case that user is looking at their own profile
             displayUserDetails(true);
 
@@ -341,7 +392,7 @@ public class Profile extends Activity implements View.OnClickListener {
                         // The query was successful.
                         // check if we got a match
                         if (user != null) {
-                            tvPrice.setText(String.format("$%d/hr", user.get("fee")), TextView.BufferType.EDITABLE);
+
                             phone = user.get("phone").toString();
                             email = user.getEmail();
                             Log.d("Email", email);
@@ -350,8 +401,7 @@ public class Profile extends Activity implements View.OnClickListener {
                 }
             });
         } else {
-            tvEmailLabel.setVisibility(View.GONE);
-            tvPhoneLabel.setVisibility(View.GONE);
+
             rbRating.setEnabled(false);
 
         }
@@ -382,7 +432,7 @@ public class Profile extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fab:
+            case R.id.fabRequest:
                 if ((ParseUser.getCurrentUser().getObjectId()).equals(userId)) {
                     Intent editProfileIntent;
                     editProfileIntent = new Intent(this, EditProfile.class);
@@ -395,6 +445,12 @@ public class Profile extends Activity implements View.OnClickListener {
                     Log.d("contact", "contact was pressed");
                 }
                 break;
+            case R.id.bAddCourse:
+                Intent addCourseIntent;
+                addCourseIntent = new Intent(this, AddCourse.class);
+                addCourseIntent.putExtra("id", ParseUser.getCurrentUser().getObjectId());
+                startActivity(addCourseIntent);
+                break;
             case R.id.fabPhone:
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + phone));
@@ -405,6 +461,7 @@ public class Profile extends Activity implements View.OnClickListener {
                 emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{email});
                 emailIntent.setType("text/plain");
                 startActivity(emailIntent);
+                break;
         }
 
     }

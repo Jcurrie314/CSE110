@@ -12,36 +12,35 @@
     android:paddingTop="56dp">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/logo" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:paddingBottom="24dp"
+        android:text="TUBER"
+        android:textSize="54dp" />
 
     <TextView
         android:id="@+id/lvPendingLabel"
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pending"
-        android:textColor="@color/white" />
+        android:text="Pending" />
 
     <ListView
         android:id="@+id/lvPending"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/white" />
+        android:layout_marginTop="12dp" />
 
     <TextView
         android:id="@+id/lvConnectionsLabel"
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Connections"
-        android:textColor="@color/white" />
+        android:text="Connections" />
 
 
     <ListView
@@ -49,8 +48,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/white" />
+        android:layout_marginTop="12dp" />
 
 
 </LinearLayout><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_contacts.xml -->

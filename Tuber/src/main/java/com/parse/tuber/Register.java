@@ -124,7 +124,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     Bitmap bmp = BitmapFactory.decodeStream(imageStream);
 
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bmp.compress(Bitmap.CompressFormat.PNG, 0, stream);
+                    bmp.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     image = stream.toByteArray();
                     try {
                         stream.close();

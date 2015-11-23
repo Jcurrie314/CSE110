@@ -2,6 +2,19 @@
 <resources>
     <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string-array name="course_department_array">
+        <item>CSE</item>
+        <item>ECE</item>
+        <item>PHYS</item>
+        <item>SE</item>
+        <item>NANO</item>
+        <item>STRUCT</item>
+        <item>MATH</item>
+        <item>CHEM</item>
+        <item>MAE</item>
+        <item>CE</item>
+
+    </string-array>
     <string-array name="department_array">
         <item>Choose a Department to filter</item>
         <item>CSE</item>
