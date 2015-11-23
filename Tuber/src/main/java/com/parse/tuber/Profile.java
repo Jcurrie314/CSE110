@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
@@ -13,7 +11,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -21,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -350,9 +346,15 @@ public class Profile extends Activity implements View.OnClickListener {
                 }
             });
         } else {
-            tvEmailLabel.setVisibility(View.GONE);
-            tvPhoneLabel.setVisibility(View.GONE);
-            rbRating.setEnabled(false);
+            if(tvEmailLabel!= null) {
+                tvEmailLabel.setVisibility(View.GONE);
+            }
+            if(tvPhoneLabel!= null) {
+                tvPhoneLabel.setVisibility(View.GONE);
+            }
+            if(rbRating!= null) {
+                rbRating.setEnabled(false);
+            }
 
         }
 

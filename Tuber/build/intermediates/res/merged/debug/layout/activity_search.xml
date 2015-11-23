@@ -28,13 +28,27 @@
         android:text="Search:"
         android:id="@+id/textView2" />
 
+    <!--<Button-->
+        <!--style="?android:attr/buttonStyleSmall"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Name Search"-->
+        <!--android:id="@+id/bNameSearch"-->
+        <!--android:layout_gravity="center_horizontal" />-->
+
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name Search"
-        android:id="@+id/bNameSearch"
-        android:layout_gravity="center_horizontal" />
+        android:text="Search"
+        android:id="@+id/bSearchName"
+        android:layout_gravity="right" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etSearchIn"
+        android:layout_gravity="right" />
 
     <TextView
         android:layout_width="wrap_content"
