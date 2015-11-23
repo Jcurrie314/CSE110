@@ -21,10 +21,17 @@
         android:textColor="#fff"
         android:textSize="54dp" />
 
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView"
+        android:layout_gravity="center_horizontal" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/etSearchInput" />
+        android:id="@+id/etSearchInput"
+        android:hint="Search"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -86,4 +93,4 @@
         android:scrollbars="vertical" />
 
 
-</LinearLayout><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_name_search.xml -->
+</LinearLayout><!-- From: file:/Users/nsaiyer/Documents/Projects/CSE110/Tuber/src/main/res/layout/activity_name_search.xml -->
