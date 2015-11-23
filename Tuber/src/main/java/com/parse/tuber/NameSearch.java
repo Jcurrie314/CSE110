@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,9 +29,11 @@ public class NameSearch extends ActionBarActivity implements View.OnClickListene
     EditText etSearchInput;
     Button bSearch;
     ArrayList<SearchBundle> listAdapter;
+    ArrayAdapter<SearchBundle> adapter;
     RecyclerView mRecyclerViewNS;
     RecyclerView.Adapter mAdapterNS;
     RecyclerView.LayoutManager mLayoutManagerNS;
+    String items[];
 
     @Override
     public void onClick(View view) {
@@ -76,6 +81,7 @@ public class NameSearch extends ActionBarActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_search);
 
+
         bSearch = (Button) findViewById(R.id.bSearch);
         etSearchInput = (EditText) findViewById(R.id.etSearchInput);
         bSearch.setOnClickListener(this);
@@ -95,5 +101,64 @@ public class NameSearch extends ActionBarActivity implements View.OnClickListene
         // specify an adapter (see also next example)
         mAdapterNS = new MyAdapter(listAdapter);
         mRecyclerViewNS.setAdapter(mAdapterNS);
+
+        getList();
+        etSearchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().equals("")){
+                    //reset list
+                    getList();
+                } else {
+                    //perform search
+                    searchItem(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
-}
+
+    public void searchItem(String textToSearch){
+        for(SearchBundle item:listAdapter){
+            if(!item.name.toLowerCase().contains(textToSearch)){
+                listAdapter.remove(item);
+            }
+        }
+        adapter.notifyDataSetChanged();
+
+    }
+
+    public void getList(){
+        final String searchInput = etSearchInput.getText().toString();
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e == null) {
+                    for (int i = 0; i < objects.size(); i++) {
+                        ParseUser u = (ParseUser) objects.get(i);
+                        final SearchBundle s = new SearchBundle(u);
+                        if(s.name.toLowerCase().contains(searchInput.toLowerCase())) {
+                            listAdapter.add(s);
+                            mAdapterNS.notifyItemInserted(listAdapter.size() - 1);
+                        }
+
+
+                    }
+                } else {
+                    //Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                    String error = e.toString();
+                    Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        }
+    }
