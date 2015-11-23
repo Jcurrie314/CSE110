@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import android.widget.Toast;
 
 
 import com.parse.ParseUser;
@@ -17,7 +18,14 @@ public class MainActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ParseUser currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null) {
+        if( currentUser.getBoolean("emailVerified") == false ) {
+            Intent landingIntent = new Intent(this, Landing.class);
+            startActivity(landingIntent);
+            Toast.makeText(getApplicationContext(), "Email Not Yet Verified, Please Verify.",
+                    Toast.LENGTH_LONG).show();
+
+        }
+        else if (currentUser != null) {
             Resources resources = getResources();
             TabHost tabHost = getTabHost();
 
