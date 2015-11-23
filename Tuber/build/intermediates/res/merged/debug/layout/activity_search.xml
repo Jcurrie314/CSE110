@@ -21,6 +21,28 @@
         android:textColor="#fff"
         android:textSize="54dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Search:"
+        android:id="@+id/textView2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name Search"
+        android:id="@+id/bNameSearch"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Filter:"
+        android:id="@+id/textView" />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,4 +127,4 @@
 </LinearLayout>
 
 
-<!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_search.xml -->
+<!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_search.xml -->

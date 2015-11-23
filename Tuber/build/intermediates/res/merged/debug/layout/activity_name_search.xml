@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="56dp">
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:paddingBottom="56dp"
+        android:text="TUBER"
+        android:textColor="#fff"
+        android:textSize="54dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etSearchInput" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:textColor="#fff">
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/bSearch"
+        android:layout_gravity="right" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+
+        android:textColor="#fff">
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+
+        android:textColor="#fff">
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <!--
+    <ListView
+        android:id="@+id/lvTutors"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="12dp" />
+-->
+
+    <!-- A RecyclerView with some commonly used attributes
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/> -->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view_nameSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+
+</LinearLayout><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_name_search.xml -->

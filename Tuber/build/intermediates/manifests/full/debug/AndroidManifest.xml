@@ -51,6 +51,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.parse.tuber.NameSearch"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.parse.tuber.VerifyEmail"
             android:screenOrientation="portrait" >
         </activity>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -66,6 +67,7 @@ public class Search extends Activity implements OnItemSelectedListener {
 
 
     Spinner department_dropdown, classNumber_dropdown, sortBy_dropdown;
+    Button searchName_button;
     String dep = "";
     String classNumber = "";
     String sortBy = "";
@@ -91,8 +93,9 @@ public class Search extends Activity implements OnItemSelectedListener {
         if (thisView == classesNumberView){
             if (currentUser != null) {
 
+
                 //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                  //      android.R.layout.simple_list_item_1);
+                //      android.R.layout.simple_list_item_1);
                 //lvTutors.setAdapter(listAdapter);
 
 
@@ -100,6 +103,12 @@ public class Search extends Activity implements OnItemSelectedListener {
                 final String finalClassNumber = classNumber;
                 final String finalDep = dep;
                 final String item = dep + " " + classNumber;
+
+
+//                if (classNumber.equals("Choose a Class to filter")){
+//                    return;
+//                }
+
                 ParseQuery<ParseUser> query = ParseUser.getQuery();
                 if(sortBy.equals("Sort by: Fee")){
                     query.orderByAscending("fee");
@@ -117,7 +126,7 @@ public class Search extends Activity implements OnItemSelectedListener {
                                 ParseUser u = (ParseUser) objects.get(i);
                                 final SearchBundle s = new SearchBundle(u);
                                 if (finalClassNumber.equals("Choose a Class to filter") || finalDep.equals("Choose a Department to filter")) {
-                                    //listAdapter.add(s);
+                                    listAdapter.add(s);
                                     mAdapter.notifyItemInserted(listAdapter.size()-1);
 
                                 }
@@ -179,7 +188,7 @@ public class Search extends Activity implements OnItemSelectedListener {
         } else if( thisView == departmentView){
             dep = adapterView.getItemAtPosition(i).toString();
 
-            if (dep.equals("Choose a Department to filter")) {
+            if (dep.equals("Choose a Department to filter") ) {
                 return;
             }
             classNumber_dropdown.setEnabled(true);
@@ -215,7 +224,6 @@ public class Search extends Activity implements OnItemSelectedListener {
 
             }
 
-            //TODO: add more options
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             classNumber_dropdown.setAdapter(dataAdapter);
 
@@ -330,12 +338,14 @@ public class Search extends Activity implements OnItemSelectedListener {
     }
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
         listAdapter = new ArrayList<SearchBundle>();
+        searchName_button = (Button) findViewById(R.id.bNameSearch);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
@@ -362,6 +372,12 @@ public class Search extends Activity implements OnItemSelectedListener {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cse_numbers);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classNumber_dropdown.setAdapter(dataAdapter);
+
+        searchName_button.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(Search.this, NameSearch.class));
+            }
+        });
 
         //lvTutors = (ListView) findViewById(R.id.lvTutors);
 
