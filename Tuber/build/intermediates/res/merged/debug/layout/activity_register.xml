@@ -50,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
+                android:singleLine="true"
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
@@ -65,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
+                android:singleLine="true"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
@@ -80,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                android:singleLine="true"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
@@ -111,6 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone"
+                android:singleLine="true"
                 android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
@@ -126,6 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Price"
+                android:singleLine="true"
                 android:inputType="numberDecimal" />
         </android.support.design.widget.TextInputLayout>
 

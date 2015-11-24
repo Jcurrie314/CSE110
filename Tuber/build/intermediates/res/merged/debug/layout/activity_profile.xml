@@ -14,6 +14,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
+
             <ImageView
                 android:id="@+id/ivProfilePicture"
                 android:layout_width="fill_parent"
@@ -21,17 +22,24 @@
                 android:layout_marginTop="0dp"
                 android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/ivProfilePicture"
-                android:layout_alignLeft="@+id/tvProfilePicture"
-                android:layout_margin="15dp"
-                android:fontFamily="sans-serif-thin"
-                android:gravity="center"
-                android:textColor="#fff"
-                android:textSize="40dp" />
+            <RelativeLayout
+                android:id="@+id/overlay"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/gradient">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="15dp"
+                    android:fontFamily="sans-serif-thin"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:textSize="40dp" />
+            </RelativeLayout>
 
 
             <ImageView
@@ -57,7 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+
+                android:descendantFocusability="blocksDescendants">
 
                 <TextView
                     android:id="@+id/tvPriceLabel"
@@ -74,10 +84,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="sans-serif-light"
-                    android:textSize="24dp"
-
-                    />
-
+                    android:textSize="24dp" />
 
 
                 <TextView
@@ -106,24 +113,10 @@
                 <ListView
                     android:id="@+id/lvCourses"
                     android:layout_width="fill_parent"
-                    android:minHeight="300dp"
-                    android:maxHeight="300dp"
-                    android:layout_height="300dp"
+                    android:layout_height="200dp"
                     android:layout_marginTop="12dp"
-                    android:fontFamily="sans-serif-light" />
-
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/bAddCourse"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginTop="24dp"
-                    android:padding="12dp"
-                    android:textColor="@color/white"
-                    android:background="#10000000"
-                    android:text="Add Courses"
-
-                    />
+                    android:fontFamily="sans-serif-light"
+                    android:minHeight="200dp" />
 
 
             </LinearLayout>
@@ -131,58 +124,59 @@
     </LinearLayout>
 
 
-        <com.getbase.floatingactionbutton.FloatingActionsMenu
-            android:id="@+id/fab"
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_anchor="@id/viewA"
+        app:layout_anchorGravity="bottom|right|end"
+        fab:fab_addButtonColorNormal="@color/white"
+        fab:fab_addButtonColorPressed="@color/white_pressed"
+        fab:fab_addButtonPlusIconColor="@color/half_black"
+        fab:fab_addButtonSize="normal"
+        fab:fab_addButtonStrokeVisible="false"
+        fab:fab_expandDirection="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            fab:fab_addButtonColorNormal="@color/white"
-            fab:fab_addButtonColorPressed="@color/white_pressed"
-            fab:fab_addButtonSize="normal"
-            fab:fab_addButtonPlusIconColor="@color/half_black"
-            fab:fab_addButtonStrokeVisible="false"
-            fab:fab_expandDirection="left"
-            app:layout_anchor="@id/viewA"
-            app:layout_anchorGravity="bottom|right|end"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginEnd="16dp">
+            fab:fab_colorNormal="@color/white"
+            fab:fab_colorPressed="@color/white_pressed"
+            fab:fab_size="mini" />
 
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                fab:fab_colorNormal="@color/white"
-                fab:fab_colorPressed="@color/white_pressed"
-                fab:fab_size="mini"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_colorPressed="@color/white_pressed"
+            fab:fab_size="mini" />
 
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                fab:fab_colorNormal="@color/white"
-                fab:fab_colorPressed="@color/white_pressed"
-                fab:fab_size="mini"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_colorPressed="@color/white_pressed"
+            fab:fab_size="mini" />
 
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                fab:fab_colorNormal="@color/white"
-                fab:fab_colorPressed="@color/white_pressed"
-                fab:fab_size="mini"/>
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
-        </com.getbase.floatingactionbutton.FloatingActionsMenu>
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        app:layout_anchor="@id/viewA"
+        app:layout_anchorGravity="bottom|right|end"
         fab:fab_colorNormal="@color/white"
         fab:fab_colorPressed="@color/white_pressed"
-        fab:fab_size="mini"
-        app:layout_anchor="@id/viewA"
-        app:layout_anchorGravity="bottom|right|end" />
+        fab:fab_size="mini" />
 
 
 </android.support.design.widget.CoordinatorLayout>

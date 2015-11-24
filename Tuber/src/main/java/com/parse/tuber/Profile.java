@@ -4,19 +4,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -50,7 +56,7 @@ public class Profile extends Activity implements View.OnClickListener {
     FloatingActionsMenu fab;
     FloatingActionButton fabRequest;
     MenuItem miChangePassword, miLogout;
-    Button bAddCourse;
+    LinearLayout svMain;
 
     String phone;
     String email;
@@ -76,8 +82,6 @@ public class Profile extends Activity implements View.OnClickListener {
         rbRating = (RatingBar) findViewById(R.id.rbRating);
         tvCoursesLabel = (TextView) findViewById(R.id.tvCoursesLabel);
         lvCourses = (ListView) findViewById(R.id.lvCourses);
-        bAddCourse = (Button) findViewById(R.id.bAddCourse);
-        bAddCourse.setOnClickListener(this);
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         fab = (FloatingActionsMenu) findViewById(R.id.fab);
@@ -138,11 +142,14 @@ public class Profile extends Activity implements View.OnClickListener {
 
                                         Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                                         ivProfilePicture.setImageBitmap(bitmap);
-
+                                        //Palette palette = Palette.generate(bitmap);
+                                        //svMain = (LinearLayout) findViewById(R.id.viewB);
+                                        //svMain.setBackgroundColor(palette.getLightMutedColor(0x000000));
 
                                     }
                                 }
                             });
+
                         }
                         isVerified();
                     }
@@ -151,38 +158,7 @@ public class Profile extends Activity implements View.OnClickListener {
         });
     }
 
-    public static boolean setListViewHeightBasedOnItems(ListView listView) {
 
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter != null) {
-
-            int numberOfItems = listAdapter.getCount();
-
-            // Get total height of all items.
-            int totalItemsHeight = 0;
-            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
-                View item = listAdapter.getView(itemPos, null, listView);
-                item.measure(0, 0);
-                totalItemsHeight += item.getMeasuredHeight();
-            }
-
-            // Get total height of all item dividers.
-            int totalDividersHeight = listView.getDividerHeight() *
-                    (numberOfItems - 1);
-
-            // Set list height.
-            ViewGroup.LayoutParams params = listView.getLayoutParams();
-            params.height = totalItemsHeight + totalDividersHeight;
-            listView.setLayoutParams(params);
-            listView.requestLayout();
-
-            return true;
-
-        } else {
-            return false;
-        }
-
-    }
     public void isVerified() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
         findTutorCourses();
@@ -242,7 +218,6 @@ public class Profile extends Activity implements View.OnClickListener {
                     } else {
                         displayUserDetails(false);
                     }
-
 
                     rbRating.setStepSize(0.5f);
                     rbRating.setRating(Float.parseFloat(String.valueOf(averageRating)));
@@ -445,12 +420,7 @@ public class Profile extends Activity implements View.OnClickListener {
                     Log.d("contact", "contact was pressed");
                 }
                 break;
-            case R.id.bAddCourse:
-                Intent addCourseIntent;
-                addCourseIntent = new Intent(this, AddCourse.class);
-                addCourseIntent.putExtra("id", ParseUser.getCurrentUser().getObjectId());
-                startActivity(addCourseIntent);
-                break;
+
             case R.id.fabPhone:
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + phone));

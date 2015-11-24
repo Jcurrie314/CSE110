@@ -117,26 +117,36 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    BitmapFactory.Options options = new BitmapFactory.Options();
 
-                    // First decode with inJustDecodeBounds=true to check dimensions
-                    options.inSampleSize = 100;
                     Bitmap bmp = BitmapFactory.decodeStream(imageStream);
-
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bmp.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    getResizedBitmap(bmp, 500).compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     image = stream.toByteArray();
                     try {
                         stream.close();
-                        stream = null;
                     } catch (IOException e) {
-
                         e.printStackTrace();
                     }
+                    stream = null;
+
                 }
         }
     }
 
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 0) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
 
     private void registerUser() {
 

@@ -11,11 +11,11 @@
     <style name="Theme.App.Base" parent="@style/Theme.AppCompat.Light">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="colorControlNormal">@color/accent</item>
         <item name="colorControlActivated">@color/accent</item>
         <item name="colorControlHighlight">@color/accent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
     <style name="searchRatingBar" parent="@android:style/Widget.RatingBar">
@@ -26,6 +26,9 @@
     <style name="menu_labels_style">
         <item name="android:textColor">@color/white</item>
     </style>
+
+
+
 
     <color name="primary">#F44336</color>
     <color name="primary_dark">#D32F2F</color>

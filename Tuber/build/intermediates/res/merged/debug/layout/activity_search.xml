@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="56dp">
+    android:paddingTop="12dp">
 
 
     <TextView
@@ -16,36 +16,58 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-thin"
         android:gravity="center"
-        android:paddingBottom="24dp"
+        android:paddingBottom="12dp"
         android:text="TUBER"
         android:textSize="54dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="2dp"
-        android:textColor="#fff">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:id="@+id/etSearchIn"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp" />
+
+
+        <Button
+            android:id="@+id/bSearchName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:background="#00000000"
+            android:text="Search"
+            android:fontFamily="sans-serif-light"
+
+
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_filter_list_black_48dp"
+            android:layout_gravity="center_vertical"
+            />
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sDepartmentFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:entries="@array/department_array"
-
             android:prompt="@string/department_select"
-            android:textColor="#fff" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="2dp"
-
-        android:textColor="#fff">
+            android:textColor="#fff"
+            android:fontFamily="sans-serif-thin"
+            android:layout_weight="1"/>
 
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sClassNumberFilter"
@@ -54,29 +76,28 @@
             android:layout_marginBottom="2dp"
             android:enabled="false"
             android:prompt="@string/classNumber_select"
-
-            android:textColor="#fff" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="2dp"
-
-        android:textColor="#fff">
-
+            android:layout_weight="1.25"
+            android:textColor="#fff"
+            android:fontFamily="sans-serif-thin"
+            />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="24dp"
+            android:src="@drawable/ic_sort_black_48dp"
+            android:layout_gravity="center_vertical"
+            />
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sSortBy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:entries="@array/sort_array"
-            android:textColor="#fff" />
-
-    </android.support.design.widget.TextInputLayout>
-
+            android:layout_weight="1.25"
+            android:textColor="#fff"
+            android:fontFamily="sans-serif-thin"
+            />
+    </LinearLayout>
 
     <!--
     <ListView

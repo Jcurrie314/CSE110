@@ -24,7 +24,8 @@
 
         <activity
             android:name=".Login"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:noHistory="true">
 
         </activity>
         <activity
@@ -56,6 +57,12 @@
 
         <activity
             android:name=".Register"
+            android:screenOrientation="portrait"
+            android:noHistory="true">
+
+        </activity>
+        <activity
+            android:name=".NameSearch"
             android:screenOrientation="portrait">
 
         </activity>

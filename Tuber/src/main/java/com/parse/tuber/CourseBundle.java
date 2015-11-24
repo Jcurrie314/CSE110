@@ -11,6 +11,6 @@ public class CourseBundle {
     @Override
     public String toString() {
 
-        return name + " (Earned Grade: " + grade + ")" ;
+        return name + " (" + grade + ")" ;
     }
 }

@@ -28,6 +28,7 @@
         <activity android:name="com.parse.tuber.Search" />
         <activity
             android:name="com.parse.tuber.Login"
+            android:noHistory="true"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -52,6 +53,11 @@
         </activity>
         <activity
             android:name="com.parse.tuber.Register"
+            android:noHistory="true"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.parse.tuber.NameSearch"
             android:screenOrientation="portrait" >
         </activity>
         <activity

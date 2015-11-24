@@ -40,6 +40,7 @@
                 android:id="@+id/tvName"
                 android:layout_toRightOf="@+id/ivProfilePicture"
                 android:layout_alignParentTop="true"
+                android:fontFamily="sans-serif-light"
                 android:textSize="20sp"
                 />
 
@@ -47,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvFee"
-                android:fontFamily="sans-serif-thin"
+                android:fontFamily="sans-serif-light"
                 android:layout_toRightOf="@+id/ivProfilePicture"
                 android:layout_below="@+id/tvName"
                 />

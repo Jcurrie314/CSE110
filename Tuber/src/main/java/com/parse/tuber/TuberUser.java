@@ -40,7 +40,10 @@ public class TuberUser {
 
             Bitmap bitmap = null;
             try {
-                bitmap = BitmapFactory.decodeByteArray(imageFile.getData(), 0, imageFile.getData().length);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 8;
+                bitmap = BitmapFactory.decodeByteArray(imageFile.getData(), 0, imageFile.getData().length, options);
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -54,6 +57,20 @@ public class TuberUser {
             }*/
 
         }
+    }
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 0) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
     }
     public void setProfilePic(Bitmap bmap, TuberUser user){
     }
