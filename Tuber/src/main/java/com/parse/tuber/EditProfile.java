@@ -156,6 +156,8 @@ public class EditProfile extends Activity implements View.OnClickListener {
                     image = stream.toByteArray();
                     try {
                         stream.close();
+                        bUpload.setBackgroundColor(getResources().getColor(R.color.green_500));
+                        bUpload.setText("Photo Selected");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

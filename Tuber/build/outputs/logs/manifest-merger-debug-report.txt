@@ -107,8 +107,6 @@ activity#com.parse.tuber.Register
 ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:58:9-63:20
 	android:screenOrientation
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:60:13-49
-	android:noHistory
-		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:61:13-37
 	android:name
 		ADDED from /Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/AndroidManifest.xml:59:13-37
 activity#com.parse.tuber.NameSearch

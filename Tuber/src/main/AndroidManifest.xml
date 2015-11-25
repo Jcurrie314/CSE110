@@ -58,7 +58,7 @@
         <activity
             android:name=".Register"
             android:screenOrientation="portrait"
-            android:noHistory="true">
+            >
 
         </activity>
         <activity

@@ -27,17 +27,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:textColor="#fff">
+            android:layout_marginTop="8dp">
 
             <EditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
-                android:inputType="textEmailAddress"
-
-                android:textColor="#fff" />
+                android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -46,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:textColor="#fff">
+            >
 
             <EditText
                 android:id="@+id/etPassword"
@@ -63,7 +60,6 @@
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
             android:padding="12dp"
-            android:textColor="@color/white"
             android:background="#10000000"
             android:text="Login"
 
@@ -75,10 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:gravity="center"
-
             android:text="No account yet? Create one"
-            android:textColor="#fff"
-            android:textSize="16dip" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 </ScrollView><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_login.xml -->

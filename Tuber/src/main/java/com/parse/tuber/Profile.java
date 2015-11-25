@@ -142,9 +142,6 @@ public class Profile extends Activity implements View.OnClickListener {
 
                                         Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                                         ivProfilePicture.setImageBitmap(bitmap);
-                                        //Palette palette = Palette.generate(bitmap);
-                                        //svMain = (LinearLayout) findViewById(R.id.viewB);
-                                        //svMain.setBackgroundColor(palette.getLightMutedColor(0x000000));
 
                                     }
                                 }

@@ -59,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/ivProfilePicture"
                 android:layout_below="@+id/tvFee"
+                android:isIndicator="true"
                 android:rating="5.0" />
 
         </RelativeLayout>
