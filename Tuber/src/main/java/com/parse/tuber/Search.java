@@ -350,8 +350,8 @@ public class Search extends Activity implements OnItemSelectedListener {
                 if (e == null) {
                     listAdapter.clear();
                     mAdapter.notifyDataSetChanged();
-                    for (int i = 0; i < objects1.size(); i++) {
-                        ParseUser u = (ParseUser) objects1.get(i);
+                    for (int i1 = 0; i1 < objects1.size(); i1++) {
+                        ParseUser u = (ParseUser) objects1.get(i1);
                         final SearchBundle s = new SearchBundle(u);
                         if (finalClassNumber.equals("Class") || finalDep.equals("Department")) {
                             if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
@@ -360,48 +360,42 @@ public class Search extends Activity implements OnItemSelectedListener {
                             }
                             progress.setVisibility(View.GONE);
 
-                        }
-                        ParseQuery<ParseObject> query2 = ParseQuery.getQuery("TutorCourseRelation");
-                        query2.whereEqualTo("tutor", objects1.get(i).getObjectId().toString());
-                        query2.findInBackground(new FindCallback<ParseObject>() {
-                            @Override
-                            public void done(java.util.List<ParseObject> objects2, com.parse.ParseException e) {
-                                if (e == null) {
-                                    if (objects2.size() > 0) {
-                                        for (int i = 0; i < objects2.size(); i++) {
+                        } else {
+                            ParseQuery<ParseObject> query2 = ParseQuery.getQuery("TutorCourseRelation");
+                            query2.whereEqualTo("tutor", objects1.get(i1).getObjectId().toString());
 
-                                            ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                                            nameQuery.whereEqualTo("objectId", objects2.get(i).get("course").toString());
-                                            nameQuery.findInBackground(new FindCallback<ParseObject>() {
+                            try {
+                                List<ParseObject> objects2 = query2.find();
 
-                                                @Override
-                                                public void done(java.util.List<ParseObject> objects3, com.parse.ParseException e) {
-                                                    if (e == null) {
-                                                        if (objects3.size() > 0) {
-                                                            String className = objects3.get(0).get("department") + " " + objects3.get(0).get("number");
-                                                            if (className.equals(item)) {
-                                                                if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
+                                if (objects2.size() > 0) {
+                                    for (int i2 = 0; i2 < objects2.size(); i2++) {
 
-                                                                    listAdapter.add(s);
-                                                                    mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                                                }
+                                        ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
+                                        nameQuery.whereEqualTo("objectId", objects2.get(i2).get("course").toString());
+                                        List<ParseObject> objects3 = nameQuery.find();
+                                        if (objects3.size() > 0) {
+                                            String className = objects3.get(0).get("department") + " " + objects3.get(0).get("number");
+                                            if (className.equals(item)) {
+                                                if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
 
-                                                            }
-                                                        }
-                                                    } else {
-                                                    }
+                                                    listAdapter.add(s);
+                                                    mAdapter.notifyItemInserted(listAdapter.size() - 1);
                                                 }
-                                            });
 
+                                            }
                                         }
-                                        progress.setVisibility(View.GONE);
+
 
                                     }
-                                } else {
-                                    //Something failed
+
                                 }
+
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
                             }
-                        });
+                        }
+                        progress.setVisibility(View.GONE);
+
 
                     }
                 } else {
