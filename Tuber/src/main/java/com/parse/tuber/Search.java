@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -75,7 +74,7 @@ public class Search extends Activity implements OnItemSelectedListener {
 
 
     Spinner department_dropdown, classNumber_dropdown, sortBy_dropdown;
-    Button bNameSearch;
+    //Button bNameSearch;
     String dep = "";
     String classNumber = "";
     String sortBy = "";
@@ -176,7 +175,7 @@ public class Search extends Activity implements OnItemSelectedListener {
         listAdapter = new ArrayList<SearchBundle>();
 
 
-        bNameSearch = (Button) findViewById(R.id.bSearchName);
+        //bNameSearch = (Button) findViewById(R.id.bSearchName);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -234,7 +233,7 @@ public class Search extends Activity implements OnItemSelectedListener {
             }
         });
 
-
+/*
         bNameSearch.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 searchInput = etSearchIn.getText().toString().trim();
@@ -250,7 +249,7 @@ public class Search extends Activity implements OnItemSelectedListener {
 
 
             }
-        });
+        });*/
     }
 
     private void addUsersToSearchList() {
