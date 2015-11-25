@@ -29,6 +29,12 @@
 
 
 
+    <style name="smallRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/small_rating_bar_full</item>
+        <item name="android:minHeight">23dip</item>
+        <item name="android:maxHeight">25dip</item>
+    </style>
+
 
     <color name="primary">#F44336</color>
     <color name="primary_dark">#D32F2F</color>

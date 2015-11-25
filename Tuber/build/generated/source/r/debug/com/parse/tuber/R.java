@@ -5078,11 +5078,14 @@ containing a value of this type.
         public static final int ic_zoom_out_white_36dp=0x7f020b2c;
         public static final int ic_zoom_out_white_48dp=0x7f020b2d;
         public static final int logo=0x7f020b2e;
-        public static final int notification_template_icon_bg=0x7f020b33;
+        public static final int notification_template_icon_bg=0x7f020b36;
         public static final int ratingbar_full_empty_sc=0x7f020b2f;
         public static final int ratingbar_full_filled_sc=0x7f020b30;
         public static final int ratingbar_full_sc=0x7f020b31;
-        public static final int snackbar_background=0x7f020b32;
+        public static final int small_rating_bar_full=0x7f020b32;
+        public static final int small_rating_bar_full_empty=0x7f020b33;
+        public static final int small_rating_bar_full_filled=0x7f020b34;
+        public static final int snackbar_background=0x7f020b35;
     }
     public static final class id {
         public static final int LinearLayout01=0x7f0d00a7;
@@ -5695,7 +5698,8 @@ containing a value of this type.
         public static final int Widget_Design_TextInputLayout=0x7f080137;
         public static final int menu_labels_style=0x7f080138;
         public static final int searchRatingBar=0x7f080139;
-        public static final int theme_textview_style=0x7f08013a;
+        public static final int smallRatingBar=0x7f08013a;
+        public static final int theme_textview_style=0x7f08013b;
     }
     public static final class styleable {
         /** Attributes that can be used with a ActionBar.

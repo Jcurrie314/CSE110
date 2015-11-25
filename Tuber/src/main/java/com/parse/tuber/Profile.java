@@ -200,34 +200,6 @@ public class Profile extends Activity implements View.OnClickListener {
         }
     }
 
-    public void getRating(String userId) {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
-        query.whereEqualTo("tutor", userId);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                if (e == null) {
-                    if (objects.size() > 0) {
-                        int sum = 0;
-                        for (int i = 0; i < objects.size(); i++) {
-                            sum += objects.get(i).getInt("rating");
-                        }
-
-                        averageRating = (double) sum / objects.size();
-                        //ParseUser.getCurrentUser().setObjectId("rating") = averageRating;
-                    } else {
-                        displayUserDetails(false);
-                    }
-
-                    rbRating.setStepSize(0.5f);
-                    rbRating.setRating(Float.parseFloat(String.valueOf(averageRating)));
-                    rbRating.invalidate();
-                }
-
-            }
-        });
-
-    }
 
     public void findTutorCourses() {
         final ArrayAdapter<CourseBundle> listAdapter = new ArrayAdapter<>(this,
@@ -325,9 +297,6 @@ public class Profile extends Activity implements View.OnClickListener {
                         }
                     });
 
-                    rbRating.setStepSize(0.5f);
-                    rbRating.setRating(Float.parseFloat(String.valueOf(averageRating)));
-                    rbRating.invalidate();
                 }
 
             }
@@ -357,7 +326,6 @@ public class Profile extends Activity implements View.OnClickListener {
 
 
     public void displayUserDetails(Boolean verified) {
-        getRating(userId);
         if (verified) {
             ParseQuery<ParseUser> query = ParseUser.getQuery();
             query.whereEqualTo("objectId", userId);
@@ -370,6 +338,9 @@ public class Profile extends Activity implements View.OnClickListener {
 
                             phone = user.get("phone").toString();
                             email = user.getEmail();
+                            rbRating.setStepSize(1f);
+                            rbRating.setRating(Float.parseFloat(String.valueOf(user.get("rating"))));
+                            rbRating.invalidate();
                             Log.d("Email", email);
                         }
                     }

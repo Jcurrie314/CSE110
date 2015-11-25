@@ -28,7 +28,7 @@ public class TuberUser {
     public TuberUser(ParseUser user) {
 
         if (user != null) {
-            this.id = user.getObjectId().toString();
+            this.id = user.getObjectId();
             this.name = (String) user.get("name");
             this.email = (String) user.get("email");
             this.username = (String) user.get("username");
