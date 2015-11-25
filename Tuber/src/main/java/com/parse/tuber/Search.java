@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -100,11 +102,11 @@ public class Search extends Activity implements OnItemSelectedListener {
             dep = department_dropdown.getSelectedItem().toString();
             sortBy = sortBy_dropdown.getSelectedItem().toString();
 
-            if(adapterJustSet){
+            if (adapterJustSet) {
                 adapterJustSet = false;
                 return;
             }
-            if (!doneWithInit){
+            if (!doneWithInit) {
                 return;
 
             }
@@ -206,7 +208,7 @@ public class Search extends Activity implements OnItemSelectedListener {
         doneWithInit = true;
         //timer = new Timer()
 
-        /*
+
         etSearchIn.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -218,95 +220,21 @@ public class Search extends Activity implements OnItemSelectedListener {
 
             public void afterTextChanged(Editable s) {
                 searchInput = etSearchIn.getText().toString();
+                listAdapter.clear();
+                mAdapter.notifyDataSetChanged();
+
+                classNumber = classNumber_dropdown.getSelectedItem().toString();
+                dep = department_dropdown.getSelectedItem().toString();
+                sortBy = sortBy_dropdown.getSelectedItem().toString();
                 if (ParseUser.getCurrentUser() != null) {
-                    listAdapter.clear();
-                    mAdapter.notifyDataSetChanged();
-
-                    //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                    //      android.R.layout.simple_list_item_1);
-                    //lvTutors.setAdapter(listAdapter);
-
-                    final String finalClassNumber = classNumber;
-                    final String finalDep = dep;
-                    final String item = dep + " " + classNumber;
-                    ParseQuery<ParseUser> query = ParseUser.getQuery();
-                    if(sortBy.equals("Sort by: Fee")){
-                        query.orderByAscending("fee");
-                    } else {
-                        //default case, if changed will trigger if
-                        query.orderByDescending("rating");
-
-                    }
-
-
-                    query.findInBackground(new FindCallback<ParseUser>() {
-                        public void done(List<ParseUser> objects, ParseException e) {
-                            if (e == null) {
-                                for (int i = 0; i < objects.size(); i++) {
-                                    ParseUser u = (ParseUser) objects.get(i);
-                                    final SearchBundle s = new SearchBundle(u);
-                                    if (finalClassNumber.equals("Class") || finalDep.equals("Choose a Department to filter")) {
-                                        if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                            listAdapter.add(s);
-                                            mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                        }
-                                    }
-                                    ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
-                                    query.whereEqualTo("tutor", objects.get(i).getObjectId().toString());
-                                    query.findInBackground(new FindCallback<ParseObject>() {
-                                        @Override
-                                        public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                            if (e == null) {
-                                                if (objects.size() > 0) {
-                                                    for (int i = 0; i < objects.size(); i++) {
-
-                                                        ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                                                        nameQuery.whereEqualTo("objectId", objects.get(i).get("course").toString());
-                                                        nameQuery.findInBackground(new FindCallback<ParseObject>() {
-
-                                                            @Override
-                                                            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                                                if (e == null) {
-                                                                    if (objects.size() > 0) {
-                                                                        String className = objects.get(0).get("department") + " " + objects.get(0).get("number");
-                                                                        if (className.equals(item)) {
-                                                                            if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                                                                listAdapter.add(s);
-                                                                                mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                } else {
-                                                                }
-                                                            }
-                                                        });
-
-                                                    }
-                                                }
-                                            } else {
-                                                //Something failed
-                                            }
-                                        }
-                                    });
-
-                                }
-                            } else {
-                                String error = e.toString();
-                                Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
-
-
-                            }
-                        }
-                    });
-
+                    progress.setVisibility(View.VISIBLE);
+                    addUsersToSearchList();
+                }
 
             }
-
         });
 
-        */
+
         bNameSearch.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 searchInput = etSearchIn.getText().toString().trim();
@@ -410,66 +338,6 @@ public class Search extends Activity implements OnItemSelectedListener {
         });
 
     }
-
-        /*
-        try {
-            List<ParseUser> objects1 = query1.find();
-
-            for (int i1 = 0; i1 < objects1.size(); i1++) {
-                ParseUser u = (ParseUser) objects1.get(i1);
-                final SearchBundle s = new SearchBundle(u);
-                if (finalClassNumber.equals("Class") || finalDep.equals("Department")) {
-                    if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-                        listAdapter.add(s);
-                        mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                    }
-                }
-                ParseQuery<ParseObject> query2 = ParseQuery.getQuery("TutorCourseRelation");
-                query2.whereEqualTo("tutor", objects1.get(i1).getObjectId().toString());
-
-                try {
-                    List<ParseObject> objects2 = query2.find();
-
-                    if (objects2.size() > 0) {
-                        for (int i2 = 0; i2 < objects2.size(); i2++) {
-
-                            ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                            nameQuery.whereEqualTo("objectId", objects2.get(i2).get("course").toString());
-                            List<ParseObject> objects3 = nameQuery.find();
-                            if (objects3.size() > 0) {
-                                String className = objects3.get(0).get("department") + " " + objects3.get(0).get("number");
-                                if (className.equals(item)) {
-                                    if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                        listAdapter.add(s);
-                                        mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                    }
-
-                                }
-                            }
-
-
-                        }
-                    }
-
-                } catch (ParseException e1) {
-                    e1.printStackTrace();
-                }
-
-
-            }
-            progress.setVisibility(View.GONE);
-
-
-        } catch (ParseException e) {
-
-            e.printStackTrace();
-            //Toast.makeText(getApplicationContext(), e, Toast.LENGTH_LONG).show();
-
-        }
-
-        */
-
 
 
     @Override
