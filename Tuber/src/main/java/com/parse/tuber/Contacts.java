@@ -133,9 +133,6 @@ public class Contacts extends ActionBarActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
-                    if(objects.size() == 0) {
-                        lvPendingLabel.setVisibility(View.GONE);
-                    }
                     for (int i = 0; i < objects.size(); i++) {
                         final String relationshipId = objects.get(i).getObjectId();
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -178,9 +175,7 @@ public class Contacts extends ActionBarActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
-                    if(objects.size() == 0) {
-                        lvConnectionsLabel.setVisibility(View.GONE);
-                    }
+
                     for (int i = 0; i < objects.size(); i++) {
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
                         query.whereEqualTo("objectId", objects.get(i).get("student"));

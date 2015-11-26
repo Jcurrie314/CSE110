@@ -32,16 +32,16 @@
             android:layout_height="60dp" />
 
 
-        <Button
-            android:id="@+id/bSearchName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="5dp"
-            android:background="#00000000"
-            android:text="Search"
-            android:fontFamily="sans-serif-light"
+        <!--<Button-->
+            <!--android:id="@+id/bSearchName"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:background="#00000000"-->
+            <!--android:fontFamily="sans-serif-light"-->
+            <!--android:text="Search"-->
 
 
             />
@@ -52,51 +52,51 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_filter_list_black_48dp"
             android:layout_gravity="center_vertical"
-            />
+            android:src="@drawable/ic_filter_list_black_48dp" />
+
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sDepartmentFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
+            android:layout_weight="1"
             android:entries="@array/department_array"
-            android:prompt="@string/department_select"
-            android:textColor="#fff"
             android:fontFamily="sans-serif-thin"
-            android:layout_weight="1"/>
+            android:prompt="@string/department_select"
+            android:textColor="#fff" />
 
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sClassNumberFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
-            android:enabled="false"
-            android:prompt="@string/classNumber_select"
             android:layout_weight="1.25"
-            android:textColor="#fff"
+            android:enabled="false"
             android:fontFamily="sans-serif-thin"
-            />
+            android:prompt="@string/classNumber_select"
+            android:textColor="#fff" />
+
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginLeft="24dp"
-            android:src="@drawable/ic_sort_black_48dp"
             android:layout_gravity="center_vertical"
-            />
+            android:layout_marginLeft="24dp"
+            android:src="@drawable/ic_sort_black_48dp" />
+
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sSortBy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
-            android:entries="@array/sort_array"
             android:layout_weight="1.25"
-            android:textColor="#fff"
+            android:entries="@array/sort_array"
             android:fontFamily="sans-serif-thin"
-            />
+            android:textColor="#fff" />
     </LinearLayout>
 
     <!--
@@ -114,6 +114,15 @@
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/> -->
+
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar_loading"
+        android:layout_gravity="center_horizontal"/>
+        <!--android:visibility="gone" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"

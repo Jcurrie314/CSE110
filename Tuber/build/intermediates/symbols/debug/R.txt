@@ -3655,7 +3655,6 @@ int id bLogin 0x7f0d007d
 int id bMain 0x7f0d00a4
 int id bRegister 0x7f0d007e
 int id bSearch 0x7f0d0084
-int id bSearchName 0x7f0d009e
 int id bSend 0x7f0d007c
 int id bSubmitNewPassword 0x7f0d0076
 int id bUpload 0x7f0d0097
@@ -3748,14 +3747,15 @@ int id parentPanel 0x7f0d0047
 int id pin 0x7f0d001b
 int id progress_circular 0x7f0d0007
 int id progress_horizontal 0x7f0d0008
+int id progressbar_loading 0x7f0d00a1
 int id radio 0x7f0d0054
 int id rbRating 0x7f0d0072
 int id right 0x7f0d0027
-int id sClassNumberFilter 0x7f0d00a0
-int id sDepartmentFilter 0x7f0d009f
+int id sClassNumberFilter 0x7f0d009f
+int id sDepartmentFilter 0x7f0d009e
 int id sGrade 0x7f0d006d
 int id sMajor 0x7f0d0099
-int id sSortBy 0x7f0d00a1
+int id sSortBy 0x7f0d00a0
 int id screen 0x7f0d0039
 int id scroll 0x7f0d0019
 int id scrollView 0x7f0d004c

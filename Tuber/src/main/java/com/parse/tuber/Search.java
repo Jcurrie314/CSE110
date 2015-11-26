@@ -5,13 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ public class Search extends Activity implements OnItemSelectedListener {
     RecyclerView.LayoutManager mLayoutManager;
     EditText etSearchIn;
     Timer timer;
+    ProgressBar progress;
 
     String[] cse_numbers = {"Class", "5A", "7", "8A", "8B", "12", "20",
             "21", "30", "80", "100", "101", "103", "105", "110", "118", "120", "122", "120",
@@ -64,22 +67,25 @@ public class Search extends Activity implements OnItemSelectedListener {
             "113", "117A", "118", "119", "120", "121", "122", "123", "124", "126A", "126B"};
     String[] nano_numbers = {"Class", "1", "4", "15", "100L", "101", "102",
             "103", "104", "106", "107", "108", "110", "111", "112", "114", "120A", "120B", "141A",
-            "146", "148", "150", "156", "158", "161", "164", "168" };
+            "146", "148", "150", "156", "158", "161", "164", "168"};
     String[] se_numbers = {"Class", "1", "2", "2L", "3", "9", "101A", "101B", "101C",
             "101B", "101C", "102", "103", "110A", "110B", "111A-B", "115", "120", "121", "125", "130A-B",
             "131", "140", "142", "150", "151A", "151B", "152", "154", "160A", "160B", "163", "165", "168"};
 
 
     Spinner department_dropdown, classNumber_dropdown, sortBy_dropdown;
-    Button bNameSearch;
+    //Button bNameSearch;
     String dep = "";
     String classNumber = "";
     String sortBy = "";
     String searchInput = "";
+    boolean adapterJustSet = false;
+    boolean doneWithInit = false;
 
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
 
         //int thisView, departmentView, classesNumberView, sortByView;
         listAdapter.clear();
@@ -87,268 +93,78 @@ public class Search extends Activity implements OnItemSelectedListener {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
 
-        Spinner spinner = (Spinner) adapterView;
-        int thisView = spinner.getId();
-        int departmentView = R.id.sDepartmentFilter;
-        int classesNumberView = R.id.sClassNumberFilter;
-        int sortByView = R.id.sSortBy;
-        int x = 0;
+        if (currentUser != null) {
+            //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
+            //      android.R.layout.simple_list_item_1);
+            //lvTutors.setAdapter(listAdapter);
+            classNumber = classNumber_dropdown.getSelectedItem().toString();
+            dep = department_dropdown.getSelectedItem().toString();
+            sortBy = sortBy_dropdown.getSelectedItem().toString();
 
-        if (thisView == classesNumberView){
-            if (currentUser != null) {
-
-
-                //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                //      android.R.layout.simple_list_item_1);
-                //lvTutors.setAdapter(listAdapter);
-
-
-                classNumber = adapterView.getItemAtPosition(i).toString();
-                final String finalClassNumber = classNumber;
-                final String finalDep = dep;
-                final String item = dep + " " + classNumber;
-
-
-//                if (classNumber.equals("Class")){
-//                    return;
-//                }
-
-                ParseQuery<ParseUser> query = ParseUser.getQuery();
-                if(sortBy.equals("Sort by: Fee")){
-                    query.orderByAscending("fee");
-                } else {
-                    //default case, if changed will trigger if
-                    query.orderByDescending("rating");
-
-                }
-
-
-                query.findInBackground(new FindCallback<ParseUser>() {
-                    public void done(List<ParseUser> objects, ParseException e) {
-                        if (e == null) {
-                            for (int i = 0; i < objects.size(); i++) {
-                                ParseUser u = (ParseUser) objects.get(i);
-                                final SearchBundle s = new SearchBundle(u);
-                                if (finalClassNumber.equals("Class") || finalDep.equals("Department")) {
-                                    if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-                                        listAdapter.add(s);
-                                        mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                    }
-                                }
-                                ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
-                                query.whereEqualTo("tutor", objects.get(i).getObjectId().toString());
-                                query.findInBackground(new FindCallback<ParseObject>() {
-                                    @Override
-                                    public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                        if (e == null) {
-                                            if (objects.size() > 0) {
-                                                for (int i = 0; i < objects.size(); i++) {
-
-                                                    ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                                                    nameQuery.whereEqualTo("objectId", objects.get(i).get("course").toString());
-                                                    nameQuery.findInBackground(new FindCallback<ParseObject>() {
-
-                                                        @Override
-                                                        public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                                            if (e == null) {
-                                                                if (objects.size() > 0) {
-                                                                    String className = objects.get(0).get("department") + " " + objects.get(0).get("number");
-                                                                    if (className.equals(item)) {
-                                                                        if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                                                            listAdapter.add(s);
-                                                                            mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                                                        }
-
-                                                                    }
-                                                                }
-                                                            } else {
-                                                            }
-                                                        }
-                                                    });
-
-                                                }
-                                            }
-                                        } else {
-                                            //Something failed
-                                        }
-                                    }
-                                });
-
-                            }
-                        } else {
-                            //Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-                            int i = 0;
-                            String error = e.toString();
-                            Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
-                            i = 1;
-
-                        }
-                    }
-                });
-
-            } else {
-                ParseUser.logOut();
-                Intent landingIntent = new Intent(this, Landing.class);
-                startActivity(landingIntent);
-            }
-
-        } else if( thisView == departmentView){
-            dep = adapterView.getItemAtPosition(i).toString();
-
-            if (dep.equals("Department") ) {
+            if (adapterJustSet) {
+                adapterJustSet = false;
                 return;
             }
-            classNumber_dropdown.setEnabled(true);
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cse_numbers);
-
-            if(dep.equals("CSE")){
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cse_numbers);
-
-            } else if (dep.equals("ECE")){
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ece_numbers);
-
-            } // else if... ECE
-              else if (dep.equals("CE")) {
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ceng_numbers);
-
-            } else if (dep.equals("MAE")) {
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, mae_numbers);
-
-            } else if (dep.equals("SE")) {
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, se_numbers);
-
-            } else if (dep.equals("NANO")) {
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nano_numbers);
-
-            } else if (dep.equals("MATH")) {
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, math_numbers);
-
-            } else if (dep.equals("PHYS")) {
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, phys_numbers);
-
-            } else if (dep.equals("CHEM")) {
-                dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, chem_numbers);
+            if (!doneWithInit) {
+                return;
 
             }
 
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            classNumber_dropdown.setAdapter(dataAdapter);
+            if ((!dep.equals("Department")) && classNumber.equals("Class")) {
 
-        } else if( thisView == sortByView ){
-            sortBy = adapterView.getItemAtPosition(i).toString();
+                classNumber_dropdown.setEnabled(true);
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cse_numbers);
 
-            if (currentUser != null) {
+                if (dep.equals("CSE")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cse_numbers);
 
-                //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                  //      android.R.layout.simple_list_item_1);
-                //lvTutors.setAdapter(listAdapter);
+                } else if (dep.equals("ECE")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ece_numbers);
 
-                final String finalClassNumber = classNumber;
-                final String finalDep = dep;
-                final String item = dep + " " + classNumber;
-                ParseQuery<ParseUser> query = ParseUser.getQuery();
-                if(sortBy.equals("Sort by: Fee")){
-                    query.orderByAscending("fee");
-                } else {
-                    //default case, if changed will trigger if
-                    query.orderByDescending("rating");
+                } // else if... ECE
+                else if (dep.equals("CE")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ceng_numbers);
+
+                } else if (dep.equals("MAE")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, mae_numbers);
+
+                } else if (dep.equals("SE")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, se_numbers);
+
+                } else if (dep.equals("NANO")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nano_numbers);
+
+                } else if (dep.equals("MATH")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, math_numbers);
+
+                } else if (dep.equals("PHYS")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, phys_numbers);
+
+                } else if (dep.equals("CHEM")) {
+                    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, chem_numbers);
 
                 }
 
-
-                query.findInBackground(new FindCallback<ParseUser>() {
-                    public void done(List<ParseUser> objects, ParseException e) {
-                        if (e == null) {
-                            for (int i = 0; i < objects.size(); i++) {
-                                ParseUser u = (ParseUser) objects.get(i);
-                                final SearchBundle s = new SearchBundle(u);
-                                if (finalClassNumber.equals("Class") || finalDep.equals("Department")) {
-                                    if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                        listAdapter.add(s);
-                                        mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                    }
-                                }
-                                ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
-                                query.whereEqualTo("tutor", objects.get(i).getObjectId().toString());
-                                query.findInBackground(new FindCallback<ParseObject>() {
-                                    @Override
-                                    public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                        if (e == null) {
-                                            if (objects.size() > 0) {
-                                                for (int i = 0; i < objects.size(); i++) {
-
-                                                    ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                                                    nameQuery.whereEqualTo("objectId", objects.get(i).get("course").toString());
-                                                    nameQuery.findInBackground(new FindCallback<ParseObject>() {
-
-                                                        @Override
-                                                        public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                                            if (e == null) {
-                                                                if (objects.size() > 0) {
-                                                                    String className = objects.get(0).get("department") + " " + objects.get(0).get("number");
-                                                                    if (className.equals(item)) {
-                                                                        if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                                                            listAdapter.add(s);
-                                                                            mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                                                        }
-                                                                    }
-                                                                }
-                                                            } else {
-                                                            }
-                                                        }
-                                                    });
-
-                                                }
-                                            }
-                                        } else {
-                                            //Something failed
-                                        }
-                                    }
-                                });
-
-                            }
-                        } else {
-                            //Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-                            int i = 0;
-                            String error = e.toString();
-                            Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
-                            i = 1;
-
-                        }
-                    }
-                });
-
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                adapterJustSet = true;
+                classNumber_dropdown.setAdapter(dataAdapter);
             } else {
-                ParseUser.logOut();
-                Intent landingIntent = new Intent(this, Landing.class);
-                startActivity(landingIntent);
+                progress.setVisibility(View.VISIBLE);
+                addUsersToSearchList();
             }
 
+        } else {
+            ParseUser.logOut();
+            Intent landingIntent = new Intent(this, Landing.class);
+            startActivity(landingIntent);
         }
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-        /*
-        Spinner spinner = (Spinner) adapterView;
-        thisView = spinner.getId();
-        departmentView = R.id.sDepartmentFilter;
-        classesNumberView = R.id.sClassNumberFilter;
-        sortByView = R.id.sSortBy;
 
-        if( thisView == departmentView ){
-            dep = spinner.getSelectedItem().toString();
-        } else if( thisView == classesNumberView ){
-            classNumber = spinner.getSelectedItem().toString();
-        } else if( thisView == sortByView ){
-            sortBy = spinner.getSelectedItem().toString();
-        }*/
     }
-
 
 
     @Override
@@ -359,7 +175,7 @@ public class Search extends Activity implements OnItemSelectedListener {
         listAdapter = new ArrayList<SearchBundle>();
 
 
-        bNameSearch = (Button) findViewById(R.id.bSearchName);
+        //bNameSearch = (Button) findViewById(R.id.bSearchName);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -377,6 +193,7 @@ public class Search extends Activity implements OnItemSelectedListener {
         department_dropdown = (Spinner) findViewById(R.id.sDepartmentFilter);
         classNumber_dropdown = (Spinner) findViewById(R.id.sClassNumberFilter);
         sortBy_dropdown = (Spinner) findViewById(R.id.sSortBy);
+        progress = (ProgressBar) findViewById(R.id.progressbar_loading);
 
         department_dropdown.setOnItemSelectedListener(this);
         classNumber_dropdown.setOnItemSelectedListener(this);
@@ -384,11 +201,13 @@ public class Search extends Activity implements OnItemSelectedListener {
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cse_numbers);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         classNumber_dropdown.setAdapter(dataAdapter);
         etSearchIn = (EditText) findViewById(R.id.etSearchIn);
+        doneWithInit = true;
         //timer = new Timer()
 
-        /*
+
         etSearchIn.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -400,215 +219,124 @@ public class Search extends Activity implements OnItemSelectedListener {
 
             public void afterTextChanged(Editable s) {
                 searchInput = etSearchIn.getText().toString();
+                listAdapter.clear();
+                mAdapter.notifyDataSetChanged();
+
+                classNumber = classNumber_dropdown.getSelectedItem().toString();
+                dep = department_dropdown.getSelectedItem().toString();
+                sortBy = sortBy_dropdown.getSelectedItem().toString();
                 if (ParseUser.getCurrentUser() != null) {
-                    listAdapter.clear();
-                    mAdapter.notifyDataSetChanged();
-
-                    //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                    //      android.R.layout.simple_list_item_1);
-                    //lvTutors.setAdapter(listAdapter);
-
-                    final String finalClassNumber = classNumber;
-                    final String finalDep = dep;
-                    final String item = dep + " " + classNumber;
-                    ParseQuery<ParseUser> query = ParseUser.getQuery();
-                    if(sortBy.equals("Sort by: Fee")){
-                        query.orderByAscending("fee");
-                    } else {
-                        //default case, if changed will trigger if
-                        query.orderByDescending("rating");
-
-                    }
-
-
-                    query.findInBackground(new FindCallback<ParseUser>() {
-                        public void done(List<ParseUser> objects, ParseException e) {
-                            if (e == null) {
-                                for (int i = 0; i < objects.size(); i++) {
-                                    ParseUser u = (ParseUser) objects.get(i);
-                                    final SearchBundle s = new SearchBundle(u);
-                                    if (finalClassNumber.equals("Class") || finalDep.equals("Choose a Department to filter")) {
-                                        if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                            listAdapter.add(s);
-                                            mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                        }
-                                    }
-                                    ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
-                                    query.whereEqualTo("tutor", objects.get(i).getObjectId().toString());
-                                    query.findInBackground(new FindCallback<ParseObject>() {
-                                        @Override
-                                        public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                            if (e == null) {
-                                                if (objects.size() > 0) {
-                                                    for (int i = 0; i < objects.size(); i++) {
-
-                                                        ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                                                        nameQuery.whereEqualTo("objectId", objects.get(i).get("course").toString());
-                                                        nameQuery.findInBackground(new FindCallback<ParseObject>() {
-
-                                                            @Override
-                                                            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                                                if (e == null) {
-                                                                    if (objects.size() > 0) {
-                                                                        String className = objects.get(0).get("department") + " " + objects.get(0).get("number");
-                                                                        if (className.equals(item)) {
-                                                                            if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                                                                listAdapter.add(s);
-                                                                                mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                } else {
-                                                                }
-                                                            }
-                                                        });
-
-                                                    }
-                                                }
-                                            } else {
-                                                //Something failed
-                                            }
-                                        }
-                                    });
-
-                                }
-                            } else {
-                                String error = e.toString();
-                                Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
-
-
-                            }
-                        }
-                    });
-
-                } else {
-                    ParseUser.logOut();
-                    Intent landingIntent = new Intent(Search.this, Landing.class);
-                    startActivity(landingIntent);
+                    progress.setVisibility(View.VISIBLE);
+                    addUsersToSearchList();
                 }
-            }
 
+            }
         });
 
-        */
+/*
         bNameSearch.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 searchInput = etSearchIn.getText().toString().trim();
                 if (ParseUser.getCurrentUser() != null) {
                     listAdapter.clear();
                     mAdapter.notifyDataSetChanged();
-
-                    //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-                    //      android.R.layout.simple_list_item_1);
-                    //lvTutors.setAdapter(listAdapter);
-
-                    final String finalClassNumber = classNumber;
-                    final String finalDep = dep;
-                    final String item = dep + " " + classNumber;
-                    ParseQuery<ParseUser> query = ParseUser.getQuery();
-                    if(sortBy.equals("Sort by: Fee")){
-                        query.orderByAscending("fee");
-                    } else {
-                        //default case, if changed will trigger if
-                        query.orderByDescending("rating");
-
-                    }
-
-
-                    query.findInBackground(new FindCallback<ParseUser>() {
-                        public void done(List<ParseUser> objects, ParseException e) {
-                            if (e == null) {
-                                for (int i = 0; i < objects.size(); i++) {
-                                    ParseUser u = (ParseUser) objects.get(i);
-                                    final SearchBundle s = new SearchBundle(u);
-                                    if (finalClassNumber.equals("Class") || finalDep.equals("Department")) {
-                                        if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                            listAdapter.add(s);
-                                            mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                        }
-                                    }
-                                    ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
-                                    query.whereEqualTo("tutor", objects.get(i).getObjectId());
-                                    query.findInBackground(new FindCallback<ParseObject>() {
-                                        @Override
-                                        public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                            if (e == null) {
-                                                if (objects.size() > 0) {
-                                                    for (int i = 0; i < objects.size(); i++) {
-
-                                                        ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                                                        nameQuery.whereEqualTo("objectId", objects.get(i).get("course").toString());
-                                                        nameQuery.findInBackground(new FindCallback<ParseObject>() {
-
-                                                            @Override
-                                                            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                                                if (e == null) {
-                                                                    if (objects.size() > 0) {
-                                                                        String className = objects.get(0).get("department") + " " + objects.get(0).get("number");
-                                                                        if (className.equals(item)) {
-                                                                            if(searchInput == "" ||  s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
-                                                                                listAdapter.add(s);
-                                                                                mAdapter.notifyItemInserted(listAdapter.size() - 1);
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                } else {
-                                                                }
-                                                            }
-                                                        });
-
-                                                    }
-                                                }
-                                            } else {
-                                                //Something failed
-                                            }
-                                        }
-                                    });
-
-                                }
-                            } else {
-                                String error = e.toString();
-                                Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
-
-
-                            }
-                        }
-                    });
-
+                    addUsersToSearchList();
                 } else {
                     ParseUser.logOut();
                     Intent landingIntent = new Intent(Search.this, Landing.class);
                     startActivity(landingIntent);
                 }
+
+
             }
-
-        });
-
-        //lvTutors = (ListView) findViewById(R.id.lvTutors);
-
-        //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-             //   android.R.layout.simple_list_item_1);
-
-        /*
-        mAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //String item = ((TextView) view).getText().toString();
-                SearchBundle item = (SearchBundle) lvTutors.getItemAtPosition(position);
-                Intent intent = new Intent(Search.this, Profile.class);
-                intent.putExtra("id", item.id);
-                startActivity(intent);
-            }
-
         });*/
-
     }
 
+    private void addUsersToSearchList() {
+        final String finalClassNumber = classNumber;
+        final String finalDep = dep;
+        final String item = dep + " " + classNumber;
 
+
+//                if (classNumber.equals("Class")){
+//                    return;
+//                }
+
+        ParseQuery<ParseUser> query1 = ParseUser.getQuery();
+        if (sortBy.equals("Fee")) {
+            query1.orderByAscending("fee");
+        } else {
+            //default case, if changed will trigger if
+            query1.orderByDescending("rating");
+
+        }
+
+
+        query1.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> objects1, ParseException e) {
+                if (e == null) {
+                    listAdapter.clear();
+                    mAdapter.notifyDataSetChanged();
+                    for (int i1 = 0; i1 < objects1.size(); i1++) {
+                        ParseUser u = (ParseUser) objects1.get(i1);
+                        final SearchBundle s = new SearchBundle(u);
+                        if (finalClassNumber.equals("Class") || finalDep.equals("Department")) {
+                            if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
+                                listAdapter.add(s);
+                                mAdapter.notifyItemInserted(listAdapter.size() - 1);
+                            }
+                            progress.setVisibility(View.GONE);
+
+                        } else {
+                            ParseQuery<ParseObject> query2 = ParseQuery.getQuery("TutorCourseRelation");
+                            query2.whereEqualTo("tutor", objects1.get(i1).getObjectId().toString());
+
+                            try {
+                                List<ParseObject> objects2 = query2.find();
+
+                                if (objects2.size() > 0) {
+                                    for (int i2 = 0; i2 < objects2.size(); i2++) {
+
+                                        ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
+                                        nameQuery.whereEqualTo("objectId", objects2.get(i2).get("course").toString());
+                                        List<ParseObject> objects3 = nameQuery.find();
+                                        if (objects3.size() > 0) {
+                                            String className = objects3.get(0).get("department") + " " + objects3.get(0).get("number");
+                                            if (className.equals(item)) {
+                                                if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
+
+                                                    listAdapter.add(s);
+                                                    mAdapter.notifyItemInserted(listAdapter.size() - 1);
+                                                }
+
+                                            }
+                                        }
+
+
+                                    }
+
+                                }
+
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                        progress.setVisibility(View.GONE);
+
+
+                    }
+                } else {
+                    //Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                    int i = 0;
+                    String error = e.toString();
+                    Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
+                    i = 1;
+
+                }
+            }
+        });
+
+    }
 
 
     @Override
@@ -616,28 +344,6 @@ public class Search extends Activity implements OnItemSelectedListener {
         super.onStart();
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            //final String[] users = new String[]{};
-            //listAdapter = new ArrayAdapter<SearchBundle>(this,android.R.layout.simple_list_item_1);
-            //lvTutors.setAdapter(listAdapter);
-
-            /*
-            ParseQuery<ParseUser> query = ParseUser.getQuery();
-            query.findInBackground(new FindCallback<ParseUser>() {
-                public void done(List<ParseUser> objects, ParseException e) {
-                    if (e == null) {
-                        for (int i = 0; i < objects.size(); i++) {
-                            ParseUser u = (ParseUser) objects.get(i);
-                            SearchBundle s = new SearchBundle(u);
-                            listAdapter.add(s);
-                        }
-                    } else {
-                        String error = e.toString();
-
-                    }
-                }
-            });*/
-            //ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-            // android.R.layout.simple_list_item_1, android.R.id.text1, output);
 
         } else {
             ParseUser.logOut();

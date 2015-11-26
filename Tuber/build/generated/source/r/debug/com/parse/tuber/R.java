@@ -5369,7 +5369,6 @@ containing a value of this type.
         public static final int bMain=0x7f0d00a4;
         public static final int bRegister=0x7f0d007e;
         public static final int bSearch=0x7f0d0084;
-        public static final int bSearchName=0x7f0d009e;
         public static final int bSend=0x7f0d007c;
         public static final int bSubmitNewPassword=0x7f0d0076;
         public static final int bUpload=0x7f0d0097;
@@ -5462,14 +5461,15 @@ containing a value of this type.
         public static final int pin=0x7f0d001b;
         public static final int progress_circular=0x7f0d0007;
         public static final int progress_horizontal=0x7f0d0008;
+        public static final int progressbar_loading=0x7f0d00a1;
         public static final int radio=0x7f0d0054;
         public static final int rbRating=0x7f0d0072;
         public static final int right=0x7f0d0027;
-        public static final int sClassNumberFilter=0x7f0d00a0;
-        public static final int sDepartmentFilter=0x7f0d009f;
+        public static final int sClassNumberFilter=0x7f0d009f;
+        public static final int sDepartmentFilter=0x7f0d009e;
         public static final int sGrade=0x7f0d006d;
         public static final int sMajor=0x7f0d0099;
-        public static final int sSortBy=0x7f0d00a1;
+        public static final int sSortBy=0x7f0d00a0;
         public static final int screen=0x7f0d0039;
         public static final int scroll=0x7f0d0019;
         public static final int scrollView=0x7f0d004c;
