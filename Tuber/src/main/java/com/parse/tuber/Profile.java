@@ -1,33 +1,24 @@
 package com.parse.tuber;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.graphics.Palette;
-import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -223,7 +214,7 @@ public class Profile extends Activity implements View.OnClickListener {
                             verified = (Boolean) objects.get(0).get("accepted");
                             relationshipId = objects.get(0).getObjectId();
                             addListenerOnRatingBar();
-                            displayUserDetails(true);
+                            //displayUserDetails(true);
 
 
                         } else {
@@ -346,6 +337,8 @@ public class Profile extends Activity implements View.OnClickListener {
                                             } catch (ParseException e1) {
                                                 e1.printStackTrace();
                                             }
+                                            rbRating.setRating(newRatingAverage);
+
                                         } else {
 
                                         }
@@ -384,6 +377,8 @@ public class Profile extends Activity implements View.OnClickListener {
                                             } catch (ParseException e1) {
                                                 e1.printStackTrace();
                                             }
+                                            rbRating.setRating(newRatingAverage);
+
                                         } else {
 
                                         }
@@ -422,6 +417,7 @@ public class Profile extends Activity implements View.OnClickListener {
                             e1.printStackTrace();
                         }
                     }
+                    rbRating.setRating(ratingAverage);
 
                     rbRating.setStepSize(1f);
                     rbRating.invalidate();
@@ -559,8 +555,9 @@ public class Profile extends Activity implements View.OnClickListener {
                     editProfileIntent.putExtra("id", ParseUser.getCurrentUser().getObjectId());
                     startActivity(editProfileIntent);
                 } else {
-                    fabRequest.setVisibility(View.GONE);
                     requestAccess();
+                    Toast.makeText(getApplicationContext(), "Requested information",
+                            Toast.LENGTH_LONG).show();
                 }
                 break;
 
