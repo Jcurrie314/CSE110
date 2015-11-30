@@ -102,6 +102,16 @@
                     android:layout_marginTop="12dp"
                     android:rating="5.0" />
 
+
+                <TextView
+                    android:id="@+id/tvNoRatingsLabel"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_margin="12dp"
+                    android:text="No Ratings Yet" />
+
                 <TextView
                     android:id="@+id/tvCoursesLabel"
                     style="?android:attr/listSeparatorTextViewStyle"
@@ -113,10 +123,10 @@
                 <ListView
                     android:id="@+id/lvCourses"
                     android:layout_width="fill_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="sans-serif-light"
-                    android:minHeight="200dp" />
+                     />
 
 
             </LinearLayout>

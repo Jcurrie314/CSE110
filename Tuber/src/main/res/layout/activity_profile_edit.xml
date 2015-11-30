@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp"
+                android:focusable="true"
                 android:focusableInTouchMode="true">
 
                 <TextView
@@ -128,9 +129,8 @@
                 <ListView
                     android:id="@+id/lvCourses"
                     android:layout_width="fill_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:minHeight="200dp"
                     android:fontFamily="sans-serif-light" />
 
                 <android.support.v7.widget.AppCompatButton

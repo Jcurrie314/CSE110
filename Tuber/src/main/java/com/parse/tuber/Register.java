@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +42,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     Button bRegister, bUpload;
     TextView loginLink;
     CheckBox cbStudent, cbTutor;
+
+    ScrollView viewA;
     byte[] image;
     private static final int SELECT_PHOTO = 100;
 
@@ -52,6 +56,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPhone = (EditText) findViewById(R.id.etPhone);
         etPrice = (EditText) findViewById(R.id.etPrice);
+        etPrice.setVisibility(View.GONE);
 
         sMajor = (Spinner) findViewById(R.id.sMajor);
         etUsername = (EditText) findViewById(R.id.etUsername);
@@ -64,6 +69,20 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         cbStudent = (CheckBox) findViewById(R.id.cbStudent);
         cbTutor = (CheckBox) findViewById(R.id.cbTutor);
 
+        cbTutor.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                if(cbTutor.isChecked()){
+                   etPrice.setVisibility(View.VISIBLE);
+                }else{
+                    etPrice.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        viewA = (ScrollView) findViewById(R.id.viewA);
         bRegister.setOnClickListener(this);
         bUpload.setOnClickListener(this);
         loginLink.setOnClickListener(this);
@@ -79,6 +98,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     etEmail.setError("Email is required!");
                 } else if (!email.substring(Math.max(0, email.length() - 8)).equals("ucsd.edu")) {
                     etEmail.setError("UCSD email is required");
+                    viewA.scrollTo(0, etEmail.getBottom());
                 } else if (etUsername.getText().toString().trim().equals("")) {
                     etUsername.setError("Username is required!");
                 } else if (etPassword.getText().toString().trim().equals("")) {
@@ -123,6 +143,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     getResizedBitmap(bmp, 500).compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     image = stream.toByteArray();
                     try {
+                        bUpload.setBackgroundColor(getResources().getColor(R.color.green_500));
+                        bUpload.setText("Photo Selected");
                         stream.close();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -157,16 +179,23 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.setPassword(etPassword.getText().toString().trim());
         user.setEmail(etEmail.getText().toString().trim());
         user.put("phone", etPhone.getText().toString().trim());
-
-        user.put("fee", Integer.parseInt(etPrice.getText().toString()));
+        if(etPrice.getText().toString() != "") {
+            user.put("fee", Integer.parseInt(etPrice.getText().toString()));
+        } else {
+            user.put("fee", Integer.parseInt("0"));
+        }
         user.put("major", sMajor.getSelectedItem().toString());
         user.put("name", etFirstName.getText().toString().trim());
         user.put("student", cbStudent.isChecked());
         user.put("tutor", cbTutor.isChecked());
         user.put("rating", 0);
+        user.put("ratingCount", 0);
+        user.put("ratingSum", 0);
 
         ParseFile file = new ParseFile("profilePic.png", image);
         // Upload the image into Parse Cloud
+
+
         try {
             file.save();
         } catch (ParseException e) {

@@ -25,30 +25,44 @@
         android:layout_height="wrap_content"
         android:text="Add Course" />
 
-    <AutoCompleteTextView
-        android:id="@+id/actvDepartment"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:completionThreshold="1" />
+        android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/bFindNumbers"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="24dp"
-        android:padding="12dp"
-        android:text="Set Department"
-        android:textColor="@color/white"
+        <AutoCompleteTextView
+            android:id="@+id/actvDepartment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:completionThreshold="1"
+            android:imeOptions="actionNext"/>
 
-        />
 
-    <AutoCompleteTextView
-        android:id="@+id/actvNumbers"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:completionThreshold="1"
-        android:inputType="number"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/actvNumbers"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:completionThreshold="1"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:inputType="number"
+            android:imeOptions="actionNext"/>
+
+
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/sGrade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:entries="@array/grade_array"
+            android:prompt="@string/grade_prompt"
+            android:layout_weight="1.5"
+            android:textColor="#fff" />
+    </LinearLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/bAddCourse"
@@ -59,17 +73,7 @@
         android:padding="12dp"
         android:text="Add Course"
         android:textColor="@color/white"
-
         />
-
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/sGrade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:entries="@array/grade_array"
-        android:prompt="@string/grade_prompt"
-        android:textColor="#fff" />
 
 
 </LinearLayout>

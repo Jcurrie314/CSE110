@@ -54,7 +54,7 @@ public class Contacts extends ActionBarActivity {
 
                 AlertDialog.Builder adb = new AlertDialog.Builder(
                         Contacts.this);
-                adb.setTitle("List");
+                adb.setTitle("Confirm");
                 adb.setMessage("Would you like to give "
                         + item.name + " access to your contact information");
                 adb.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -111,7 +111,6 @@ public class Contacts extends ActionBarActivity {
                     objects.get(0).put("requested",false);
 
                     objects.get(0).saveInBackground();
-                    Toast.makeText(getApplicationContext(),  objects.get(0).getObjectId() + " was updated", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
                 }

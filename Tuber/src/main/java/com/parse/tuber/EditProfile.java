@@ -12,11 +12,14 @@ import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -61,6 +64,13 @@ public class EditProfile extends Activity implements View.OnClickListener {
 
 
     @Override
+    protected void onStart()
+    {
+        super.onStart();
+        findTutorCourses();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
@@ -91,6 +101,8 @@ public class EditProfile extends Activity implements View.OnClickListener {
 
         miChangePassword = (MenuItem) findViewById(R.id.miChangePassword);
         miLogout = (MenuItem) findViewById(R.id.miLogout);
+
+
 
 
         fab.setOnClickListener(this);
@@ -130,6 +142,26 @@ public class EditProfile extends Activity implements View.OnClickListener {
                 }
             }
         });
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 
     @Override
@@ -240,6 +272,7 @@ public class EditProfile extends Activity implements View.OnClickListener {
                                             c.id = id;
                                             c.grade = grade;
                                             listAdapter.add(c);
+                                            setListViewHeightBasedOnChildren(lvCourses);
                                         }
                                     }
                                 }
@@ -287,6 +320,13 @@ public class EditProfile extends Activity implements View.OnClickListener {
                         etName.setText(user.get("name").toString());
                         etPhone.setText(user.get("phone").toString());
                         etPrice.setText(user.get("fee").toString());
+                    }
+                    if(user.get("tutor") == false) {
+                        etPrice.setVisibility(View.GONE);
+                        tvPriceLabel.setVisibility(View.GONE);
+                        tvCoursesLabel.setVisibility(View.GONE);
+                        lvCourses.setVisibility(View.GONE);
+
                     }
                 }
             }
@@ -347,11 +387,12 @@ public class EditProfile extends Activity implements View.OnClickListener {
                     user.save();
                     Toast.makeText(getApplicationContext(), "Information Saved",
                             Toast.LENGTH_LONG).show();
-                    Intent profileIntent;
-                    profileIntent = new Intent(this, Profile.class);
-                    profileIntent.putExtra("id", ParseUser.getCurrentUser().getObjectId());
-                    startActivity(profileIntent);
-                    finish();
+                    Intent mainIntent;
+                    mainIntent = new Intent(this, MainActivity.class);
+                    mainIntent.putExtra("currentTab", 2);
+                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(mainIntent);
+
 
                 } catch (ParseException e) {
                     e.printStackTrace();

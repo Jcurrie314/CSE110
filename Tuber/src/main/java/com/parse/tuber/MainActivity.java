@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.parse.ParseUser;
 
 public class MainActivity extends TabActivity {
+    int currentTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,12 @@ public class MainActivity extends TabActivity {
         setContentView(R.layout.activity_main);
         ParseUser currentUser = ParseUser.getCurrentUser();
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            currentTab = extras.getInt("currentTab");
+        } else {
+            currentTab = 1;
+        }
 
         if (currentUser != null) {
             if( currentUser.getBoolean("emailVerified") == false ) {
@@ -59,7 +66,7 @@ public class MainActivity extends TabActivity {
             tabHost.addTab(tabSpecProfile);
 
             //set Search to be default tab
-            tabHost.setCurrentTab(1);
+            tabHost.setCurrentTab(currentTab);
 
 
         } else {

@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -25,20 +24,31 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 public class Search extends Activity implements OnItemSelectedListener {
 
-    ListView lvTutors;
+    /* Member variables for UI elements, strings that will hold spinner states with each update,
+     * and some extra variables to keep track of some events that are triggered by code (spinner listener
+     * attachment and adapter selection) that should be ignored
+     */
     ArrayList<SearchBundle> listAdapter;
-    //ArrayAdapter<SearchBundle> listAdapter;
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
     EditText etSearchIn;
-    Timer timer;
     ProgressBar progress;
+    Spinner department_dropdown, classNumber_dropdown, sortBy_dropdown;
+    String dep = "";
+    String classNumber = "";
+    String sortBy = "";
+    String searchInput = "";
+    boolean adapterJustSet = false;
+    int numberOfEventsOnSpinners = 0;
 
+
+    /* Different possibilities for Class Number Spinner to be populated with after
+     * a department is selected. Emcompasses various engineering/science departments at UCSD.
+     */
     String[] cse_numbers = {"Class", "5A", "7", "8A", "8B", "12", "20",
             "21", "30", "80", "100", "101", "103", "105", "110", "118", "120", "122", "120",
             "121", "123", "124", "125", "127", "130", "131", "132A", "132B", "135", "140", "140L",
@@ -73,43 +83,60 @@ public class Search extends Activity implements OnItemSelectedListener {
             "131", "140", "142", "150", "151A", "151B", "152", "154", "160A", "160B", "163", "165", "168"};
 
 
-    Spinner department_dropdown, classNumber_dropdown, sortBy_dropdown;
-    //Button bNameSearch;
-    String dep = "";
-    String classNumber = "";
-    String sortBy = "";
-    String searchInput = "";
-    boolean adapterJustSet = false;
-    boolean doneWithInit = false;
 
-
+    /* Fires when an element of an array on a spinner is selected. Happens 3 times initially, when
+     * each of the three spinners' onItemSelected connected
+     */
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-        //int thisView, departmentView, classesNumberView, sortByView;
+        /* Clear list if there is something present on the screen */
         listAdapter.clear();
         mAdapter.notifyDataSetChanged();
 
         ParseUser currentUser = ParseUser.getCurrentUser();
 
         if (currentUser != null) {
-            //final ArrayAdapter<SearchBundle> listAdapter = new ArrayAdapter<SearchBundle>(this,
-            //      android.R.layout.simple_list_item_1);
-            //lvTutors.setAdapter(listAdapter);
+
+            /* Runs as a state machine - list of search results depends on the state of the spinners
+             * and the adapterJustSet and numberofEventsOnSpinners variable. Get spinner states
+             * here
+             */
             classNumber = classNumber_dropdown.getSelectedItem().toString();
             dep = department_dropdown.getSelectedItem().toString();
             sortBy = sortBy_dropdown.getSelectedItem().toString();
 
+            /* Returns immediately if onItemSelected method was triggered artificially because of
+             * change of array adapter by the code
+             */
             if (adapterJustSet) {
                 adapterJustSet = false;
                 return;
             }
-            if (!doneWithInit) {
+            /* Since each spinner's OnItemSelected is hit once when the adapter is added initially,
+             * only let one through to get initial search list
+             */
+            if (numberOfEventsOnSpinners < 2) {
+                numberOfEventsOnSpinners += 1;
                 return;
-
             }
 
+            /* Disable class number spinner unless Department spinner has been changed. If department
+             * spinner is changed back to default before class number spinner, re-default class spinner
+             * and stop the next event that will be triggered because of the artificial spinner selection
+             * (by changing adapterJustSet = true)
+             */
+            if(dep.equals("Department")){
+                //adapterJustSet = true;
+                classNumber_dropdown.setEnabled(false);
+                if(!classNumber.equals("Class")){
+                    adapterJustSet = true;
+                    classNumber_dropdown.setSelection(0);
+                }
+            }
+
+            /* Populate Class number spinner depending on Department spinner's selected value */
             if ((!dep.equals("Department")) && classNumber.equals("Class")) {
 
                 classNumber_dropdown.setEnabled(true);
@@ -121,8 +148,7 @@ public class Search extends Activity implements OnItemSelectedListener {
                 } else if (dep.equals("ECE")) {
                     dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ece_numbers);
 
-                } // else if... ECE
-                else if (dep.equals("CE")) {
+                } else if (dep.equals("CE")) {
                     dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ceng_numbers);
 
                 } else if (dep.equals("MAE")) {
@@ -149,11 +175,14 @@ public class Search extends Activity implements OnItemSelectedListener {
                 adapterJustSet = true;
                 classNumber_dropdown.setAdapter(dataAdapter);
             } else {
+                /* If the last spinner to be set wasn't the department spinner, then populate search results */
                 progress.setVisibility(View.VISIBLE);
-                addUsersToSearchList();
+
+                addUsersToSearchList(); /* Method to populate search results */
             }
 
         } else {
+            /* If parse user is null, logout and land the user */
             ParseUser.logOut();
             Intent landingIntent = new Intent(this, Landing.class);
             startActivity(landingIntent);
@@ -172,42 +201,43 @@ public class Search extends Activity implements OnItemSelectedListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        listAdapter = new ArrayList<SearchBundle>();
-
-
-        //bNameSearch = (Button) findViewById(R.id.bSearchName);
+        /* Set up recyclerView (list view for cards) */
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
+        /* Attach list adapter to recyclerView. List is comprised of SearchBundle objects
+         * which hold various information about the user
+         */
+        listAdapter = new ArrayList<>();
         mAdapter = new MyAdapter(listAdapter);
         mRecyclerView.setAdapter(mAdapter);
 
+        /* Attach variables to UI objects */
         department_dropdown = (Spinner) findViewById(R.id.sDepartmentFilter);
         classNumber_dropdown = (Spinner) findViewById(R.id.sClassNumberFilter);
         sortBy_dropdown = (Spinner) findViewById(R.id.sSortBy);
         progress = (ProgressBar) findViewById(R.id.progressbar_loading);
+        etSearchIn = (EditText) findViewById(R.id.etSearchIn);
 
+
+        /* Attach event listener to spinners */
         department_dropdown.setOnItemSelectedListener(this);
         classNumber_dropdown.setOnItemSelectedListener(this);
         sortBy_dropdown.setOnItemSelectedListener(this);
 
+        /* Add an initial array of classnumbers to the classnumber spinner (will not be used, will
+         * be changed later depending on department)
+         */
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cse_numbers);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         classNumber_dropdown.setAdapter(dataAdapter);
-        etSearchIn = (EditText) findViewById(R.id.etSearchIn);
-        doneWithInit = true;
-        //timer = new Timer()
 
 
+        /* Attach Text Listener to Search bar to refresh search with each character typed into
+         * search bar
+         */
         etSearchIn.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -233,45 +263,27 @@ public class Search extends Activity implements OnItemSelectedListener {
             }
         });
 
-/*
-        bNameSearch.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                searchInput = etSearchIn.getText().toString().trim();
-                if (ParseUser.getCurrentUser() != null) {
-                    listAdapter.clear();
-                    mAdapter.notifyDataSetChanged();
-                    addUsersToSearchList();
-                } else {
-                    ParseUser.logOut();
-                    Intent landingIntent = new Intent(Search.this, Landing.class);
-                    startActivity(landingIntent);
-                }
-
-
-            }
-        });*/
     }
 
     private void addUsersToSearchList() {
+
+        /* Create final strings (to be used in inner classes) */
         final String finalClassNumber = classNumber;
         final String finalDep = dep;
         final String item = dep + " " + classNumber;
 
 
-//                if (classNumber.equals("Class")){
-//                    return;
-//                }
-
+        /* Sort ParseUser query according to what sort option is chosen (Rating/fee) */
         ParseQuery<ParseUser> query1 = ParseUser.getQuery();
         if (sortBy.equals("Fee")) {
             query1.orderByAscending("fee");
         } else {
-            //default case, if changed will trigger if
             query1.orderByDescending("rating");
 
         }
 
 
+        /* Start first query in background to get all Parse Users */
         query1.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> objects1, ParseException e) {
                 if (e == null) {
@@ -280,68 +292,66 @@ public class Search extends Activity implements OnItemSelectedListener {
                     for (int i1 = 0; i1 < objects1.size(); i1++) {
                         ParseUser u = (ParseUser) objects1.get(i1);
                         final SearchBundle s = new SearchBundle(u);
+                        /* If no specific class is specified or name (or part of name) is inputted is desired
+                         * to filter search results, simply list all Users according to sort preference. If
+                         * a name (or part of name) is inputted then only display if the user's name contains
+                         * the inputted string
+                         */
                         if (finalClassNumber.equals("Class") || finalDep.equals("Department")) {
                             if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
                                 listAdapter.add(s);
                                 mAdapter.notifyItemInserted(listAdapter.size() - 1);
                             }
-                            progress.setVisibility(View.GONE);
 
-                        } else {
+                        } else { /* Case where user has specified classes to filter on */
+                            /* Get Tutor course relations (not in background) */
                             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("TutorCourseRelation");
                             query2.whereEqualTo("tutor", objects1.get(i1).getObjectId().toString());
 
                             try {
                                 List<ParseObject> objects2 = query2.find();
-
                                 if (objects2.size() > 0) {
                                     for (int i2 = 0; i2 < objects2.size(); i2++) {
-
+                                        /* Get course name that goes with Course ID */
                                         ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
                                         nameQuery.whereEqualTo("objectId", objects2.get(i2).get("course").toString());
                                         List<ParseObject> objects3 = nameQuery.find();
                                         if (objects3.size() > 0) {
                                             String className = objects3.get(0).get("department") + " " + objects3.get(0).get("number");
+                                            /* If course that tutor tutors matches filter preference, display tutor (if
+                                             * search input is nothing or if tutor's name matches search input
+                                             */
                                             if (className.equals(item)) {
                                                 if (searchInput == "" || s.name.toLowerCase().contains(searchInput.toLowerCase())) {
-
                                                     listAdapter.add(s);
                                                     mAdapter.notifyItemInserted(listAdapter.size() - 1);
                                                 }
-
                                             }
                                         }
-
-
                                     }
-
                                 }
-
                             } catch (ParseException e1) {
+                                /* If anything failed, print stack */
                                 e1.printStackTrace();
                             }
                         }
+                        /* Hide progress bar when done with search */
                         progress.setVisibility(View.GONE);
-
-
                     }
                 } else {
-                    //Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-                    int i = 0;
+                    /* If anything failed in background, print error */
                     String error = e.toString();
                     Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
-                    i = 1;
-
                 }
             }
         });
-
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
+        /* Check if user is not null, if not land them and logout */
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
 

@@ -3,6 +3,8 @@ package com.parse.tuber;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -23,10 +25,10 @@ import com.parse.RequestPasswordResetCallback;
 /**
  * Created by Juleelala on 10/25/15.
  */
-public class AddCourse extends ActionBarActivity implements View.OnClickListener {
+public class AddCourse extends ActionBarActivity implements View.OnClickListener, TextWatcher {
 
     AutoCompleteTextView actvDepartment, actvNumbers;
-    Button bFindNumbers,bAddCourse;
+    Button bAddCourse;
     Spinner sGrade;
 
     String[] cse_numbers = {"Choose a Class to filter", "5A", "7", "8A", "8B", "12", "20",
@@ -62,6 +64,7 @@ public class AddCourse extends ActionBarActivity implements View.OnClickListener
             "101B", "101C", "102", "103", "110A", "110B", "111A-B", "115", "120", "121", "125", "130A-B",
             "131", "140", "142", "150", "151A", "151B", "152", "154", "160A", "160B", "163", "165", "168"};
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +74,6 @@ public class AddCourse extends ActionBarActivity implements View.OnClickListener
         String[] array = getResources().getStringArray(R.array.course_department_array);
 
         ArrayAdapter<String> adapter;
-        bFindNumbers = (Button) findViewById(R.id.bFindNumbers);
-        bFindNumbers.setOnClickListener(this);
         bAddCourse = (Button) findViewById(R.id.bAddCourse);
         bAddCourse.setOnClickListener(this);
         sGrade = (Spinner) findViewById(R.id.sGrade);
@@ -82,52 +83,70 @@ public class AddCourse extends ActionBarActivity implements View.OnClickListener
                 android.R.layout.simple_list_item_1, array);
 
         actvDepartment.setAdapter(adapter);
+        actvDepartment.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ArrayAdapter<String> dataAdapter;
+                if(actvDepartment.getText().toString().equals("CSE")){
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, cse_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                } else if (actvDepartment.getText().toString().equals("ECE")){
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, ece_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                } // else if... ECE
+                else if (actvDepartment.getText().toString().equals("CE")) {
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, ceng_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                } else if (actvDepartment.getText().toString().equals("MAE")) {
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, mae_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                } else if (actvDepartment.getText().toString().equals("SE")) {
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, se_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                } else if (actvDepartment.getText().toString().equals("NANO")) {
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, nano_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                } else if (actvDepartment.getText().toString().equals("MATH")) {
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, math_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                } else if (actvDepartment.getText().toString().equals("PHYS")) {
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, phys_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                } else if (actvDepartment.getText().toString().equals("CHEM")) {
+                    dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, chem_numbers);
+                    actvNumbers.setAdapter(dataAdapter);
+
+                }
+            }
+        });
 
 
     }
 
-    public void getNumbers(){
-        ArrayAdapter<String> dataAdapter;
-        if(actvDepartment.getText().toString().equals("CSE")){
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, cse_numbers);
-            actvNumbers.setAdapter(dataAdapter);
 
-        } else if (actvDepartment.getText().toString().equals("ECE")){
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, ece_numbers);
-            actvNumbers.setAdapter(dataAdapter);
-
-        } // else if... ECE
-        else if (actvDepartment.getText().toString().equals("CE")) {
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, ceng_numbers);
-            actvNumbers.setAdapter(dataAdapter);
-
-        } else if (actvDepartment.getText().toString().equals("MAE")) {
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, mae_numbers);
-            actvNumbers.setAdapter(dataAdapter);
-
-        } else if (actvDepartment.getText().toString().equals("SE")) {
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, se_numbers);
-            actvNumbers.setAdapter(dataAdapter);
-
-        } else if (actvDepartment.getText().toString().equals("NANO")) {
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, nano_numbers);
-            actvNumbers.setAdapter(dataAdapter);
-
-        } else if (actvDepartment.getText().toString().equals("MATH")) {
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, math_numbers);
-            actvNumbers.setAdapter(dataAdapter);
-
-        } else if (actvDepartment.getText().toString().equals("PHYS")) {
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, phys_numbers);
-            actvNumbers.setAdapter(dataAdapter);
-
-        } else if (actvDepartment.getText().toString().equals("CHEM")) {
-            dataAdapter = new ArrayAdapter<String>(AddCourse.this, android.R.layout.simple_list_item_1, chem_numbers);
-            actvNumbers.setAdapter(dataAdapter);
-
-        }
-
-    }
 
     public void addCourse(){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Courses");
@@ -149,7 +168,7 @@ public class AddCourse extends ActionBarActivity implements View.OnClickListener
                             e1.printStackTrace();
                         }
                     } else {
-                        Toast.makeText(getApplicationContext(), "Fuck",
+                        Toast.makeText(getApplicationContext(), "Course not available",
                                 Toast.LENGTH_LONG).show();
                     }
                 }
@@ -161,19 +180,27 @@ public class AddCourse extends ActionBarActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bFindNumbers:
-                getNumbers();
-
-                break;
             case R.id.bAddCourse:
                 addCourse();
-                Intent profileIntent;
-                profileIntent = new Intent(this, Profile.class);
-                profileIntent.putExtra("id", ParseUser.getCurrentUser().getObjectId());
-                startActivity(profileIntent);
+                this.finish();
+
                 break;
         }
     }
 
 
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
 }
