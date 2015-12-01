@@ -23,13 +23,17 @@ import android.widget.Toast;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.parse.FindCallback;
+import com.parse.FunctionCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.HashMap;
 
 
 /**
@@ -96,13 +100,14 @@ public class Profile extends Activity implements View.OnClickListener {
         miLogout = (MenuItem) findViewById(R.id.miLogout);
 
 
+        //fab for delegating to a call to connection
         FloatingActionButton fabPhone = (FloatingActionButton) findViewById(R.id.fabPhone);
         fabPhone.setSize(FloatingActionButton.SIZE_MINI);
         fabPhone.setIcon(R.drawable.ic_phone_black_48dp);
         fabPhone.setStrokeVisible(false);
         fabPhone.setOnClickListener(this);
 
-
+        //fab for delegating to an email to connection
         FloatingActionButton fabEmail = (FloatingActionButton) findViewById(R.id.fabEmail);
         fabEmail.setSize(FloatingActionButton.SIZE_MINI);
         fabEmail.setIcon(R.drawable.ic_email_black_48dp);
@@ -116,12 +121,12 @@ public class Profile extends Activity implements View.OnClickListener {
 
 
         // Test that FAMs containing FABs with visibility GONE do not cause crashes
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userId = extras.getString("id");
         }
 
+        //Gives user's information from parse to UI elements
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("objectId", userId);
         query.getFirstInBackground(new GetCallback<ParseUser>() {
@@ -154,51 +159,22 @@ public class Profile extends Activity implements View.OnClickListener {
                             });
 
                         }
+                        //Sets fab correctly depending on if users are connected
                         isVerified();
                     }
                 }
             }
         });
+        //update average rating on parse and locally
         updateTutorStats();
     }
 
-    public static boolean setListViewHeightBasedOnItems(ListView listView) {
-
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter != null) {
-
-            int numberOfItems = listAdapter.getCount();
-
-            // Get total height of all items.
-            int totalItemsHeight = 0;
-            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
-                View item = listAdapter.getView(itemPos, null, listView);
-                item.measure(0, 0);
-                totalItemsHeight += item.getMeasuredHeight();
-            }
-
-            // Get total height of all item dividers.
-            int totalDividersHeight = listView.getDividerHeight() *
-                    (numberOfItems - 1);
-
-            // Set list height.
-            ViewGroup.LayoutParams params = listView.getLayoutParams();
-            params.height = totalItemsHeight + totalDividersHeight;
-            Log.d("The height is", "this");
-            listView.setLayoutParams(params);
-            listView.requestLayout();
-
-            return true;
-
-        } else {
-            return false;
-        }
-
-    }
-
     public void isVerified() {
+        //Sets Fabs (connect, sendrequest, or edit) based on the two user's connection status
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
         findTutorCourses();
+
         if (!(ParseUser.getCurrentUser().getObjectId()).equals(userId)) {
             query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId());
             query.whereEqualTo("tutor", userId);
@@ -208,9 +184,13 @@ public class Profile extends Activity implements View.OnClickListener {
                     if (e == null) {
                         Boolean verified;
                         if (objects.size() > 0) {
+                            //Case that user has some connections
                             if(!((Boolean) objects.get(0).get("accepted")) && ((Boolean) objects.get(0).get("requested") )) {
+                                //If the users are connected, hide the request connection fab
                                 fabRequest.setVisibility(View.GONE);
                             }
+                            //sets a boolean indicating whether or not the user whose profile
+                            //you are at has verified you
                             verified = (Boolean) objects.get(0).get("accepted");
                             relationshipId = objects.get(0).getObjectId();
                             addListenerOnRatingBar();
@@ -218,26 +198,28 @@ public class Profile extends Activity implements View.OnClickListener {
 
 
                         } else {
+                            //case that user has no connections
                             verified = false;
                         }
+                        //Displays User details depending on whether or not you are connected
                         displayUserDetails(verified);
                     }
 
                 }
             });
+            //hides logout/change password menu if you're not on your own profile
             ivMenu.setVisibility(View.GONE);
 
         } else {
-
             //case that user is looking at their own profile
             displayUserDetails(true);
             rbRating.setEnabled(false);
-
         }
     }
 
 
     public void findTutorCourses() {
+        //find and display tutor courses from TutorCourseRelation database (will only happen if user is tutor)
         final ArrayAdapter<CourseBundle> listAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1);
         lvCourses.setAdapter(listAdapter);
@@ -279,7 +261,7 @@ public class Profile extends Activity implements View.OnClickListener {
 
 
     }
-
+    //Expands listview to fit items
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
@@ -300,6 +282,7 @@ public class Profile extends Activity implements View.OnClickListener {
         listView.requestLayout();
     }
 
+    //Changes average rating based on user-inputted rating
     public void addListenerOnRatingBar() {
         rbRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             public void onRatingChanged(RatingBar ratingBar, float rating,
@@ -312,15 +295,17 @@ public class Profile extends Activity implements View.OnClickListener {
                     @Override
                     public void done(ParseObject parseObject, ParseException e) {
                         if (e == null) {
+                            /* Case that current user has not issued a rating for selected user yet */
                             if (parseObject.get("rating") == null) {
 
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorRatingRelation");
                                 query.whereEqualTo("tutorId", userId);
-
                                 query.getFirstInBackground(new GetCallback<ParseObject>() {
+
                                     @Override
                                     public void done(ParseObject parseObject, ParseException e) {
                                         if (e == null) {
+                                            // Simply add rating to total, count and compute average and add back to parse
                                             float newRatingCount = ratingCount + 1;
                                             float newRatingTotal = ratingTotal + yourRating;
                                             float newRatingAverage = newRatingTotal / newRatingCount;
@@ -344,7 +329,7 @@ public class Profile extends Activity implements View.OnClickListener {
                                         }
                                     }
                                 });
-                            } else {
+                            } else { // Case that current user has already added a rating and is now changing it
                                 oldRating = Float.parseFloat(parseObject.get("rating").toString());
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorRatingRelation");
                                 query.whereEqualTo("tutorId", userId);
@@ -352,6 +337,8 @@ public class Profile extends Activity implements View.OnClickListener {
                                     @Override
                                     public void done(ParseObject parseObject, ParseException e) {
                                         if (e == null) {
+                                            // Change new Rating Total to include the delta of oldRating and newRating
+                                            // and take new average
                                             float newRatingCount = ratingCount;
                                             float newRatingTotal = ratingTotal - oldRating + yourRating;
                                             float newRatingAverage;
@@ -360,17 +347,12 @@ public class Profile extends Activity implements View.OnClickListener {
                                             } else {
                                                 newRatingAverage = 0;
                                             }
-                                            Log.d("Old Rating:", String.valueOf(oldRating));
-                                            Log.d("New Rating:", String.valueOf(yourRating));
-                                            Log.d("Rating Count:", String.valueOf(newRatingCount));
-                                            Log.d("Rating Total:", String.valueOf(newRatingTotal));
-                                            Log.d("Rating Average:", String.valueOf(newRatingAverage));
+
                                             parseObject.put("ratingCount", newRatingCount);
                                             parseObject.put("ratingTotal", newRatingTotal);
                                             parseObject.put("ratingAverage", newRatingAverage);
                                             try {
                                                 parseObject.save();
-
                                                 ParseObject point = ParseObject.createWithoutData("Relationships", relationshipId);
                                                 point.put("rating", yourRating);
                                                 updateTutorStats();
@@ -394,9 +376,19 @@ public class Profile extends Activity implements View.OnClickListener {
 
             }
         });
+
+        HashMap<String, Object> hashy = new HashMap<String, Object>();
+        hashy.put("id", userId);
+        ParseCloud.callFunctionInBackground("modifyRating", hashy, new FunctionCallback<String>() {
+            @Override
+            public void done(String object, ParseException e) {
+            }
+
+        });
     }
 
     public void updateTutorStats() {
+        //update user databases' ratings fields depending on ratings database when logged in
         ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorRatingRelation");
         query.whereEqualTo("tutorId", userId);
         query.getFirstInBackground(new GetCallback<ParseObject>() {
@@ -448,6 +440,7 @@ public class Profile extends Activity implements View.OnClickListener {
     }
 
     public void showMenu(View v) {
+        //Show connections fabs
         PopupMenu popup = new PopupMenu(this, v);
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
@@ -467,7 +460,8 @@ public class Profile extends Activity implements View.OnClickListener {
         popup.show();
     }
 
-
+    //Display user details based on verified boolean which indicates whether or not the
+    //users are connected (requested and verified)
     public void displayUserDetails(Boolean verified) {
         if (verified) {
             ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -481,8 +475,6 @@ public class Profile extends Activity implements View.OnClickListener {
 
                             phone = user.get("phone").toString();
                             email = user.getEmail();
-
-
                             Log.d("Email", email);
                         }
                     }
@@ -490,14 +482,17 @@ public class Profile extends Activity implements View.OnClickListener {
             });
 
             if ((ParseUser.getCurrentUser().getObjectId()).equals(userId)) {
+                //case that current user is viewing their own profile
                 fabRequest.setIcon(R.drawable.ic_mode_edit_black_48dp);
                 fabRequest.setVisibility(View.VISIBLE);
                 fab.setVisibility(View.GONE);
             } else {
+                //case that users are connected, but current user!=profile's user
                 fabRequest.setVisibility(View.GONE);
                 fab.setVisibility(View.VISIBLE);
             }
         } else {
+            //Case that user is not verified, show request fab
             fabRequest.setVisibility(View.VISIBLE);
             fab.setVisibility(View.GONE);
             rbRating.setEnabled(false);
@@ -548,6 +543,8 @@ public class Profile extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //If the request fab was clicked, and it's the own user's account, then go into editprofile,
+            //if the profile is not the user's, then send a connection request
             case R.id.fabRequest:
                 if ((ParseUser.getCurrentUser().getObjectId()).equals(userId)) {
                     Intent editProfileIntent;
@@ -561,6 +558,7 @@ public class Profile extends Activity implements View.OnClickListener {
                 }
                 break;
 
+            //cases that user clicked email/phone fabs, go to phone call/new email
             case R.id.fabPhone:
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + phone));

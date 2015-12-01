@@ -1,39 +1,30 @@
 package com.parse.tuber;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.text.NumberFormat;
-import java.util.Locale;
-
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
-import com.parse.SignUpCallback;
 
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
@@ -179,8 +170,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.setPassword(etPassword.getText().toString().trim());
         user.setEmail(etEmail.getText().toString().trim());
         user.put("phone", etPhone.getText().toString().trim());
-        if(etPrice.getText().toString() != "") {
-            user.put("fee", Integer.parseInt(etPrice.getText().toString()));
+        if(etPrice.getVisibility() == View.VISIBLE) {
+            if (etPrice.getText().toString() != "") {
+                user.put("fee", Integer.parseInt(etPrice.getText().toString()));
+            } else {
+                user.put("fee", Integer.parseInt("0"));
+            }
         } else {
             user.put("fee", Integer.parseInt("0"));
         }
