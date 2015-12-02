@@ -82,7 +82,25 @@ public class Search extends Activity implements OnItemSelectedListener {
             "101B", "101C", "102", "103", "110A", "110B", "111A-B", "115", "120", "121", "125", "130A-B",
             "131", "140", "142", "150", "151A", "151B", "152", "154", "160A", "160B", "163", "165", "168"};
 
+    /* Refresh search data when activity resumed */
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        searchInput = etSearchIn.getText().toString();
+        listAdapter.clear();
+        mAdapter.notifyDataSetChanged();
+        classNumber = classNumber_dropdown.getSelectedItem().toString();
+        dep = department_dropdown.getSelectedItem().toString();
+        sortBy = sortBy_dropdown.getSelectedItem().toString();
+
+
+        if (ParseUser.getCurrentUser() != null) {
+            progress.setVisibility(View.VISIBLE);
+            addUsersToSearchList();
+        }
+
+    }
 
     /* Fires when an element of an array on a spinner is selected. Happens 3 times initially, when
      * each of the three spinners' onItemSelected connected

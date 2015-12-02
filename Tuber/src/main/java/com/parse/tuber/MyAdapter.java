@@ -57,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         SearchBundle sb = mDataset.get(position);
         holder.vName.setText(sb.name);
         holder.rbRating.setStepSize(1f);
-        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
+        holder.rbRating.setRating((float)sb.avgRating);
         holder.searchBundle = sb;
 
 

@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.parse.FindCallback;
-import com.parse.FunctionCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseCloud;
@@ -34,6 +33,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -52,26 +52,24 @@ public class Profile extends Activity implements View.OnClickListener {
     FloatingActionButton fabRequest;
     MenuItem miChangePassword, miLogout;
     LinearLayout svMain;
+    boolean artificiallySet = false;
 
     String phone;
     String email;
 
-    Float ratingCount, ratingTotal, ratingAverage;
-    Float yourRating, oldRating;
 
     @Override
-    public void onResume() {  // After a pause OR at startup
+    public void onResume() {
         super.onResume();
         isVerified();
-        updateTutorStats();
+        refreshRatingBar();
 
     }
 
     @Override
-    public void onStart() {  // After a pause OR at startup
+    public void onStart() {
         super.onStart();
         isVerified();
-        updateTutorStats();
 
     }
 
@@ -85,6 +83,7 @@ public class Profile extends Activity implements View.OnClickListener {
         tvPrice = (TextView) findViewById(R.id.tvPrice);
         tvPriceLabel = (TextView) findViewById(R.id.tvPriceLabel);
         tvNoRatingsLabel = (TextView) findViewById(R.id.tvNoRatingsLabel);
+        tvNoRatingsLabel.setVisibility(View.GONE);
 
         rbRating = (RatingBar) findViewById(R.id.rbRating);
         tvCoursesLabel = (TextView) findViewById(R.id.tvCoursesLabel);
@@ -119,8 +118,6 @@ public class Profile extends Activity implements View.OnClickListener {
         fabRequest.setStrokeVisible(false);
         fabRequest.setOnClickListener(this);
 
-
-        // Test that FAMs containing FABs with visibility GONE do not cause crashes
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userId = extras.getString("id");
@@ -133,8 +130,7 @@ public class Profile extends Activity implements View.OnClickListener {
             public void done(ParseUser user, com.parse.ParseException e) {
 
                 if (e == null) {
-                    // The query was successful.
-                    // check if we got a match
+
                     if (user != null) {
                         tvName.setText(user.get("name").toString());
                         tvPrice.setText(String.format("$%d/hr", user.get("fee")));
@@ -166,7 +162,32 @@ public class Profile extends Activity implements View.OnClickListener {
             }
         });
         //update average rating on parse and locally
-        updateTutorStats();
+        refreshRatingBar();
+    }
+
+    public void refreshRatingBar(){
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("objectId", userId);
+        try {
+            List<ParseUser> objects = query.find();
+            if (objects.size() == 1) {
+                double averageRating = objects.get(0).getDouble("rating");
+                float aveFloat = (float) averageRating;
+                rbRating.setStepSize(1f);
+                if (averageRating == -1) {
+                    addRatingRelationforNewTutor();
+                    rbRating.setRating(0);
+                    rbRating.invalidate();
+                    tvNoRatingsLabel.setVisibility(View.VISIBLE);
+                } else {
+                    tvNoRatingsLabel.setVisibility(View.GONE);
+
+                    rbRating.setRating((float)averageRating);
+                }
+            }
+        } catch (ParseException e){
+
+        }
     }
 
     public void isVerified() {
@@ -194,7 +215,6 @@ public class Profile extends Activity implements View.OnClickListener {
                             verified = (Boolean) objects.get(0).get("accepted");
                             relationshipId = objects.get(0).getObjectId();
                             addListenerOnRatingBar();
-                            //displayUserDetails(true);
 
 
                         } else {
@@ -285,9 +305,12 @@ public class Profile extends Activity implements View.OnClickListener {
     //Changes average rating based on user-inputted rating
     public void addListenerOnRatingBar() {
         rbRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            public void onRatingChanged(RatingBar ratingBar, float rating,
+            public void onRatingChanged(RatingBar ratingBar, final float rating,
                                         boolean fromUser) {
-                yourRating = rating;
+                if (!fromUser) {
+                    return;
+                }
+                //yourRating = rating;
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
                 query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId());
                 query.whereEqualTo("tutor", userId);
@@ -296,6 +319,7 @@ public class Profile extends Activity implements View.OnClickListener {
                     public void done(ParseObject parseObject, ParseException e) {
                         if (e == null) {
                             /* Case that current user has not issued a rating for selected user yet */
+
                             if (parseObject.get("rating") == null) {
 
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorRatingRelation");
@@ -305,32 +329,44 @@ public class Profile extends Activity implements View.OnClickListener {
                                     @Override
                                     public void done(ParseObject parseObject, ParseException e) {
                                         if (e == null) {
-                                            // Simply add rating to total, count and compute average and add back to parse
-                                            float newRatingCount = ratingCount + 1;
-                                            float newRatingTotal = ratingTotal + yourRating;
-                                            float newRatingAverage = newRatingTotal / newRatingCount;
-                                            parseObject.put("ratingCount", newRatingCount);
-                                            parseObject.put("ratingTotal", newRatingTotal);
-                                            parseObject.put("ratingAverage", newRatingAverage);
+                                            if(parseObject != null) {
+                                                // Simply add rating to total, count and compute average and add back to parse
+                                                double newRatingCount = parseObject.getDouble("ratingCount") + 1;
+                                                double newRatingTotal = parseObject.getDouble("ratingTotal") + rating;
+                                                double newRatingAverage = newRatingTotal / newRatingCount;
+                                                parseObject.put("ratingCount", newRatingCount);
+                                                parseObject.put("ratingTotal", newRatingTotal);
+                                                parseObject.put("ratingAverage", newRatingAverage);
 
-                                            try {
-                                                parseObject.save();
-
-                                                ParseObject point = ParseObject.createWithoutData("Relationships", relationshipId);
-                                                point.put("rating", yourRating);
-                                                updateTutorStats();
-                                            } catch (ParseException e1) {
-                                                e1.printStackTrace();
+                                                try {
+                                                    parseObject.save();
+                                                } catch (ParseException e1) {
+                                                    e1.printStackTrace();
+                                                }
+                                                HashMap<String, Object> hashy = new HashMap<String, Object>();
+                                                hashy.put("id", userId);
+                                                try {
+                                                    ParseCloud.callFunction("modifyRating", hashy);
+                                                } catch (ParseException e2){
+                                                    e2.printStackTrace();
+                                                }
+                                                try {
+                                                    parseObject.save();
+                                                } catch (ParseException e1) {
+                                                    e1.printStackTrace();
+                                                }
+                                                refreshRatingBar();
                                             }
-                                            rbRating.setRating(newRatingAverage);
 
                                         } else {
 
                                         }
                                     }
                                 });
+
+
                             } else { // Case that current user has already added a rating and is now changing it
-                                oldRating = Float.parseFloat(parseObject.get("rating").toString());
+                                final float prevRating = Float.parseFloat(parseObject.get("rating").toString());
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorRatingRelation");
                                 query.whereEqualTo("tutorId", userId);
                                 query.getFirstInBackground(new GetCallback<ParseObject>() {
@@ -339,28 +375,38 @@ public class Profile extends Activity implements View.OnClickListener {
                                         if (e == null) {
                                             // Change new Rating Total to include the delta of oldRating and newRating
                                             // and take new average
-                                            float newRatingCount = ratingCount;
-                                            float newRatingTotal = ratingTotal - oldRating + yourRating;
-                                            float newRatingAverage;
-                                            if (newRatingCount > 0) {
-                                                newRatingAverage = newRatingTotal / newRatingCount;
-                                            } else {
-                                                newRatingAverage = 0;
-                                            }
+                                            if(parseObject != null) {
 
-                                            parseObject.put("ratingCount", newRatingCount);
-                                            parseObject.put("ratingTotal", newRatingTotal);
-                                            parseObject.put("ratingAverage", newRatingAverage);
-                                            try {
-                                                parseObject.save();
-                                                ParseObject point = ParseObject.createWithoutData("Relationships", relationshipId);
-                                                point.put("rating", yourRating);
-                                                updateTutorStats();
-                                            } catch (ParseException e1) {
-                                                e1.printStackTrace();
-                                            }
-                                            rbRating.setRating(newRatingAverage);
+                                                double newRatingCount = parseObject.getDouble("ratingCount");
+                                                double newRatingTotal = parseObject.getDouble("ratingTotal") - prevRating + rating;
+                                                double newRatingAverage;
+                                                if (newRatingCount > 0) {
+                                                    newRatingAverage = newRatingTotal / newRatingCount;
+                                                } else {
+                                                    newRatingAverage = 0;
+                                                }
 
+                                                parseObject.put("ratingCount", newRatingCount);
+                                                parseObject.put("ratingTotal", newRatingTotal);
+                                                parseObject.put("ratingAverage", newRatingAverage);
+                                                try {
+                                                    parseObject.save();
+                                                    //updateTutorStats(newRatingCount);
+                                                } catch (ParseException e1) {
+                                                    e1.printStackTrace();
+                                                }
+
+                                                HashMap<String, Object> hashy = new HashMap<String, Object>();
+                                                hashy.put("id", userId);
+
+                                                try {
+                                                    ParseCloud.callFunction("modifyRating", hashy);
+                                                } catch (ParseException e2){
+                                                    e2.printStackTrace();
+                                                }
+
+                                                refreshRatingBar();
+                                            }
                                         } else {
 
                                         }
@@ -368,26 +414,28 @@ public class Profile extends Activity implements View.OnClickListener {
                                 });
 
                             }
+                            parseObject.put("rating", rating);
+                            try {
+                                parseObject.save();
+                            } catch (ParseException error){
+                                error.printStackTrace();
+                            }
+
                         } else {
 
                         }
                     }
                 });
 
-            }
-        });
 
-        HashMap<String, Object> hashy = new HashMap<String, Object>();
-        hashy.put("id", userId);
-        ParseCloud.callFunctionInBackground("modifyRating", hashy, new FunctionCallback<String>() {
-            @Override
-            public void done(String object, ParseException e) {
             }
 
         });
+
+
     }
 
-    public void updateTutorStats() {
+    public void addRatingRelationforNewTutor() {
         //update user databases' ratings fields depending on ratings database when logged in
         ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorRatingRelation");
         query.whereEqualTo("tutorId", userId);
@@ -395,44 +443,20 @@ public class Profile extends Activity implements View.OnClickListener {
             @Override
             public void done(ParseObject parseObject, ParseException e) {
                 if (e == null) {
-                    ratingCount = Float.parseFloat(parseObject.get("ratingCount").toString());
-                    ratingTotal = Float.parseFloat(parseObject.get("ratingTotal").toString());
-                    ratingAverage = Float.parseFloat(parseObject.get("ratingAverage").toString());
-                    if((ParseUser.getCurrentUser().getObjectId()).equals(userId)){
-                        ParseUser user = ParseUser.getCurrentUser();
-                        user.put("rating", ratingAverage);
-                        user.put("ratingSum",ratingTotal );
-                        user.put("ratingCount", ratingCount);
+                    if (parseObject == null) {
+
+                        ParseObject request = new ParseObject("TutorRatingRelation");
+                        request.put("tutorId", userId);
+                        request.put("ratingCount", 0);
+                        request.put("ratingAverage", 0);
+                        request.put("ratingTotal", 0);
                         try {
-                            user.save();
+                            request.save();
+
                         } catch (ParseException e1) {
                             e1.printStackTrace();
                         }
                     }
-                    rbRating.setRating(ratingAverage);
-
-                    rbRating.setStepSize(1f);
-                    rbRating.invalidate();
-                    if (ratingCount < 1) {
-                        tvNoRatingsLabel.setVisibility(View.VISIBLE);
-                    } else {
-                        tvNoRatingsLabel.setVisibility(View.GONE);
-                    }
-
-                } else {
-                    ParseObject request = new ParseObject("TutorRatingRelation");
-                    request.put("tutorId", userId);
-                    request.put("ratingCount", 0);
-                    request.put("ratingAverage", 0);
-                    request.put("ratingTotal", 0);
-                    try {
-                        request.save();
-
-                    } catch (ParseException e1) {
-                        e1.printStackTrace();
-                    }
-                    tvNoRatingsLabel.setVisibility(View.VISIBLE);
-
                 }
             }
         });

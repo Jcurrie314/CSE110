@@ -183,9 +183,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.put("name", etFirstName.getText().toString().trim());
         user.put("student", cbStudent.isChecked());
         user.put("tutor", cbTutor.isChecked());
-        user.put("rating", 0);
-        user.put("ratingCount", 0);
-        user.put("ratingSum", 0);
+        user.put("rating", -1);
+
 
         ParseFile file = new ParseFile("profilePic.png", image);
         // Upload the image into Parse Cloud
@@ -213,5 +212,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 }
             }
         });
+
+
     }
 }

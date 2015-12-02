@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class SearchBundle {
     String name;
     String id;
-    double avgRating, numberOfRatings, fee;
+    double avgRating, fee;
     Bitmap profilePicture;
     ArrayList<String> courses = new ArrayList<String>();
     TuberUser user;
@@ -28,7 +28,6 @@ public class SearchBundle {
         user = new TuberUser(u);
         id = user.id;
         avgRating = user.avgRating;
-        numberOfRatings = user.numberOfRatings;
         name = user.name;
         fee = user.fee;
         profilePicture = user.profilePicture;
