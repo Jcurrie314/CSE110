@@ -39,6 +39,42 @@ import java.util.List;
 /**
  * Created by jonathancurrie on 10/22/15.
  */
+
+/* Given: I have clicked on a tutor name from the search tab
+ *      When: I am not connected to the tutor
+ *      Then: I will not be able to see their phone number/ email, but I will be able to see courses, price, and rating.
+ *
+ *      When: I am connected to the tutor
+ *      Then: I will be able to see all information, including contact information
+ *
+ *
+ *      Test:
+  *
+  *         public boolean testDisplayUserDetails(Boolean verified){
+  *             displayUserDetails(verified);
+  *             if(rbRating.getVisibility() == VIEW.VISIBLE && lvCourses.getVisibility() == VIEW.VISIBLE && tvPrice.getVisibility() == VIEW.VISIBLE){
+  *                 continue;
+  *             } else {
+  *                 return false;
+  *             }
+  *             // TEST 1
+  *             if(verified == false) {
+  *                 if(fab.getVisibility() == VIEW.GONE && fabRequest.getVisibility() == VIEW.VISIBLE){
+  *                     return true;
+  *                 } else {
+  *                     return false;
+  *                 }
+  *                 // TEST 2
+  *             } else if(verified == true) {
+  *                 if(fab.getVisibility() == VIEW.VISIBLE && fabRequest.getVisibility() == VIEW.GONE){
+  *                     return true;
+  *                 } else {
+  *                     return false;
+  *                 }
+  *             }
+  *         }
+ */
+
 public class Profile extends Activity implements View.OnClickListener {
     String userId, relationshipId;
 
