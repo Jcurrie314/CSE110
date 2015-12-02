@@ -16,6 +16,29 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseUser;
 
+/*
+ *  GIVEN: I am not signed in to any account
+ *      WHEN: I enter any combination of incorrect email/passwords
+ *      THEN: I will not be granted access to the app and I will be able to try again to
+ *            enter correct info
+ *
+ *
+ *      TEST 4:
+ *         public boolean testLogin() {
+ *              etUsername.setText("nouser@ucsd.edu");
+ *              etPassword.setText("wrongpassword");
+ *              bLogin.performClick();
+ *
+ *
+ *              //if it gets here that means the user wasn't logged in because they didn't have correct
+ *              //credentials therefore the test passed
+ *              return true;
+ *
+ *          }
+ *
+ *
+ */
+
 
 public class Login extends ActionBarActivity implements View.OnClickListener {
     Button bLogin;
@@ -38,6 +61,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
 
     }
 
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -46,9 +70,9 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
                 String password = etPassword.getText().toString();
 
                 //User user = new User(username, password);
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                authenticate(username,password);
+                authenticate(username, password);
                 break;
             case R.id.tvRegisterLink:
                 Intent registerIntent = new Intent(Login.this, Register.class);
@@ -69,7 +93,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
                     Intent registerIntent = new Intent(Login.this, MainActivity.class);
                     startActivity(registerIntent);
                 } else {
-                        showErrorMessage();
+                    showErrorMessage();
 
                 }
             }
@@ -97,14 +121,15 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         alert.show();
     }
 
-    private void showNetworkError(){
+    private void showNetworkError() {
         Toast.makeText(getApplicationContext(), "Network Error",
                 Toast.LENGTH_LONG).show();
     }
 
 
-
     private void logUserIn(User returnedUser) {
         startActivity(new Intent(this, MainActivity.class));
     }
+
+
 }

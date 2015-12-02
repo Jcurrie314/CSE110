@@ -9,6 +9,15 @@ import android.widget.Button;
 
 /**
  * Created by jonathancurrie on 10/23/15.
+ *
+ *
+ *  Given: I am not signed in to any account
+ *  When: I click Sign up/ Register for an account
+ *  Then: I am taken to a page where I can enter my information to create an account
+ *
+ *  Test:
+ *
+ *  public boolean
  */
 public class Landing extends ActionBarActivity implements View.OnClickListener {
     Button bLogin, bRegister;
