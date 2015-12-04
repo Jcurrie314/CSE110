@@ -3,7 +3,6 @@ package com.parse.tuber;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -14,12 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -169,7 +166,7 @@ public class Contacts extends ActionBarActivity {
         lvConnections.setAdapter(listAdapter2);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
-        query.whereEqualTo("tutor", ParseUser.getCurrentUser().getObjectId());
+        query.whereEqualTo("student", ParseUser.getCurrentUser().getObjectId());
         query.whereEqualTo("accepted", true);
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
@@ -177,7 +174,7 @@ public class Contacts extends ActionBarActivity {
 
                     for (int i = 0; i < objects.size(); i++) {
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
-                        query.whereEqualTo("objectId", objects.get(i).get("student"));
+                        query.whereEqualTo("objectId", objects.get(i).get("tutor"));
                         query.findInBackground(new FindCallback<ParseUser>() {
                             public void done(List<ParseUser> objects, ParseException e) {
                                 if (e == null) {

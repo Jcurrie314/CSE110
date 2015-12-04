@@ -18,6 +18,8 @@ import android.widget.Button;
  *  Test:
  *
  *  public boolean
+ * Landing is the page that shows the login and register buttons, which take you to the login/register page
+ * User's first view in the app (because it's called from MainActivity if the user is null)
  */
 public class Landing extends ActionBarActivity implements View.OnClickListener {
     Button bLogin, bRegister;
@@ -26,17 +28,15 @@ public class Landing extends ActionBarActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
-        //startActivity(new Intent(getApplicationContext(), TabViewActivity.class));
+
 
         bLogin = (Button) findViewById(R.id.bLogin);
         bRegister = (Button) findViewById(R.id.bRegister);
-
-
         bLogin.setOnClickListener(this);
         bRegister.setOnClickListener(this);
 
     }
-
+    //Displays Register/Login class depending on which button was clicked
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

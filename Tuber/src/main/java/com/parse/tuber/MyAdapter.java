@@ -2,7 +2,6 @@ package com.parse.tuber;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +10,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.parse.GetDataCallback;
-
 import java.util.ArrayList;
 
 /**
  * Created by Juleelala on 11/9/15.
+ * MyAdapter class stitches UI cards together with the searchbundle data set
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHolder> {
     private ArrayList<SearchBundle> mDataset;
@@ -34,7 +32,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
     public MyAdapter(ArrayList<SearchBundle> myDataset) {
         mDataset = myDataset;
     }
@@ -60,14 +57,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         SearchBundle sb = mDataset.get(position);
         holder.vName.setText(sb.name);
         holder.rbRating.setStepSize(1f);
-        holder.rbRating.setRating(Float.parseFloat(String.valueOf(sb.avgRating)));
+        holder.rbRating.setRating((float)sb.avgRating);
         holder.searchBundle = sb;
 
 
 
         holder.ivProfilePicture.setImageBitmap(sb.profilePicture);
-        //Thought this should be next to the ratings in parenthesis
-//        holder.vNumberOfRatings.setText(String.format("(%.0f)", sb.numberOfRatings));
 
         //This can go wherever
         holder.vFee.setText(String.format("Fee: $%.2f", sb.fee));
@@ -83,15 +78,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
     public static class SearchBundleViewHolder extends RecyclerView.ViewHolder {
         protected TextView vName;
         protected RatingBar rbRating;
-        protected TextView vNumberOfRatings;
         protected TextView vFee;
-        protected TextView tvRating;
         protected ImageView ivProfilePicture;
         public SearchBundle searchBundle;
         public View view;
 
 
-
+        //Attach search bundle element values to UI elements
         public SearchBundleViewHolder(View v) {
             super(v);
             view = v;
@@ -104,7 +97,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
             });
             vName =  (TextView) v.findViewById(R.id.tvName);
             rbRating = (RatingBar) v.findViewById(R.id.rbRating);
-//            vNumberOfRatings = (TextView) v.findViewById(R.id.txtNumberRatings);
             vFee = (TextView) v.findViewById(R.id.tvFee);
             ivProfilePicture = (ImageView) v.findViewById(R.id.ivProfilePicture);
 

@@ -10,6 +10,10 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
+/**
+ * MainActivityClass is base Activity that has tabs which indicate the Contacts, Search, and Profile activities
+ */
+
 public class MainActivity extends TabActivity {
     int currentTab;
 
@@ -54,6 +58,7 @@ public class MainActivity extends TabActivity {
 
             // My profile tab
             Intent intentProfile = new Intent().setClass(this, Profile.class);
+            //Add extra of current user's id to indicate that we are looking at own profile
             intentProfile.putExtra("id", ParseUser.getCurrentUser().getObjectId().toString());
             TabSpec tabSpecProfile = tabHost
                     .newTabSpec("Profile")
@@ -70,6 +75,7 @@ public class MainActivity extends TabActivity {
 
 
         } else {
+            //If current user is null, logout and land the user
             ParseUser.logOut();
             Intent landingIntent = new Intent(this, Landing.class);
             startActivity(landingIntent);

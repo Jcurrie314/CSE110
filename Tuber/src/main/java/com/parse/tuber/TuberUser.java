@@ -2,14 +2,9 @@ package com.parse.tuber;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
-import com.parse.FindCallback;
-import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -22,7 +17,8 @@ public class TuberUser {
     Bitmap profilePicture;
     Boolean isTutor;
 
-    Integer avgRating, numberOfRatings, fee;
+    Integer fee;
+    double avgRating;
 
 
     public TuberUser(ParseUser user) {
@@ -32,8 +28,7 @@ public class TuberUser {
             this.name = (String) user.get("name");
             this.email = (String) user.get("email");
             this.username = (String) user.get("username");
-            this.avgRating = user.getInt("rating");
-            this.numberOfRatings = user.getInt("ratingcount");
+            this.avgRating = user.getDouble("rating");
             this.fee = user.getInt("fee");
 
             ParseFile imageFile = (ParseFile) user.get("profilePic");
@@ -50,101 +45,13 @@ public class TuberUser {
             this.profilePicture = bitmap;
             this.isTutor = (Boolean) user.get("tutor");
 
-            /*
-            if (this.isTutor) {
-                getCourses();
-                getRating();
-            }*/
+
 
         }
     }
-    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-
-        float bitmapRatio = (float)width / (float) height;
-        if (bitmapRatio > 0) {
-            width = maxSize;
-            height = (int) (width / bitmapRatio);
-        } else {
-            height = maxSize;
-            width = (int) (height * bitmapRatio);
-        }
-        return Bitmap.createScaledBitmap(image, width, height, true);
-    }
-    public void setProfilePic(Bitmap bmap, TuberUser user){
-    }
-    public void setUserId(String userId) {
-        this.id = userId;
-    }
-
-    public String getUserId() {
-        return id;
-    }
 
 
-    public void getRating() {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Relationships");
-        query.whereEqualTo("tutor", this.id);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                if (e == null) {
-                    if (objects.size() > 0) {
-                        int sum = 0;
-                        for (int i = 0; i < objects.size(); i++) {
-                            sum += objects.get(i).getInt("rating");
-                        }
 
-                        //avgRating = (double) sum / objects.size();
-                    }
 
-                } else {
-                }
-
-            }
-        });
-
-        // this.rating = avgRating;
-
-    }
-
-    public void getCourses() {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorCourseRelation");
-        query.whereEqualTo("tutor", this.id);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                if (e == null) {
-                    if (objects.size() > 0) {
-                        for (int i = 0; i < objects.size(); i++) {
-                            //final String grade = objects.get(i).get("grade").toString();
-                            //final String id = objects.get(i).getObjectId();
-
-                            ParseQuery<ParseObject> nameQuery = ParseQuery.getQuery("Courses");
-                            nameQuery.whereEqualTo("objectId", objects.get(i).get("course").toString());
-                            nameQuery.findInBackground(new FindCallback<ParseObject>() {
-
-                                @Override
-                                public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
-                                    if (e == null) {
-                                        if (objects.size() > 0) {
-                                            courses.add(objects.get(0).get("department") + " " + objects.get(0).get("number"));
-
-                                        }
-                                    } else {
-                                    }
-                                }
-                            });
-
-                        }
-                    }
-                } else {
-                    //Something failed
-                }
-            }
-        });
-
-    }
 
 }
