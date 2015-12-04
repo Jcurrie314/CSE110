@@ -25,35 +25,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-/*
- *  GIVEN: I am not signed in to any account
- *      WHEN: I enter in an email address not associated with UCSD
- *      THEN: I am not allowed to create my account
- *
- *
- *      TEST 3:
- *       public boolean testUCSDEmail(){
- *          etPrice.setText("0");
- *          etPhone.setText("0000000000");
- *          etEmail.setText("test@gmail.com"); //sets email to an incorrect email
- *          etFirstName.setText("test");
- *          etPassword.setText("password");
- *          etUsername.setText("testuser");
- *          bRegister.performClick();
- *
- *
- *          //if it gets here that means the user wasn't registered because they didn't use a
- *         //UCSD email. Therefore the test passed
- *
- *          if(true){
- *              return true;
- *          }
- *          return false;
- *      }
- *
- *
- */
-
 
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
