@@ -154,6 +154,7 @@ public class Profile extends Activity implements View.OnClickListener {
         fabRequest.setStrokeVisible(false);
         fabRequest.setOnClickListener(this);
 
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userId = extras.getString("id");

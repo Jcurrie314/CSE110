@@ -1,6 +1,7 @@
 package com.parse.tuber;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -109,6 +110,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bLogin:
+                Dialog dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
