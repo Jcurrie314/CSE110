@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import java.io.ByteArrayOutputStream;
@@ -184,7 +185,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.put("student", cbStudent.isChecked());
         user.put("tutor", cbTutor.isChecked());
         user.put("rating", -1);
-
 
         ParseFile file = new ParseFile("profilePic.png", image);
         // Upload the image into Parse Cloud

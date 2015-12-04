@@ -49,31 +49,45 @@ import java.util.List;
  *
  *
  *      Test:
-  *
-  *         public boolean testDisplayUserDetails(Boolean verified){
-  *             displayUserDetails(verified);
-  *             if(rbRating.getVisibility() == VIEW.VISIBLE && lvCourses.getVisibility() == VIEW.VISIBLE && tvPrice.getVisibility() == VIEW.VISIBLE){
-  *                 continue;
-  *             } else {
-  *                 return false;
-  *             }
-  *             // TEST 1
-  *             if(verified == false) {
-  *                 if(fab.getVisibility() == VIEW.GONE && fabRequest.getVisibility() == VIEW.VISIBLE){
-  *                     return true;
-  *                 } else {
-  *                     return false;
-  *                 }
-  *                 // TEST 2
-  *             } else if(verified == true) {
-  *                 if(fab.getVisibility() == VIEW.VISIBLE && fabRequest.getVisibility() == VIEW.GONE){
-  *                     return true;
-  *                 } else {
-  *                     return false;
-  *                 }
-  *             }
-  *         }
+//           public void testDisplayUserDetails(Boolean verified) {
+//        displayUserDetails(verified);
+//        if (rbRating.getVisibility() != View.VISIBLE || lvCourses.getVisibility() != View.VISIBLE || tvPrice.getVisibility() != View.VISIBLE) {
+//            test1Success = false;
+//        } else {
+//            test1Success = true;
+//        }
+//        // TEST 1
+//        if (verified == false) {
+//            if (fab.getVisibility() == View.GONE && fabRequest.getVisibility() == View.VISIBLE) {
+//                test2Success = true;
+//            } else {
+//                test2Success = false;
+//            }
+//            // TEST 2
+//        } else if (verified == true) {
+//            if (fab.getVisibility() == View.VISIBLE && fabRequest.getVisibility() == View.GONE) {
+//                test2Success = true;
+//            } else {
+//                test2Success = false;
+//            }
+//        }
+//        android.support.v7.app.AlertDialog.Builder adb = new android.support.v7.app.AlertDialog.Builder(
+//                Profile.this);
+//        adb.setTitle("Test Result");
+//        if (test1Success == true && test2Success == true) {
+//            adb.setMessage("Test 3: PASS \nTest 4: PASS");
+//        } else if (test1Success == true && test2Success == false) {
+//            adb.setMessage("Test 3: PASS \nTest 4: FAIL");
+//        } else if (test1Success == false && test2Success == true) {
+//            adb.setMessage("Test 3: FAIL \nTest 4: PASS");
+//        } else {
+//            adb.setMessage("Test 3: FAIL \nTest 4: FAIL");
+//        }
+//        adb.show();
+//
+//    }
  */
+
 
 public class Profile extends Activity implements View.OnClickListener {
     String userId, relationshipId;
@@ -89,6 +103,7 @@ public class Profile extends Activity implements View.OnClickListener {
     MenuItem miChangePassword, miLogout;
     LinearLayout svMain;
     boolean artificiallySet = false;
+    boolean test1Success, test2Success;
 
     String phone;
     String email;
@@ -171,7 +186,7 @@ public class Profile extends Activity implements View.OnClickListener {
                     if (user != null) {
                         tvName.setText(user.get("name").toString());
                         tvPrice.setText(String.format("$%d/hr", user.get("fee")));
-                        if(user.get("tutor") == false) {
+                        if (user.get("tutor") == false) {
                             tvPrice.setVisibility(View.GONE);
                             tvPriceLabel.setVisibility(View.GONE);
                             tvCoursesLabel.setVisibility(View.GONE);
@@ -200,16 +215,29 @@ public class Profile extends Activity implements View.OnClickListener {
         });
         //update average rating on parse and locally
         refreshRatingBar();
+
+//        boolean variable =  true;
+//        android.support.v7.app.AlertDialog.Builder adb = new android.support.v7.app.AlertDialog.Builder(Profile.this);
+//        adb.setTitle("Test Result");
+//        if(testDisplayUserDetails(variable) == true){
+//            adb.setMessage("Test: Pass");
+//        } else {
+//            adb.setMessage("Test: Fail");
+//        }
+//        adb.show();
+
+        test1Success = false;
+        test2Success = false;
+        //testDisplayUserDetails(true);
     }
 
-    public void refreshRatingBar(){
+    public void refreshRatingBar() {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("objectId", userId);
         try {
             List<ParseUser> objects = query.find();
             if (objects.size() == 1) {
                 double averageRating = objects.get(0).getDouble("rating");
-                float aveFloat = (float) averageRating;
                 rbRating.setStepSize(1f);
                 if (averageRating == -1) {
                     addRatingRelationforNewTutor();
@@ -219,10 +247,10 @@ public class Profile extends Activity implements View.OnClickListener {
                 } else {
                     tvNoRatingsLabel.setVisibility(View.GONE);
 
-                    rbRating.setRating((float)averageRating);
+                    rbRating.setRating((float) averageRating);
                 }
             }
-        } catch (ParseException e){
+        } catch (ParseException e) {
 
         }
     }
@@ -243,7 +271,7 @@ public class Profile extends Activity implements View.OnClickListener {
                         Boolean verified;
                         if (objects.size() > 0) {
                             //Case that user has some connections
-                            if(!((Boolean) objects.get(0).get("accepted")) && ((Boolean) objects.get(0).get("requested") )) {
+                            if (!((Boolean) objects.get(0).get("accepted")) && ((Boolean) objects.get(0).get("requested"))) {
                                 //If the users are connected, hide the request connection fab
                                 fabRequest.setVisibility(View.GONE);
                             }
@@ -318,7 +346,9 @@ public class Profile extends Activity implements View.OnClickListener {
 
 
     }
+
     //Expands listview to fit items
+    // Source: http://stackoverflow.com/questions/3495890/how-can-i-put-a-listview-into-a-scrollview-without-it-collapsing
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
@@ -366,7 +396,7 @@ public class Profile extends Activity implements View.OnClickListener {
                                     @Override
                                     public void done(ParseObject parseObject, ParseException e) {
                                         if (e == null) {
-                                            if(parseObject != null) {
+                                            if (parseObject != null) {
                                                 // Simply add rating to total, count and compute average and add back to parse
                                                 double newRatingCount = parseObject.getDouble("ratingCount") + 1;
                                                 double newRatingTotal = parseObject.getDouble("ratingTotal") + rating;
@@ -384,7 +414,7 @@ public class Profile extends Activity implements View.OnClickListener {
                                                 hashy.put("id", userId);
                                                 try {
                                                     ParseCloud.callFunction("modifyRating", hashy);
-                                                } catch (ParseException e2){
+                                                } catch (ParseException e2) {
                                                     e2.printStackTrace();
                                                 }
                                                 try {
@@ -412,7 +442,7 @@ public class Profile extends Activity implements View.OnClickListener {
                                         if (e == null) {
                                             // Change new Rating Total to include the delta of oldRating and newRating
                                             // and take new average
-                                            if(parseObject != null) {
+                                            if (parseObject != null) {
 
                                                 double newRatingCount = parseObject.getDouble("ratingCount");
                                                 double newRatingTotal = parseObject.getDouble("ratingTotal") - prevRating + rating;
@@ -438,7 +468,7 @@ public class Profile extends Activity implements View.OnClickListener {
 
                                                 try {
                                                     ParseCloud.callFunction("modifyRating", hashy);
-                                                } catch (ParseException e2){
+                                                } catch (ParseException e2) {
                                                     e2.printStackTrace();
                                                 }
 
@@ -454,7 +484,7 @@ public class Profile extends Activity implements View.OnClickListener {
                             parseObject.put("rating", rating);
                             try {
                                 parseObject.save();
-                            } catch (ParseException error){
+                            } catch (ParseException error) {
                                 error.printStackTrace();
                             }
 
@@ -476,27 +506,31 @@ public class Profile extends Activity implements View.OnClickListener {
         //update user databases' ratings fields depending on ratings database when logged in
         ParseQuery<ParseObject> query = ParseQuery.getQuery("TutorRatingRelation");
         query.whereEqualTo("tutorId", userId);
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject parseObject, ParseException e) {
-                if (e == null) {
-                    if (parseObject == null) {
+        try {
+            List<ParseObject> parseObjects = query.find();
 
-                        ParseObject request = new ParseObject("TutorRatingRelation");
-                        request.put("tutorId", userId);
-                        request.put("ratingCount", 0);
-                        request.put("ratingAverage", 0);
-                        request.put("ratingTotal", 0);
-                        try {
-                            request.save();
+//            int i = 0;
+//            int i2 = i + i;
+            if (parseObjects.size() < 1) {
+                ParseObject request = new ParseObject("TutorRatingRelation");
+                request.put("tutorId", userId);
+                request.put("ratingCount", 0);
+                request.put("ratingAverage", 0);
+                request.put("ratingTotal", 0);
+                try {
+                    request.save();
 
-                        } catch (ParseException e1) {
-                            e1.printStackTrace();
-                        }
-                    }
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
                 }
+            } else {
+
             }
-        });
+        } catch (ParseException e){
+            e.printStackTrace();
+
+        }
+
 
     }
 
@@ -583,7 +617,7 @@ public class Profile extends Activity implements View.OnClickListener {
             @Override
             public void done(java.util.List<ParseObject> objects, com.parse.ParseException e) {
                 if (e == null) {
-                    if(objects.size() < 1){
+                    if (objects.size() < 1) {
                         ParseObject request = new ParseObject("Relationships");
                         request.put("tutor", userId);
                         request.put("student", ParseUser.getCurrentUser().getObjectId());
@@ -632,6 +666,43 @@ public class Profile extends Activity implements View.OnClickListener {
                 startActivity(emailIntent);
                 break;
         }
-
     }
+
+    public void testDisplayUserDetails(Boolean verified) {
+        displayUserDetails(verified);
+        if (rbRating.getVisibility() != View.VISIBLE || lvCourses.getVisibility() != View.VISIBLE || tvPrice.getVisibility() != View.VISIBLE) {
+            test1Success = false;
+        } else {
+            test1Success = true;
+        }
+        // TEST 1
+        if (verified == false) {
+            if (fab.getVisibility() == View.GONE && fabRequest.getVisibility() == View.VISIBLE) {
+                test2Success = true;
+            } else {
+                test2Success = false;
+            }
+            // TEST 2
+        } else if (verified == true) {
+            if (fab.getVisibility() == View.VISIBLE && fabRequest.getVisibility() == View.GONE) {
+                test2Success = true;
+            } else {
+                test2Success = false;
+            }
+        }
+        android.support.v7.app.AlertDialog.Builder adb = new android.support.v7.app.AlertDialog.Builder(
+                Profile.this);
+        adb.setTitle("Test Result");
+        if (test1Success == true && test2Success == true) {
+            adb.setMessage("Test 3: PASS \nTest 4: PASS");
+        } else if (test1Success == true && test2Success == false) {
+            adb.setMessage("Test 3: PASS \nTest 4: FAIL");
+        } else if (test1Success == false && test2Success == true) {
+            adb.setMessage("Test 3: FAIL \nTest 4: PASS");
+        } else {
+            adb.setMessage("Test 3: FAIL \nTest 4: FAIL");
+        }
+        adb.show();
+    }
+
 }

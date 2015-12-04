@@ -25,60 +25,58 @@ import com.parse.ParseUser;
 //           THEN: I will not be granted access to the app and I will be able to try again to
 //                 enter correct info
 //
-//
 //           TEST 4:
 //
-//      public void testLogin() {
+//              public void testLogin() {
 //
-//        etUsername.setText("nouser@ucsd.edu");
-//        etPassword.setText("wrongpassword");
-//        String username = etUsername.getText().toString();
-//        String password = etPassword.getText().toString();
+//                  etUsername.setText("nouser@ucsd.edu");
+//                  etPassword.setText("wrongpassword");
+//                  String username = etUsername.getText().toString();
+//                  String password = etPassword.getText().toString();
 //
-//        try {
-//        ParseUser.logIn(username,password);
-//        test1Success = false;
-//        } catch (ParseException e) {
-//        e.printStackTrace();
-//        test1Success = true;
-//        }
-//        ParseUser.logOut();
+//                  try {
+//                      ParseUser.logIn(username,password);
+//                      test1Success = false;
+//                  } catch (ParseException e) {
+//                      e.printStackTrace();
+//                      test1Success = true;
+//                  }
+//                  ParseUser.logOut();
 //
-//        etUsername.setText("");
-//        etPassword.setText("");
-//        username = etUsername.getText().toString();
-//        password = etPassword.getText().toString();
+//                  etUsername.setText("");
+//                  etPassword.setText("");
+//                  username = etUsername.getText().toString();
+//                  password = etPassword.getText().toString();
 //
-//        try {
-//        ParseUser.logIn(username,password);
-//        test2Success = false;
-//        } catch (ParseException e) {
-//        e.printStackTrace();
-//        test2Success = true;
-//        }
+//                  try {
+//                      ParseUser.logIn(username,password);
+//                      test2Success = false;
+//                  } catch (ParseException e) {
+//                      e.printStackTrace();
+//                      test2Success = true;
+//                  }
 //
-//        ParseUser.logOut();
-//
-//
+//                  ParseUser.logOut();
 //
 //
-//        //if it gets here that means the user wasn't logged in because they didn't have correct
-//        //credentials therefore the test passed
-//        android.support.v7.app.AlertDialog.Builder adb = new android.support.v7.app.AlertDialog.Builder(
-//        Login.this);
-//        adb.setTitle("Test Result");
-//        if(test1Success == true && test2Success == true) {
-//        adb.setMessage("Test 1: PASS \nTest 2: PASS");
-//        } else if(test1Success == true && test2Success == false) {
-//        adb.setMessage("Test 1: PASS \nTest 2: FAIL");
-//        }  else if(test1Success == false && test2Success == true) {
-//        adb.setMessage("Test 1: FAIL \nTest 2: PASS");
-//        } else {
-//        adb.setMessage("Test 1: FAIL \nTest 2: FAIL");
-//        }
-//        adb.show();
+//                  //if it gets here that means the user wasn't logged in because they didn't have correct
+//                  //credentials therefore the test passed
+//                  android.support.v7.app.AlertDialog.Builder adb = new android.support.v7.app.AlertDialog.Builder(
+//                  Login.this);
+//                      adb.setTitle("Test Result");
 //
-//        }
+//                  if(test1Success == true && test2Success == true) {
+//                      adb.setMessage("Test 1: PASS \nTest 2: PASS");
+//                  } else if(test1Success == true && test2Success == false) {
+//                      adb.setMessage("Test 1: PASS \nTest 2: FAIL");
+//                  }  else if(test1Success == false && test2Success == true) {
+//                      adb.setMessage("Test 1: FAIL \nTest 2: PASS");
+//                  } else {
+//                      adb.setMessage("Test 1: FAIL \nTest 2: FAIL");
+//                  }
+//                  adb.show();
+//
+//              }
 
 public class Login extends ActionBarActivity implements View.OnClickListener {
     Button bLogin;
@@ -175,5 +173,56 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     private void logUserIn(User returnedUser) {
         startActivity(new Intent(this, MainActivity.class));
     }
+
+    public void testLogin() {
+
+        etUsername.setText("nouser@ucsd.edu");
+        etPassword.setText("wrongpassword");
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
+
+        try {
+            ParseUser.logIn(username, password);
+            test1Success = false;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            test1Success = true;
+        }
+        ParseUser.logOut();
+
+        etUsername.setText("");
+        etPassword.setText("");
+        username = etUsername.getText().toString();
+        password = etPassword.getText().toString();
+
+        try {
+            ParseUser.logIn(username, password);
+            test2Success = false;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            test2Success = true;
+        }
+
+        ParseUser.logOut();
+
+
+        //if it gets here that means the user wasn't logged in because they didn't have correct
+        //credentials therefore the test passed
+        android.support.v7.app.AlertDialog.Builder adb = new android.support.v7.app.AlertDialog.Builder(
+                Login.this);
+        adb.setTitle("Test Result");
+        if (test1Success == true && test2Success == true) {
+            adb.setMessage("Test 1: PASS \nTest 2: PASS");
+        } else if (test1Success == true && test2Success == false) {
+            adb.setMessage("Test 1: PASS \nTest 2: FAIL");
+        } else if (test1Success == false && test2Success == true) {
+            adb.setMessage("Test 1: FAIL \nTest 2: PASS");
+        } else {
+            adb.setMessage("Test 1: FAIL \nTest 2: FAIL");
+        }
+        adb.show();
+
+    }
+
 
 }
