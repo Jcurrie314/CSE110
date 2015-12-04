@@ -49,31 +49,30 @@ import java.util.List;
  *
  *
  *      Test:
-  *
-  *         public boolean testDisplayUserDetails(Boolean verified){
-  *             displayUserDetails(verified);
-  *             if(rbRating.getVisibility() == VIEW.VISIBLE && lvCourses.getVisibility() == VIEW.VISIBLE && tvPrice.getVisibility() == VIEW.VISIBLE){
-  *                 continue;
-  *             } else {
-  *                 return false;
-  *             }
-  *             // TEST 1
-  *             if(verified == false) {
-  *                 if(fab.getVisibility() == VIEW.GONE && fabRequest.getVisibility() == VIEW.VISIBLE){
-  *                     return true;
-  *                 } else {
-  *                     return false;
-  *                 }
-  *                 // TEST 2
-  *             } else if(verified == true) {
-  *                 if(fab.getVisibility() == VIEW.VISIBLE && fabRequest.getVisibility() == VIEW.GONE){
-  *                     return true;
-  *                 } else {
-  *                     return false;
-  *                 }
-  *             }
-  *         }
  */
+//public boolean testDisplayUserDetails(Boolean verified){
+//        displayUserDetails(verified);
+//        if(rbRating.getVisibility() != View.VISIBLE || lvCourses.getVisibility() != View.VISIBLE || tvPrice.getVisibility() != View.VISIBLE){
+//        return false;
+//        }
+//        // TEST 1
+//        if(verified == false) {
+//        if(fab.getVisibility() == View.GONE && fabRequest.getVisibility() == View.VISIBLE){
+//        return true;
+//        } else {
+//        return false;
+//        }
+//        // TEST 2
+//        } else if(verified == true) {
+//        if(fab.getVisibility() == View.VISIBLE && fabRequest.getVisibility() == View.GONE){
+//        return true;
+//        } else {
+//        return false;
+//        }
+//        }
+//        return false;
+//        }
+
 
 public class Profile extends Activity implements View.OnClickListener {
     String userId, relationshipId;
@@ -170,7 +169,7 @@ public class Profile extends Activity implements View.OnClickListener {
                     if (user != null) {
                         tvName.setText(user.get("name").toString());
                         tvPrice.setText(String.format("$%d/hr", user.get("fee")));
-                        if(user.get("tutor") == false) {
+                        if (user.get("tutor") == false) {
                             tvPrice.setVisibility(View.GONE);
                             tvPriceLabel.setVisibility(View.GONE);
                             tvCoursesLabel.setVisibility(View.GONE);
@@ -199,6 +198,16 @@ public class Profile extends Activity implements View.OnClickListener {
         });
         //update average rating on parse and locally
         refreshRatingBar();
+
+//        boolean variable =  true;
+//        android.support.v7.app.AlertDialog.Builder adb = new android.support.v7.app.AlertDialog.Builder(Profile.this);
+//        adb.setTitle("Test Result");
+//        if(testDisplayUserDetails(variable) == true){
+//            adb.setMessage("Test: Pass");
+//        } else {
+//            adb.setMessage("Test: Fail");
+//        }
+//        adb.show();
     }
 
     public void refreshRatingBar(){
