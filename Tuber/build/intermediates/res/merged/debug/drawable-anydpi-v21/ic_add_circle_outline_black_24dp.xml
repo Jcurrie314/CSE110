@@ -7,4 +7,8 @@
         android:fillColor="#FF000000"
         android:pathData="M13,7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1,-5C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2zm0,18c-4.41,0 -8,-3.59 -8,-8s3.59,-8 8,-8 8,3.59 8,8 -3.59,8 -8,8z"/>
 </vector>
-<!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/drawable-anydpi-v21/ic_add_circle_outline_black_24dp.xml -->
+<<<<<<< HEAD
+<!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ic_add_circle_outline_black_24dp.xml -->
+=======
+<!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ic_add_circle_outline_black_24dp.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb

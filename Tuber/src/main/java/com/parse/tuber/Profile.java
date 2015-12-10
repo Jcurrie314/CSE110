@@ -186,7 +186,7 @@ public class Profile extends Activity implements View.OnClickListener {
                     if (user != null) {
                         tvName.setText(user.get("name").toString());
                         tvPrice.setText(String.format("$%d/hr", user.get("fee")));
-                        if (user.get("tutor") == false) {
+                        if (user.getBoolean("tutor") == false) {
                             tvPrice.setVisibility(View.GONE);
                             tvPriceLabel.setVisibility(View.GONE);
                             tvCoursesLabel.setVisibility(View.GONE);

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values-w820dp/dimens.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values-w820dp/dimens.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values-w820dp/dimens.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="activity_horizontal_margin">64dp</dimen>
 </resources>

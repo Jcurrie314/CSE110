@@ -8,4 +8,8 @@
         android:bottom="4dp"/>
     <corners
         android:radius="2dp"/>
-</shape><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/fab_label_background.xml -->
+<<<<<<< HEAD
+</shape><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/fab_label_background.xml -->
+=======
+</shape><!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/layout/fab_label_background.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb

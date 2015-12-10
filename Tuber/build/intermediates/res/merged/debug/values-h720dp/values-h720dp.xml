@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-h720dp/values-h720dp.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-h720dp/values-h720dp.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-h720dp/values-h720dp.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="abc_alert_dialog_button_bar_height">54dip</dimen>
 </resources>

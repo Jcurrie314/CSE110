@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/strings.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/strings.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/strings.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <string-array name="course_department_array">
         <item>CSE</item>
@@ -58,7 +62,11 @@
         <item>Rating</item>
         <item>Fee</item>
     </string-array>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
@@ -75,14 +83,25 @@
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
     <eat-comment/>
     <color name="accent">#212121</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <color name="accent">#212121</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <color name="accent_material_dark">@color/material_deep_teal_200</color>
+    <color name="accent_material_light">@color/material_deep_teal_500</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="amber_100">#FFECB3</color>
     <color name="amber_200">#FFE082</color>
@@ -99,13 +118,21 @@
     <color name="amber_A400">#FFC400</color>
     <color name="amber_A700">#FFAB00</color>
     <color name="background">#e5e5e5</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="background_floating_material_dark">#ff424242</color>
     <color name="background_floating_material_light">#ffeeeeee</color>
     <color name="background_material_dark">#ff303030</color>
     <color name="background_material_light">#ffeeeeee</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="black_semi_transparent">#B2000000</color>
     <color name="blue_100">#BBDEFB</color>
@@ -134,7 +161,11 @@
     <color name="blue_grey_900">#263238</color>
     <color name="blue_semi_transparent">#805677fc</color>
     <color name="blue_semi_transparent_pressed">#80738ffe</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
@@ -142,7 +173,11 @@
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="brown_100">#D7CCC8</color>
     <color name="brown_200">#BCAAA4</color>
@@ -154,17 +189,29 @@
     <color name="brown_700">#5D4037</color>
     <color name="brown_800">#4E342E</color>
     <color name="brown_900">#3E2723</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <color name="button_material_dark">#ff5a595b</color>
+    <color name="button_material_light">#ffd6d7d7</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="cardview_dark_background">#FF202020</color>
     <color name="cardview_light_background">#FFFAFAFA</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="cyan_100">#B2EBF2</color>
     <color name="cyan_200">#80DEEA</color>
@@ -208,23 +255,38 @@
     <color name="deep_purple_A200">#7C4DFF</color>
     <color name="deep_purple_A400">#651FFF</color>
     <color name="deep_purple_A700">#6200EA</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
     <eat-comment/>
     <color name="divider">#B6B6B6</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <color name="divider">#B6B6B6</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="error_color">#FFDD2C00</color>
     <color name="fab_stroke_end_inner_color">#0A000000</color>
     <color name="fab_stroke_end_outer_color">#0F000000</color>
     <color name="fab_stroke_top_inner_color">#1AFFFFFF</color>
     <color name="fab_stroke_top_outer_color">#2EFFFFFF</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="green_100">#C8E6C9</color>
     <color name="green_200">#A5D6A7</color>
@@ -251,13 +313,21 @@
     <color name="grey_800">#424242</color>
     <color name="grey_900">#212121</color>
     <color name="half_black">#808080</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="icons">#FFFFFF</color>
     <color name="indigo_100">#C5CAE9</color>
@@ -316,7 +386,11 @@
     <color name="lime_A200">#EEFF41</color>
     <color name="lime_A400">#C6FF00</color>
     <color name="lime_A700">#AEEA00</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="link_text_material_dark">@color/material_deep_teal_200</color>
     <color name="link_text_material_light">@color/material_deep_teal_500</color>
@@ -325,7 +399,11 @@
     <color name="material_blue_grey_950">#ff21272b</color>
     <color name="material_deep_teal_200">#ff80cbc4</color>
     <color name="material_deep_teal_500">#ff009688</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="orange_100">#FFE0B2</color>
     <color name="orange_200">#FFCC80</color>
@@ -359,27 +437,49 @@
     <color name="pink_pressed">#ec407a</color>
     <color name="primary">#F44336</color>
     <color name="primary_dark">#D32F2F</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_dark_material_dark">#ff000000</color>
     <color name="primary_dark_material_light">#ff757575</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
     <eat-comment/>
     <color name="primary_light">#FFCDD2</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_material_dark">#ff212121</color>
     <color name="primary_material_light">#ffefefef</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
     <eat-comment/>
     <color name="primary_text">#212121</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <color name="primary_dark_material_dark">#ff000000</color>
+    <color name="primary_dark_material_light">#ff757575</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <color name="primary_light">#FFCDD2</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <color name="primary_material_dark">#ff212121</color>
+    <color name="primary_material_light">#ffefefef</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <color name="primary_text">#212121</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="primary_text_default_material_dark">#ffffffff</color>
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="purple_100">#E1BEE7</color>
     <color name="purple_200">#CE93D8</color>
@@ -409,32 +509,55 @@
     <color name="red_A200">#FF5252</color>
     <color name="red_A400">#FF1744</color>
     <color name="red_A700">#D50000</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="ripple_material_dark">#4dffffff</color>
     <color name="ripple_material_light">#1f000000</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
     <eat-comment/>
     <color name="secondary_text">#727272</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <color name="ripple_material_dark">#4dffffff</color>
+    <color name="ripple_material_light">#1f000000</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <color name="secondary_text">#727272</color>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="shadow_end_color">@android:color/transparent</color>
     <color name="shadow_mid_color">#14000000</color>
     <color name="shadow_start_color">#44000000</color>
     <color name="snackbar_background_color">#323232</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <color name="teal_100">#B2DFDB</color>
     <color name="teal_200">#80CBC4</color>
@@ -507,7 +630,11 @@
     <declare-styleable name="Toolbar"><attr format="reference" name="titleTextAppearance"/><attr format="reference" name="subtitleTextAppearance"/><attr name="title"/><attr name="subtitle"/><attr name="android:gravity"/><attr format="dimension" name="titleMargins"/><attr format="dimension" name="titleMarginStart"/><attr format="dimension" name="titleMarginEnd"/><attr format="dimension" name="titleMarginTop"/><attr format="dimension" name="titleMarginBottom"/><attr name="contentInsetStart"/><attr name="contentInsetEnd"/><attr name="contentInsetLeft"/><attr name="contentInsetRight"/><attr format="dimension" name="maxButtonHeight"/><attr format="reference" name="collapseIcon"/><attr format="string" name="collapseContentDescription"/><attr name="popupTheme"/><attr format="reference" name="navigationIcon"/><attr format="string" name="navigationContentDescription"/><attr name="android:minHeight"/></declare-styleable>
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
@@ -569,19 +696,34 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/dimens.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="appbar_elevation">4dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="appbar_elevation">4dp</dimen>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
@@ -589,15 +731,26 @@
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
     <eat-comment/>
     <dimen name="fab_actions_spacing">16dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="fab_actions_spacing">16dp</dimen>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="fab_border_width">0.5dp</dimen>
     <dimen name="fab_content_size">24dp</dimen>
     <dimen name="fab_elevation">8dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="fab_icon_size">24dp</dimen>
     <dimen name="fab_labels_margin">8dp</dimen>
@@ -605,14 +758,25 @@
     <dimen name="fab_plus_icon_stroke">2dp</dimen>
     <dimen name="fab_shadow_offset">3dp</dimen>
     <dimen name="fab_shadow_radius">9dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="fab_size_mini">40dp</dimen>
     <dimen name="fab_size_normal">56dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
     <eat-comment/>
     <dimen name="fab_stroke_width">1dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="fab_size_mini">40dp</dimen>
+    <dimen name="fab_size_normal">56dp</dimen>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="fab_stroke_width">1dp</dimen>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="fab_translation_z_pressed">6dp</dimen>
     <dimen name="navigation_elevation">12dp</dimen>
@@ -622,12 +786,20 @@
     <dimen name="navigation_padding_bottom">8dp</dimen>
     <dimen name="navigation_padding_top_default">0dp</dimen>
     <dimen name="navigation_separator_vertical_padding">8dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="notification_large_icon_height">64dp</dimen>
     <dimen name="notification_large_icon_width">64dp</dimen>
     <dimen name="notification_subtext_size">12dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <dimen name="snackbar_action_inline_max_width">128dp</dimen>
     <dimen name="snackbar_background_corner_radius">0dp</dimen>
@@ -641,44 +813,77 @@
     <dimen name="snackbar_text_size">14sp</dimen>
     <dimen name="tab_max_width">264dp</dimen>
     <dimen name="tab_min_width">72dp</dimen>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
     <eat-comment/>
     <item name="fab_expand_menu_button" type="id"/>
     <item name="fab_label" type="id"/>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/res/values/values.xml -->
+    <eat-comment/>
+    <item name="fab_expand_menu_button" type="id"/>
+    <item name="fab_label" type="id"/>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <item name="home" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
     <item name="split_action_bar" type="id"/>
     <item name="up" type="id"/>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <item name="view_offset_helper" type="id"/>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <item name="view_offset_helper" type="id"/>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="abc_max_action_buttons">2</integer>
     <integer name="cancel_button_image_alpha">127</integer>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <integer name="snackbar_text_max_lines">2</integer>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <integer name="status_bar_notification_info_maxnum">999</integer>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="One">Search</string>
     <string name="Two">My Profile</string>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <integer name="snackbar_text_max_lines">2</integer>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <integer name="status_bar_notification_info_maxnum">999</integer>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="One">Search</string>
+    <string name="Two">My Profile</string>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
@@ -697,14 +902,25 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/strings.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">Tuber</string>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/strings.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Tuber</string>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/strings.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <string name="cb_student"><b>Student</b> needing tutoring</string>
     <string name="cb_tutor"><b>Tutor</b> needing ca-ca-cash</string>
@@ -714,7 +930,11 @@
     <string name="major_select">Choose your Major</string>
     <string name="parse_app_id">YOUR_APPLICATION_ID</string>
     <string name="parse_client_key">YOUR_CLIENT_KEY</string>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
@@ -1635,7 +1855,11 @@
         <item name="android:scaleType">center</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
         <item name="tabMaxWidth">@dimen/tab_max_width</item>
@@ -1647,7 +1871,11 @@
         <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
         <item name="tabSelectedTextColor">?android:textColorPrimary</item>
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="CardView">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
@@ -1663,7 +1891,11 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
@@ -1862,7 +2094,11 @@
     </style>
     <style name="TextAppearance.AppCompat.Widget.Switch" parent="Base.TextAppearance.AppCompat.Widget.Switch"/>
     <style name="TextAppearance.AppCompat.Widget.TextView.SpinnerItem" parent="Base.TextAppearance.AppCompat.Widget.TextView.SpinnerItem"/>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="TextAppearance.Design.Error" parent="TextAppearance.AppCompat.Caption">
         <item name="android:textColor">@color/error_color</item>
@@ -1882,7 +2118,11 @@
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="textAllCaps">true</item>
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="TextAppearance.StatusBar.EventContent" parent=""/>
     <style name="TextAppearance.StatusBar.EventContent.Info" parent=""/>
@@ -1895,12 +2135,20 @@
     </style>
     <style name="TextAppearance.Widget.AppCompat.Toolbar.Title" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Title">
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/themes.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/themes.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/themes.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="Theme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:textViewStyle">@style/theme_textview_style</item>
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="Theme.App.Base" parent="@style/Theme.AppCompat.Light">
         <item name="windowNoTitle">true</item>
@@ -1911,7 +2159,11 @@
         <item name="colorControlHighlight">@color/accent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="Theme.AppCompat" parent="Base.Theme.AppCompat"/>
     <style name="Theme.AppCompat.CompactMenu" parent="Base.Theme.AppCompat.CompactMenu"/>
@@ -2031,7 +2283,11 @@
     <style name="Widget.AppCompat.TextView.SpinnerItem" parent="Base.Widget.AppCompat.TextView.SpinnerItem"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="RtlOverlay.Widget.AppCompat.Toolbar.Button.Navigation"/>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="Widget.Design.AppBarLayout" parent="android:Widget">
         <item name="elevation">@dimen/appbar_elevation</item>
@@ -2083,7 +2339,11 @@
         <item name="hintTextAppearance">@style/TextAppearance.Design.Hint</item>
         <item name="errorTextAppearance">@style/TextAppearance.Design.Error</item>
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/styles.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/styles.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="menu_labels_style">
         <item name="android:textColor">@color/white</item>
@@ -2098,7 +2358,11 @@
         <item name="android:minHeight">23dip</item>
         <item name="android:maxHeight">25dip</item>
     </style>
-    <!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/values/themes.xml -->
+<<<<<<< HEAD
+    <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/values/themes.xml -->
+=======
+    <!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/values/themes.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
     <eat-comment/>
     <style name="theme_textview_style" parent="@android:style/Widget.Holo.Light.TextView">
         <item name="android:textColor">@color/pink</item>
