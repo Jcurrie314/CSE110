@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +30,6 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -321,7 +317,7 @@ public class EditProfile extends Activity implements View.OnClickListener {
                         etPhone.setText(user.get("phone").toString());
                         etPrice.setText(user.get("fee").toString());
                     }
-                    if(user.get("tutor") == false) {
+                    if(user.getBoolean("tutor") == false) {
                         etPrice.setVisibility(View.GONE);
                         tvPriceLabel.setVisibility(View.GONE);
                         tvCoursesLabel.setVisibility(View.GONE);
@@ -375,7 +371,7 @@ public class EditProfile extends Activity implements View.OnClickListener {
                 user.put("name", name);
                 String phone = etPhone.getText().toString();
                 user.put("phone", phone);
-                Integer price = Integer.parseInt(etPrice.getText().toString());
+                Double price = Double.parseDouble(etPrice.getText().toString());
                 user.put("fee", price);
                 if (image != null) {
                     ParseFile file = new ParseFile("profilePic.png", image);
