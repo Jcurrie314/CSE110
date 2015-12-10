@@ -19,4 +19,8 @@
 
     <item android:drawable="@drawable/ic_star_rate_white_18dp" />
 
+<<<<<<< HEAD
 </selector><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/drawable/small_rating_bar_full_empty.xml -->
+=======
+</selector><!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/drawable/small_rating_bar_full_empty.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb

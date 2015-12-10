@@ -7,4 +7,8 @@
         android:fillColor="#FF000000"
         android:pathData="M9,3L5,6.99h3V14h2V6.99h3L9,3zm7,14.01V10h-2v7.01h-3L15,21l4,-3.99h-3z"/>
 </vector>
+<<<<<<< HEAD
 <!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ic_import_export_black_24dp.xml -->
+=======
+<!-- From: file:/C:/Users/Scott/Desktop/School%20Documents/2015-2016/CSE110/Tuber/src/main/res/drawable-anydpi-v21/ic_import_export_black_24dp.xml -->
+>>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
