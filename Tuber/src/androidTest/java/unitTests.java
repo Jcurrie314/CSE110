@@ -95,10 +95,17 @@ public class unitTests
 //       WHEN: I enter a combination of correct username/passwords
         onView(withId(R.id.etUsername))
                 .check(matches(isDisplayed()))
-                .perform(typeText("testuser"), closeSoftKeyboard());
+                .perform(typeText("audreylunde"), closeSoftKeyboard());
         onView(withId(R.id.etPassword))
-                .perform(typeText("test"), closeSoftKeyboard());
+                .perform(typeText("corgis"), closeSoftKeyboard());
         onView(withId(R.id.bLoginUser)).perform(click());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        onView(withId(R.id.etSearchIn))
+                .check(matches(isDisplayed()));
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -326,5 +333,6 @@ public class unitTests
             e.printStackTrace();
         }
     }
+
     
 }
