@@ -100,7 +100,6 @@ public class EditProfile extends Activity implements View.OnClickListener {
 
 
 
-
         fab.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
@@ -315,7 +314,9 @@ public class EditProfile extends Activity implements View.OnClickListener {
                     if (user != null) {
                         etName.setText(user.get("name").toString());
                         etPhone.setText(user.get("phone").toString());
-                        etPrice.setText(user.get("fee").toString());
+                        etPrice.setText(String.format("$%.2f", (double) user.getDouble("fee")));
+                        etPrice.setSelection(etPrice.getText().length());
+
                     }
                     if(user.getBoolean("tutor") == false) {
                         etPrice.setVisibility(View.GONE);
@@ -371,23 +372,11 @@ public class EditProfile extends Activity implements View.OnClickListener {
                 user.put("name", name);
                 String phone = etPhone.getText().toString();
                 user.put("phone", phone);
-                Double price = Double.parseDouble(etPrice.getText().toString());
-                user.put("fee", price);
+                Double price = Double.parseDouble(etPrice.getText().toString().replaceAll("\\s+","").replaceAll("(?<=\\d),(?=\\d)|\\$", ""));
+                user.put("fee", Math.round(price*100.0)/100.0);
                 if (image != null) {
                     ParseFile file = new ParseFile("profilePic.png", image);
                     user.put("profilePic", file);
-                } else {
-                    Bitmap bmp = BitmapFactory.decodeFile("../../res/images/defaultProfilePicture.jpg");
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    getResizedBitmap(bmp, 500).compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                    image = stream.toByteArray();
-                    try {
-                        stream.close();
-                        ParseFile file = new ParseFile("profilePic.png", image);
-                        user.put("profilePic", file);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
 
 

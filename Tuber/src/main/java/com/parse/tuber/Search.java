@@ -3,6 +3,7 @@ package com.parse.tuber;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -25,7 +26,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Search extends Activity implements OnItemSelectedListener {
+public class Search extends FragmentActivity implements OnItemSelectedListener {
 
     /* Member variables for UI elements, strings that will hold spinner states with each update,
      * and some extra variables to keep track of some events that are triggered by code (spinner listener

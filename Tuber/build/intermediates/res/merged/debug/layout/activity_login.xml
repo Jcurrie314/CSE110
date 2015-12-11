@@ -19,7 +19,7 @@
             android:fontFamily="sans-serif-thin"
             android:gravity="center"
             android:text="TUBER"
-            android:textColor="#fff"
+            android:textColor="@color/accent"
             android:textSize="54dp" />
 
         <!-- Email Label -->
@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
+                android:textColor="@color/accent"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
@@ -50,6 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                android:textColor="@color/accent"
+
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
@@ -75,4 +78,4 @@
             android:textSize="16sp" />
 
     </LinearLayout>
-</ScrollView><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_login.xml -->
+</ScrollView><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_login.xml -->

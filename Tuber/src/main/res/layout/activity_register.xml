@@ -21,7 +21,7 @@
             android:fontFamily="sans-serif-thin"
             android:gravity="center"
             android:text="TUBER"
-            android:textColor="#fff"
+            android:textColor="@color/accent"
             android:textSize="54dp" />
 
         <!-- Name Label -->
@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Username (Required)"
                 android:singleLine="true"
+                android:textColor="@color/accent"
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
@@ -68,6 +69,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Email (Required)"
                 android:singleLine="true"
+                android:textColor="@color/accent"
+
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
@@ -84,6 +87,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Password (Required)"
                 android:singleLine="true"
+                android:textColor="@color/accent"
+
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
@@ -100,6 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:entries="@array/major_array"
+                android:textColor="@color/accent"
+
                 android:prompt="@string/major_select" />
         </android.support.design.widget.TextInputLayout>
 
@@ -116,6 +123,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Phone (Required)"
                 android:singleLine="true"
+                android:textColor="@color/accent"
+
                 android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
@@ -156,6 +165,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Price (Required)"
                 android:singleLine="true"
+                android:textColor="@color/accent"
+
                 android:inputType="numberDecimal" />
         </android.support.design.widget.TextInputLayout>
 
@@ -167,9 +178,11 @@
             android:layout_marginTop="24dp"
             android:background="#10000000"
             android:padding="12dp"
+
             android:text="Profile Picture (Required)"
 
-            android:textColor="@color/white" />
+            android:textColor="@color/accent"
+            />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/bRegisterPage"
@@ -181,7 +194,8 @@
             android:padding="12dp"
             android:text="Register"
 
-            android:textColor="@color/white" />
+            android:textColor="@color/accent"
+            />
 
 
 

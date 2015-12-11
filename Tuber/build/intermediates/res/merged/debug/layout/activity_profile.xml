@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Price" />
+                    android:text="Hourly Fee" />
 
                 <TextView
                     android:id="@+id/tvPrice"
@@ -192,4 +192,4 @@
 
 </android.support.design.widget.CoordinatorLayout>
 
-<!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_profile.xml -->
+<!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_profile.xml -->

@@ -185,7 +185,7 @@ public class Profile extends Activity implements View.OnClickListener {
 
                     if (user != null) {
                         tvName.setText(user.get("name").toString());
-                        tvPrice.setText(String.format("$%.2f/hr", (double) user.getDouble("fee")));
+                        tvPrice.setText(String.format("$%.2f", (double) user.getDouble("fee")));
                         if (user.getBoolean("tutor") == false) {
                             tvPrice.setVisibility(View.GONE);
                             tvPriceLabel.setVisibility(View.GONE);
@@ -574,7 +574,6 @@ public class Profile extends Activity implements View.OnClickListener {
 
                             phone = user.get("phone").toString();
                             email = user.getEmail();
-                            Log.d("Email", email);
                         }
                     }
                 }

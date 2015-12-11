@@ -20,7 +20,7 @@
             android:fontFamily="sans-serif-thin"
             android:gravity="center"
             android:text="TUBER"
-            android:textColor="#fff"
+            android:textColor="@color/accent"
             android:textSize="54dp"
             android:layout_marginTop="100dp"
             />
@@ -30,7 +30,7 @@
             android:fontFamily="sans-serif-thin"
             android:gravity="center"
             android:text="connecting you to the tutors you need."
-            android:textColor="#fff"
+            android:textColor="@color/accent"
             android:textSize="18dp"
             android:layout_marginBottom="100dp"/>
 
@@ -44,7 +44,7 @@
             android:layout_marginTop="12dp"
             android:padding="12dp"
             android:background="#10000000"
-            android:textColor="@color/white"
+            android:textColor="@color/accent"
             android:text="Login" />
 
         <android.support.v7.widget.AppCompatButton
@@ -54,7 +54,7 @@
             android:layout_marginBottom="12dp"
             android:layout_marginTop="12dp"
             android:padding="12dp"
-            android:textColor="@color/white"
+            android:textColor="@color/accent"
 
             android:background="#10000000"
 
@@ -62,4 +62,4 @@
 
 
     </LinearLayout>
-</ScrollView><!-- From: file:/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/main/res/layout/activity_landing.xml -->
+</ScrollView><!-- From: file:/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/main/res/layout/activity_landing.xml -->
