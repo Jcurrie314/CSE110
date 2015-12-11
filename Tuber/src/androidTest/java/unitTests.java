@@ -1,13 +1,21 @@
+import android.app.Instrumentation;
+import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.EditText;
 
 import com.parse.ParseUser;
 import com.parse.tuber.Landing;
+import com.parse.tuber.Profile;
 import com.parse.tuber.R;
+import com.parse.tuber.Register;
+import com.parse.tuber.Search;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -15,6 +23,8 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.hasToString;
+import static org.hamcrest.core.StringStartsWith.startsWith;
 
 public class unitTests
         extends ActivityInstrumentationTestCase2<Landing> {
@@ -32,8 +42,9 @@ public class unitTests
         mActivity = getActivity();
         ParseUser.logOut();
 
-        //testRegisterNewUserWithNonUCSDEmail();
     }
+
+
 
     //
 //       GIVEN: I am not signed in to any account
@@ -50,13 +61,11 @@ public class unitTests
         onView(withId(R.id.etPassword))
                 .perform(typeText("test"), closeSoftKeyboard());
         onView(withId(R.id.bLoginUser)).perform(click());
-        //onView(withId(R.id.my_recycler_view))
-        //      .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
     }
 
     @Test
     public void testRegisterNewUserWithNonUCSDEmail(){
-        //ParseUser.logOut();
 
         onView(withId(R.id.bRegister)).perform(click());
         onView(withId(R.id.etFirstName))
@@ -76,5 +85,18 @@ public class unitTests
         onView(withId(R.id.etEmail)).check(matches(hasErrorText("UCSD email is required")));
     }
 
-
+//    @Test
+//    public void testSearchResultClick(){
+//        ParseUser.logOut();
+//        onView(withId(R.id.bLogin)).perform(click());
+//        onView(withId(R.id.etUsername))
+//                .perform(typeText("testuser"), closeSoftKeyboard());
+//        onView(withId(R.id.etPassword))
+//                .perform(typeText("test"), closeSoftKeyboard());
+//        onView(withId(R.id.bLoginUser)).perform(click());
+//        onView(withId(R.id.my_recycler_view))
+//              .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+//
+//
+//    }
 }
