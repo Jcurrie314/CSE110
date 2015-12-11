@@ -90,7 +90,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        bLogin = (Button) findViewById(R.id.bLogin);
+        bLogin = (Button) findViewById(R.id.bLoginUser);
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         registerLink = (TextView) findViewById(R.id.tvRegisterLink);
@@ -107,7 +107,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bLogin:
+            case R.id.bLoginUser:
                 Dialog dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();

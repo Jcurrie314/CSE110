@@ -31,7 +31,7 @@ public class Landing extends ActionBarActivity implements View.OnClickListener {
 
 
         bLogin = (Button) findViewById(R.id.bLogin);
-        bRegister = (Button) findViewById(R.id.bRegisterUser);
+        bRegister = (Button) findViewById(R.id.bRegister);
         bLogin.setOnClickListener(this);
         bRegister.setOnClickListener(this);
 
@@ -40,7 +40,7 @@ public class Landing extends ActionBarActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bRegisterUser:
+            case R.id.bRegister:
                 Intent registerIntent = new Intent(this, Register.class);
                 startActivity(registerIntent);
                 break;

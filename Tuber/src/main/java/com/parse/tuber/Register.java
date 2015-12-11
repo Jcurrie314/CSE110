@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -53,7 +53,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         sMajor = (Spinner) findViewById(R.id.sMajor);
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
-        bRegister = (Button) findViewById(R.id.bRegister);
+        bRegister = (Button) findViewById(R.id.bRegisterPage);
         bUpload = (Button) findViewById(R.id.bUpload);
 
         loginLink = (TextView) findViewById(R.id.tvLoginLink);
@@ -84,7 +84,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bRegister:
+            case R.id.bRegisterPage:
                 String email = etEmail.getText().toString().trim();
                 if (email.equals("")) {
                     etEmail.setError("Email is required!");
@@ -173,12 +173,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.put("phone", etPhone.getText().toString().trim());
         if(etPrice.getVisibility() == View.VISIBLE) {
             if (etPrice.getText().toString() != "") {
-                user.put("fee", Integer.parseInt(etPrice.getText().toString()));
+                user.put("fee", Double.parseDouble(etPrice.getText().toString()));
             } else {
-                user.put("fee", Integer.parseInt("0"));
+                user.put("fee", Double.parseDouble("0"));
             }
         } else {
-            user.put("fee", Integer.parseInt("0"));
+            user.put("fee", Double.parseDouble("0"));
         }
         user.put("major", sMajor.getSelectedItem().toString());
         user.put("name", etFirstName.getText().toString().trim());
@@ -186,19 +186,22 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         user.put("tutor", cbTutor.isChecked());
         user.put("rating", -1);
 
-        ParseFile file = new ParseFile("profilePic.png", image);
-        // Upload the image into Parse Cloud
+        if(image != null) {
 
 
-        try {
-            file.save();
-        } catch (ParseException e) {
-            e.printStackTrace();
+            ParseFile file = new ParseFile("profilePic.png", image);
+            // Upload the image into Parse Cloud
+
+
+            try {
+                file.save();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            user.put("profilePic", file);
+
         }
-
-        user.put("profilePic", file);
-
-
         user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(com.parse.ParseException e) {

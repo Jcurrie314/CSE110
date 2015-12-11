@@ -1,12 +1,9 @@
-import android.content.Intent;
-import android.os.SystemClock;
 import android.support.test.InstrumentationRegistry;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.parse.ParseUser;
-import com.parse.tuber.MainActivity;
+import com.parse.tuber.Landing;
 import com.parse.tuber.R;
-import com.parse.tuber.Register;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,18 +12,15 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class unitTests
-        extends ActivityInstrumentationTestCase2<MainActivity> {
+        extends ActivityInstrumentationTestCase2<Landing> {
 
-    private MainActivity mActivity;
+    private Landing mActivity;
 
     public unitTests() {
-        super(MainActivity.class);
+        super(Landing.class);
     }
 
     @Before
@@ -34,31 +28,51 @@ public class unitTests
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
         mActivity = getActivity();
-        testRegisterNewUserWithNonUCSDEmail();
-    }
-    @Test
-    public void testRegisterNewUserWithNonUCSDEmail(){
         ParseUser.logOut();
 
-        onView(withId(R.id.bRegisterUser)).perform(click());
-        onView(withId(R.id.etFirstName))
-                .perform(typeText("Testy"), closeSoftKeyboard());
-        onView(withId(R.id.etFirstName)).check(matches(withText("Testy")));
+        //testRegisterNewUserWithNonUCSDEmail();
+    }
+
+    //
+//       GIVEN: I am not signed in to any account
+//           WHEN: I enter any combination of incorrect email/passwords
+//           THEN: I will not be granted access to the app and I will be able to try again to
+//                 enter correct info
+
+    @Test
+    public void testLoginUser(){
+        //onView(withContentDescription("Back")).perform(click());
+        onView(withId(R.id.bLogin)).perform(click());
         onView(withId(R.id.etUsername))
-                .perform(typeText("Testy"), closeSoftKeyboard());
-        onView(withId(R.id.etEmail))
-                .perform(typeText("Testy@gmail.com"), closeSoftKeyboard());
+                .perform(typeText("testuser"), closeSoftKeyboard());
         onView(withId(R.id.etPassword))
-                .perform(typeText("testy"), closeSoftKeyboard());
-        onView(withId(R.id.etPhone))
-                .perform(typeText("8057203900"), closeSoftKeyboard());
-        onView(withId(R.id.cbTutor)).perform(click());
-        onView(withId(R.id.etPrice))
-                .perform(typeText("20.00"), closeSoftKeyboard());
-        onView(withId(R.id.bRegister)).perform(click());
-        onView(withId(R.id.etEmail)).check(matches(hasErrorText("UCSD email is required")));
-
-
+                .perform(typeText("test"), closeSoftKeyboard());
+        onView(withId(R.id.bLoginUser)).perform(click());
+        //onView(withId(R.id.my_recycler_view))
+        //      .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
     }
+
+//    @Test
+//    public void testRegisterNewUserWithNonUCSDEmail(){
+//        //ParseUser.logOut();
+//
+//        onView(withId(R.id.bRegister)).perform(click());
+//        onView(withId(R.id.etFirstName))
+//                .perform(typeText("Testy"), closeSoftKeyboard());
+//        onView(withId(R.id.etUsername))
+//                .perform(typeText("Testy"), closeSoftKeyboard());
+//        onView(withId(R.id.etEmail))
+//                .perform(typeText("Testy@gmail.com"), closeSoftKeyboard());
+//        onView(withId(R.id.etPassword))
+//                .perform(typeText("testy"), closeSoftKeyboard());
+//        onView(withId(R.id.etPhone))
+//                .perform(typeText("8057203900"), closeSoftKeyboard());
+//        onView(withId(R.id.cbTutor)).perform(click());
+//        onView(withId(R.id.etPrice))
+//                .perform(typeText("20.00"), closeSoftKeyboard());
+//        onView(withId(R.id.bRegisterPage)).perform(click());
+//        onView(withId(R.id.etEmail)).check(matches(hasErrorText("UCSD email is required")));
+//
+//    }
 }

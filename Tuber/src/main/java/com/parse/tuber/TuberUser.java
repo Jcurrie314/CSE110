@@ -31,18 +31,22 @@ public class TuberUser {
             this.avgRating = user.getDouble("rating");
             this.fee = user.getInt("fee");
 
+
             ParseFile imageFile = (ParseFile) user.get("profilePic");
+            if(imageFile != null) {
+                Bitmap bitmap = null;
+                try {
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = 8;
+                    bitmap = BitmapFactory.decodeByteArray(imageFile.getData(), 0, imageFile.getData().length, options);
 
-            Bitmap bitmap = null;
-            try {
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inSampleSize = 8;
-                bitmap = BitmapFactory.decodeByteArray(imageFile.getData(), 0, imageFile.getData().length, options);
-
-            } catch (ParseException e) {
-                e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                this.profilePicture = bitmap;
+            } else {
+                this.profilePicture = null;
             }
-            this.profilePicture = bitmap;
             this.isTutor = (Boolean) user.get("tutor");
 
 

@@ -2,6 +2,7 @@ package com.parse.tuber;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHolder> {
     private ArrayList<SearchBundle> mDataset;
     private Bitmap bmap;
+    private ViewGroup parent;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -45,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
                 .inflate(R.layout.activity_card, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
-
+        this.parent = parent;
         return new SearchBundleViewHolder(v);
     }
 
@@ -61,8 +63,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.SearchBundleViewHo
         holder.searchBundle = sb;
 
 
-
-        holder.ivProfilePicture.setImageBitmap(sb.profilePicture);
+        if(sb.profilePicture!= null) {
+            holder.ivProfilePicture.setImageBitmap(sb.profilePicture);
+        } else {
+            Drawable d = parent.getContext().getDrawable(R.drawable.ic_person_black_48dp);
+            holder.ivProfilePicture.setImageDrawable(d);
+        }
 
         //This can go wherever
         holder.vFee.setText(String.format("Fee: $%.2f", sb.fee));

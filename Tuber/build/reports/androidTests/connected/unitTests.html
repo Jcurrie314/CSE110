@@ -34,7 +34,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">11.266s</div>
+<div class="counter">6.841s</div>
 <p>duration</p>
 </div>
 </td>
@@ -66,24 +66,58 @@
 <a name="testRegisterNewUserWithNonUCSDEmail"></a>
 <h3 class="failures">testRegisterNewUserWithNonUCSDEmail</h3>
 <span class="code">
-<pre>java.lang.NullPointerException
-at android.support.test.espresso.matcher.ViewMatchers$34.matchesSafely(ViewMatchers.java:1130)
-at android.support.test.espresso.matcher.ViewMatchers$34.matchesSafely(ViewMatchers.java:1120)
-at android.support.test.espresso.matcher.BoundedMatcher.matches(BoundedMatcher.java:73)
-at android.support.test.espresso.matcher.ViewMatchers.assertThat(ViewMatchers.java:1002)
-at android.support.test.espresso.assertion.ViewAssertions$2.check(ViewAssertions.java:89)
-at android.support.test.espresso.ViewInteraction$2.run(ViewInteraction.java:170)
+<pre>android.support.test.espresso.PerformException: Error performing 'type text(Testy)' on view 'with id: com.parse.starter:id/etFirstName'.
+at android.support.test.espresso.PerformException$Builder.build(PerformException.java:83)
+at android.support.test.espresso.base.DefaultFailureHandler.getUserFriendlyError(DefaultFailureHandler.java:70)
+at android.support.test.espresso.base.DefaultFailureHandler.handle(DefaultFailureHandler.java:53)
+at android.support.test.espresso.ViewInteraction.runSynchronouslyOnUiThread(ViewInteraction.java:184)
+at android.support.test.espresso.ViewInteraction.doPerform(ViewInteraction.java:115)
+at android.support.test.espresso.ViewInteraction.perform(ViewInteraction.java:87)
+at unitTests.testRegisterNewUserWithNonUCSDEmail(unitTests.java:40)
+at java.lang.reflect.Method.invoke(Native Method)
+at java.lang.reflect.Method.invoke(Method.java:372)
+at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:214)
+at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:199)
+at android.test.ActivityInstrumentationTestCase2.runTest(ActivityInstrumentationTestCase2.java:192)
+at junit.framework.TestCase.runBare(TestCase.java:134)
+at junit.framework.TestResult$1.protect(TestResult.java:115)
+at android.support.test.internal.runner.junit3.AndroidTestResult.runProtected(AndroidTestResult.java:77)
+at junit.framework.TestResult.run(TestResult.java:118)
+at android.support.test.internal.runner.junit3.AndroidTestResult.run(AndroidTestResult.java:55)
+at junit.framework.TestCase.run(TestCase.java:124)
+at android.support.test.internal.runner.junit3.NonLeakyTestSuite$NonLeakyTest.run(NonLeakyTestSuite.java:63)
+at junit.framework.TestSuite.runTest(TestSuite.java:243)
+at junit.framework.TestSuite.run(TestSuite.java:238)
+at android.support.test.internal.runner.junit3.DelegatingTestSuite.run(DelegatingTestSuite.java:103)
+at android.support.test.internal.runner.junit3.AndroidTestSuite.run(AndroidTestSuite.java:69)
+at android.support.test.internal.runner.junit3.JUnit38ClassRunner.run(JUnit38ClassRunner.java:90)
+at org.junit.runners.Suite.runChild(Suite.java:128)
+at org.junit.runners.Suite.runChild(Suite.java:27)
+at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+at android.support.test.internal.runner.TestExecutor.execute(TestExecutor.java:54)
+at android.support.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:240)
+at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1944)
+Caused by: java.lang.RuntimeException: Action will not be performed because the target view does not match one or more of the following constraints:
+((is displayed on the screen to the user) and (supports input methods or is assignable from class: class android.widget.SearchView))
+Target view: &quot;AppCompatEditText{id=2131558552, res-name=etFirstName, visibility=VISIBLE, width=624, height=91, has-focus=false, has-focusable=true, has-window-focus=true, is-clickable=true, is-enabled=true, is-focused=false, is-focusable=true, is-layout-requested=false, is-selected=false, root-is-layout-requested=false, has-input-connection=true, editor-info=[inputType=0x4001 imeOptions=0x8000005 privateImeOptions=null actionLabel=null actionId=0 initialSelStart=5 initialSelEnd=5 initialCapsMode=0x0 hintText=null label=null packageName=null fieldId=0 fieldName=null extras=null ], x=0.0, y=33.0, text=Testy, input-type=16385, ime-target=false, has-links=false}&quot;
+at android.support.test.espresso.ViewInteraction$1.run(ViewInteraction.java:138)
 at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:422)
 at java.util.concurrent.FutureTask.run(FutureTask.java:237)
-at android.os.Handler.handleCallback(Handler.java:733)
+at android.os.Handler.handleCallback(Handler.java:739)
 at android.os.Handler.dispatchMessage(Handler.java:95)
-at android.os.Looper.loop(Looper.java:136)
-at android.app.ActivityThread.main(ActivityThread.java:5086)
-at java.lang.reflect.Method.invokeNative(Native Method)
-at java.lang.reflect.Method.invoke(Method.java:515)
-at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:785)
-at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:601)
-at dalvik.system.NativeStart.main(Native Method)
+at android.os.Looper.loop(Looper.java:135)
+at android.app.ActivityThread.main(ActivityThread.java:5343)
+at java.lang.reflect.Method.invoke(Native Method)
+at java.lang.reflect.Method.invoke(Method.java:372)
+at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:905)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:700)
 </pre>
 </span>
 </div>
@@ -94,19 +128,19 @@ at dalvik.system.NativeStart.main(Native Method)
 <thead>
 <tr>
 <th>Test</th>
-<th>XT1060 - 4.4.4</th>
+<th>XT1060 - 5.1</th>
 </tr>
 </thead>
 <tr>
 <td>testRegisterNewUserWithNonUCSDEmail</td>
-<td class="failures">failed (11.266s)</td>
+<td class="failures">failed (6.841s)</td>
 </tr>
 </table>
 </div>
 </div>
 <div id="footer">
 <p>Generated by 
-<a href="http://www.gradle.org">Gradle 2.4</a> at Dec 9, 2015 10:51:00 PM</p>
+<a href="http://www.gradle.org">Gradle 2.4</a> at Dec 10, 2015 7:50:14 PM</p>
 </div>
 </div>
 </body>

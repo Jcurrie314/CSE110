@@ -185,7 +185,7 @@ public class Profile extends Activity implements View.OnClickListener {
 
                     if (user != null) {
                         tvName.setText(user.get("name").toString());
-                        tvPrice.setText(String.format("$%.2f/hr", (double) user.get("fee")));
+                        tvPrice.setText(String.format("$%.2f/hr", (double) user.getDouble("fee")));
                         if (user.getBoolean("tutor") == false) {
                             tvPrice.setVisibility(View.GONE);
                             tvPriceLabel.setVisibility(View.GONE);
@@ -193,19 +193,23 @@ public class Profile extends Activity implements View.OnClickListener {
                             lvCourses.setVisibility(View.GONE);
                         }
                         ParseFile imageFile = (ParseFile) user.get("profilePic");
-                        if (imageFile != null) {
+                        if(imageFile != null) {
+                            if (imageFile != null) {
 
-                            imageFile.getDataInBackground(new GetDataCallback() {
-                                public void done(byte[] data, com.parse.ParseException e) {
-                                    if (e == null) {
+                                imageFile.getDataInBackground(new GetDataCallback() {
+                                    public void done(byte[] data, com.parse.ParseException e) {
+                                        if (e == null) {
 
-                                        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                                        ivProfilePicture.setImageBitmap(bitmap);
+                                            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                            ivProfilePicture.setImageBitmap(bitmap);
 
+                                        }
                                     }
-                                }
-                            });
+                                });
 
+                            }
+                        } else {
+                            //profile pic not default
                         }
                         //Sets fab correctly depending on if users are connected
                         isVerified();

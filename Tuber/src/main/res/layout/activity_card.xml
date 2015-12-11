@@ -30,6 +30,7 @@
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
                 android:layout_marginRight="16dp"
+                android:src="@drawable/ic_person_black_48dp"
                 />
 
 
