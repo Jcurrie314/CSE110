@@ -53,26 +53,28 @@ public class unitTests
         //onView(withId(R.id.my_recycler_view))
         //      .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
     }
-//
-//    @Test
-//    public void testRegisterNewUserWithNonUCSDEmail(){
-//        //ParseUser.logOut();
-//
-//        onView(withId(R.id.bRegister)).perform(click());
-//        onView(withId(R.id.etFirstName))
-//                .perform(typeText("Testy"), closeSoftKeyboard());
-//        onView(withId(R.id.etUsername))
-//                .perform(typeText("Testy"), closeSoftKeyboard());
-//        onView(withId(R.id.etEmail))
-//                .perform(typeText("Testy@gmail.com"), closeSoftKeyboard());
-//        onView(withId(R.id.etPassword))
-//                .perform(typeText("testy"), closeSoftKeyboard());
-//        onView(withId(R.id.etPhone))
-//                .perform(typeText("8057203900"), closeSoftKeyboard());
-//        onView(withId(R.id.cbTutor)).perform(click());
-//        onView(withId(R.id.etPrice))
-//                .perform(typeText("20.00"), closeSoftKeyboard());
-//        onView(withId(R.id.bRegisterPage)).perform(click());
-//        onView(withId(R.id.etEmail)).check(matches(hasErrorText("UCSD email is required")));
-//    }
+
+    @Test
+    public void testRegisterNewUserWithNonUCSDEmail(){
+        //ParseUser.logOut();
+
+        onView(withId(R.id.bRegister)).perform(click());
+        onView(withId(R.id.etFirstName))
+                .perform(typeText("Testy"), closeSoftKeyboard());
+        onView(withId(R.id.etUsername))
+                .perform(typeText("Testy"), closeSoftKeyboard());
+        onView(withId(R.id.etEmail))
+                .perform(typeText("Testy@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.etPassword))
+                .perform(typeText("testy"), closeSoftKeyboard());
+        onView(withId(R.id.etPhone))
+                .perform(typeText("8057203900"), closeSoftKeyboard());
+        onView(withId(R.id.cbTutor)).perform(click());
+        onView(withId(R.id.etPrice))
+                .perform(typeText("20.00"), closeSoftKeyboard());
+        onView(withId(R.id.bRegisterPage)).perform(click());
+        onView(withId(R.id.etEmail)).check(matches(hasErrorText("UCSD email is required")));
+    }
+
+
 }
