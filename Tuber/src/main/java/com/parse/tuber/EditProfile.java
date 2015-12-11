@@ -323,6 +323,7 @@ public class EditProfile extends Activity implements View.OnClickListener {
                         tvPriceLabel.setVisibility(View.GONE);
                         tvCoursesLabel.setVisibility(View.GONE);
                         lvCourses.setVisibility(View.GONE);
+                        bAddCourse.setVisibility(View.GONE);
 
                     }
                 }

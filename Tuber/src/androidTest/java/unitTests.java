@@ -12,8 +12,6 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class unitTests
@@ -35,16 +33,16 @@ public class unitTests
         //testRegisterNewUserWithNonUCSDEmail();
     }
 
-    //
-//       GIVEN: I am not signed in to any account
-//           WHEN: I enter any combination of incorrect email/passwords
-//           THEN: I will not be granted access to the app and I will be able to try again to
-//                 enter correct info
+//
+//       GIVEN: I am not signed in to any account (above), and I am on the login page
+//       WHEN: I enter a combination of correct username/passwords
+//       THEN: I will be granted access to the app and I will be taken to the search page
 
     @Test
     public void testLoginUser(){
-        //onView(withContentDescription("Back")).perform(click());
+//       GIVEN: I am on the login page (from landing)
         onView(withId(R.id.bLogin)).perform(click());
+//       WHEN: I enter a combination of correct username/passwords
         onView(withId(R.id.etUsername))
                 .perform(typeText("testuser"), closeSoftKeyboard());
         onView(withId(R.id.etPassword))
@@ -53,7 +51,9 @@ public class unitTests
         //onView(withId(R.id.my_recycler_view))
         //      .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
     }
-//
+//       GIVEN: I am on the register screen, and not logged in (above @ before statement)
+//       WHEN: I fill in all fields in the register screen, but don't use a @ucsd.edu email
+//       THEN: The display will return an error at that field with text: "UCSD email is required"
 //    @Test
 //    public void testRegisterNewUserWithNonUCSDEmail(){
 //        //ParseUser.logOut();
