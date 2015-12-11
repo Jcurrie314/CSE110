@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<merger version="3"><dataSet config="main"><source path="/Users/Juleelala/AndroidStudioProjects/CSE110/Tuber/src/androidTest/assets"/></dataSet></merger>
-=======
-<merger version="3"><dataSet config="main"><source path="C:\Users\Scott\Desktop\School Documents\2015-2016\CSE110\Tuber\src\androidTest\assets"/></dataSet></merger>
->>>>>>> fb2bfb3492e5a1cecc641f685830ed9384d694fb
+<merger version="3"><dataSet config="0.4.1"><source path="/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.4.1/assets"/></dataSet><dataSet config="0.4.1"><source path="/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/build/intermediates/exploded-aar/com.android.support.test/runner/0.4.1/assets"/></dataSet><dataSet config="main"><source path="/Users/jonathancurrie/AndroidStudioProjects/MyFirstApp/Tuber/src/androidTest/assets"/></dataSet></merger>

@@ -1,8 +1,12 @@
+import android.content.Intent;
+import android.os.SystemClock;
 import android.support.test.InstrumentationRegistry;
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.parse.ParseUser;
 import com.parse.tuber.MainActivity;
 import com.parse.tuber.R;
+import com.parse.tuber.Register;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +38,8 @@ public class unitTests
     }
     @Test
     public void testRegisterNewUserWithNonUCSDEmail(){
+        ParseUser.logOut();
+
         onView(withId(R.id.bRegisterUser)).perform(click());
         onView(withId(R.id.etFirstName))
                 .perform(typeText("Testy"), closeSoftKeyboard());

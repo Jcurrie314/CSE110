@@ -52,7 +52,7 @@ public class EditProfile extends Activity implements View.OnClickListener {
     ImageView ivProfilePicture, ivMenu;
     FloatingActionButton fab;
     Button bUpload;
-    byte[] image;
+    byte[] image, stockImage;
     Button bAddCourse;
 
 
@@ -376,6 +376,18 @@ public class EditProfile extends Activity implements View.OnClickListener {
                 if (image != null) {
                     ParseFile file = new ParseFile("profilePic.png", image);
                     user.put("profilePic", file);
+                } else {
+                    Bitmap bmp = BitmapFactory.decodeFile("../../res/images/defaultProfilePicture.jpg");
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    getResizedBitmap(bmp, 500).compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    image = stream.toByteArray();
+                    try {
+                        stream.close();
+                        ParseFile file = new ParseFile("profilePic.png", image);
+                        user.put("profilePic", file);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
 
