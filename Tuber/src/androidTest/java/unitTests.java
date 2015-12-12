@@ -1,48 +1,22 @@
-import android.app.Instrumentation;
-import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.IdlingPolicies;
-import android.support.test.espresso.PerformException;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.action.ViewActions;
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.matcher.ViewMatchers;
-import android.support.test.espresso.util.TreeIterables;
 import android.test.ActivityInstrumentationTestCase2;
-import android.view.View;
-import android.widget.EditText;
 
 import com.parse.ParseUser;
 import com.parse.tuber.Landing;
-import com.parse.tuber.Profile;
 import com.parse.tuber.R;
-import com.parse.tuber.Register;
-import com.parse.tuber.Search;
 
-import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.core.deps.guava.base.Predicates.not;
 import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.hasToString;
-import static org.hamcrest.core.StringStartsWith.startsWith;
 
 public class unitTests
         extends ActivityInstrumentationTestCase2<Landing> {
@@ -104,6 +78,7 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       THEN: I will be granted access to the app and I will be taken to the search page
         onView(withId(R.id.etSearchIn))
                 .check(matches(isDisplayed()));
         try {
@@ -119,6 +94,9 @@ public class unitTests
         }
     }
 
+//       GIVEN: I am on the login screen, and not logged in (above @ before statement)
+//       WHEN: I type in an incorrect username and password and click login
+//       THEN: There will be a pop up that says "incorrect user details"
     @Test
     public void testLoginUserIncorrect() {
         try {
@@ -126,6 +104,8 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       GIVEN: I am on the login screen, and not logged in (above @ before statement)
+
         onView(withId(R.id.bLogin))
                 .check(matches(isDisplayed()))
                 .perform(click());
@@ -134,6 +114,7 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       WHEN: I type in an incorrect username and password and click login
         onView(withId(R.id.etUsername))
                 .check(matches(isDisplayed()))
                 .perform(typeText("incorrecttest"), closeSoftKeyboard());
@@ -141,10 +122,11 @@ public class unitTests
                 .perform(typeText("incorrecttest"), closeSoftKeyboard());
         onView(withId(R.id.bLoginUser)).perform(click());
         try {
-            Thread.sleep(500);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       THEN: There will be a pop up that says "incorrect user details"
         onView(withText("Incorrect user details")).check(matches(isDisplayed()));
         try {
             Thread.sleep(500);
@@ -161,9 +143,9 @@ public class unitTests
     }
 
 
-    //       GIVEN: I am on the register screen, and not logged in (above @ before statement)
-//       WHEN: I fill in all fields in the register screen, but don't use a @ucsd.edu email
-//       THEN: The display will return an error at that field with text: "UCSD email is required"
+//       GIVEN: I am on the register screen, and not logged in (above @ before statement)
+//       WHEN: I fill in all fields in the register screen, but don't add an email
+//       THEN: The display will return an error at that field with text: "Email is required"
 
 
     @Test
@@ -173,12 +155,14 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       GIVEN: I am on the register screen
         onView(withId(R.id.bRegister)).perform(click());
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       WHEN: I fill in all fields in the register screen, but don't add an email
         onView(withId(R.id.etFirstName))
                 .perform(typeText("Testy"), closeSoftKeyboard());
         onView(withId(R.id.etUsername))
@@ -198,6 +182,7 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       THEN: The display will return an error at that field with text: "Email is required"
         onView(withId(R.id.etEmail)).check(matches(hasErrorText("Email is required!")));
         try {
             Thread.sleep(500);
@@ -212,6 +197,11 @@ public class unitTests
         }
     }
 
+//       GIVEN: I am on the register screen, and not logged in (above @ before statement)
+//       WHEN: I fill in all fields in the register screen, except a password
+//       THEN: The display will return an error at that field with text: "Password is required!"
+
+
     @Test
     public void testRegisterNewUserWithNoPassword() {
         try {
@@ -219,12 +209,14 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       GIVEN: I am on the register screen
         onView(withId(R.id.bRegister)).perform(click());
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       WHEN: I fill in all fields in the register screen, except a password
         onView(withId(R.id.etFirstName))
                 .perform(typeText("Testy"), closeSoftKeyboard());
         onView(withId(R.id.etUsername))
@@ -244,6 +236,7 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       THEN: The display will return an error at that field with text: "Password is required!"
         onView(withId(R.id.etPassword)).check(matches(hasErrorText("Password is required!")));
         ParseUser.logOut();
         try {
@@ -253,6 +246,9 @@ public class unitTests
         }
     }
 
+//       GIVEN: I am on the register screen, and not logged in (above @ before statement)
+//       WHEN: I fill in all fields in the register screen, except the username
+//       THEN: The display will return an error at that field with text: "Username is required!"
 
     @Test
     public void testRegisterNewUserWithNoUsername() {
@@ -261,12 +257,14 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       GIVEN: I am on the register screen
         onView(withId(R.id.bRegister)).perform(click());
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       WHEN: I fill in all fields in the register screen, except the username
         onView(withId(R.id.etFirstName))
                 .perform(typeText("Testy"), closeSoftKeyboard());
         onView(withId(R.id.etUsername))
@@ -286,6 +284,7 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       THEN: The display will return an error at that field with text: "Username is required!"
         onView(withId(R.id.etUsername)).check(matches(hasErrorText("Username is required!")));
         try {
             Thread.sleep(500);
@@ -294,6 +293,9 @@ public class unitTests
         }
     }
 
+//       GIVEN: I am on the register screen, and not logged in (above @ before statement)
+//       WHEN: I fill in all fields in the register screen, but don't use a @ucsd.edu email
+//       THEN: The display will return an error at that field with text: "UCSD email is required"
     @Test
     public void testRegisterNewUserWithNonUCSDEmail() {
         try {
@@ -301,12 +303,14 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       GIVEN: I am on the register screen
         onView(withId(R.id.bRegister)).perform(click());
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       WHEN: I fill in all fields in the register screen, but don't use a @ucsd.edu email
         onView(withId(R.id.etFirstName))
                 .perform(typeText("Testy"), closeSoftKeyboard());
         onView(withId(R.id.etUsername))
@@ -326,6 +330,7 @@ public class unitTests
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//       THEN: The display will return an error at that field with text: "UCSD email is required"
         onView(withId(R.id.etEmail)).check(matches(hasErrorText("UCSD email is required")));
         try {
             Thread.sleep(500);
